@@ -1,0 +1,290 @@
+### Plugin Setup ###
+### ------------ ###
+
+plugin.tx_sbportfolio2 {
+	view {
+		templateRootPath = {$plugin.tx_sbportfolio2.view.templateRootPath}
+		partialRootPath = {$plugin.tx_sbportfolio2.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_sbportfolio2.view.layoutRootPath}
+	}
+
+
+
+	persistence {
+		storagePid = {$plugin.tx_sbportfolio2.persistence.storagePid}
+	}
+
+
+
+	settings {
+			# These settings are global settings for the page browser widgit.
+			# You can over-write these "default" settings for different record types if needed.
+		pageBrowser {
+			itemsPerPage		= 10
+			insertAbove		= FALSE
+			insertBelow		= TRUE
+			maximumNumberOfLinks	= 50
+		}
+
+			# These settings are global sorting fields
+			# You can add or remove fields to different record types if needed
+		sortByFields {
+			tstamp	= tstamp
+			crdate	= crdate
+			title	= title
+			uid	= uid
+		}
+
+
+
+			# Meta tag settings
+		meta {
+				# og:image - should return a URL, current is the data set in the cObject ViewHelper (the seo image path)
+			image = TEXT
+			image {
+				current = 1
+				wrap.data = getIndpEnv:TYPO3_SITE_URL
+				required = 1
+			}
+
+				# og:url - should return a canonical URL (you may want to adjust addQueryString.exclude)
+			url = TEXT
+			url.typolink {
+				parameter.data = TSFE:id
+				useCacheHash = 1
+				forceAbsoluteUrl = 1
+
+				addQueryString.method = GET
+				addQueryString.exclude = id
+
+				returnLast = url
+			}
+
+			site_name = {$plugin.tx_sbportfolio2.settings.site_name}
+			app_id = {$plugin.tx_sbportfolio2.settings.app_id}
+			admins = {$plugin.tx_sbportfolio2.settings.admins}
+		}
+
+
+
+		client {
+			records {
+				limit			= 10
+				sortByFields	< plugin.tx_sbportfolio2.settings.sortByFields
+				sortByFields.datetime = datetime
+				sortBy			= datetime
+				sortDir			= DESC
+				selection		= 1
+				#include		=
+				#exclude		=
+			}
+
+			dateFormat = {$plugin.tx_sbportfolio2.settings.dateFormat}
+
+			items {
+				limit = 3
+			}
+
+			nextprevious {
+				# uid, crdate or datetime
+				field = datetime
+			}
+
+			pageBrowser < plugin.tx_sbportfolio2.settings.pageBrowser
+
+			pids {
+				list = 8
+				single = 7
+			}
+		}
+
+
+
+		item {
+			records {
+				limit			= 10
+				inprogress		= exclude
+				featured		= include
+				sortByFields	< plugin.tx_sbportfolio2.settings.sortByFields
+				sortByFields.datetime = datetime
+				sortBy			= datetime
+				sortDir			= DESC
+				selection		= 1
+				#include		=
+				#exclude		=
+			}
+
+			dateFormat = {$plugin.tx_sbportfolio2.settings.dateFormat}
+
+			films {
+				width  = 200
+				height = 120
+
+				media < tt_content.media.20
+				media.file.data = field:film
+				media.width = 200
+				media.height = 120
+			}
+
+			flickr {
+					# Required - Flickr API application key
+				api_key = {$plugin.tx_sbportfolio2.settings.api_key}
+
+				photosets {
+					getInfo {
+							# Used internally, DON'T CHANGE
+						method = flickr.photosets.getInfo
+					}
+
+					getPhotos {
+							# Used internally, DON'T CHANGE
+						method = flickr.photosets.getPhotos
+
+							# Optional - A comma-delimited list of extra information to fetch for each returned record.
+							# Currently supported fields are: license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_o
+						extras = description
+
+							# Optional - Number of photos to return per page. If this argument is omitted, it defaults to 500. The maximum allowed value is 500.
+						per_page = 20
+
+							# Optional - The page of results to return. If this argument is omitted, it defaults to 1.
+						page =
+
+							# Optional - Filter results by media type. Possible values are all (default), photos or videos
+						media = all
+					}
+				}
+			}
+
+			imageFolders {
+				sorting	= 1
+				limit	= 1
+			}
+
+			nextprevious {
+					# uid, crdate or datetime
+				field = datetime
+			}
+
+			pageBrowser < plugin.tx_sbportfolio2.settings.pageBrowser
+
+			pids {
+				list	= 1
+				single	= 6
+			}
+		}
+
+
+
+		category {
+			records {
+					# beginAt - The id of the category to begin at - the root category for the list
+					# beginAt = 10 : Gets all categories which are sub-categories of the category with the uid 10
+					# beginAt = 0 : Gets all categories which are not subcategories
+					# -1 means render a flat list
+					# 0+ means render a tree
+				beginAt			= 0
+				
+					# depth - The number of levels in the tree to collect categories for, default is 1.
+					# 1 means only get the current level, 2 means get the first subcategories, etc..
+					# depth has no effect if rendering a list, only a tree.
+				depth			= 1
+				limit			= 10
+				sortByFields	< plugin.tx_sbportfolio2.settings.sortByFields
+				sortBy			= title
+				sortDir			= ASC
+					# List (1) or tree (2)
+				displayAs		= 1
+				selection		= 1
+				#include		=
+				#exclude		=
+			}
+
+			clients {
+				records < plugin.tx_sbportfolio2.settings.client.records
+			}
+
+			items {
+				records < plugin.tx_sbportfolio2.settings.item.records
+			}
+
+			nextprevious {
+				# uid or crdate (NO datetime!)
+				field = crdate
+			}
+
+			pageBrowser < plugin.tx_sbportfolio2.settings.pageBrowser
+
+			pids {
+				single = 9
+			}
+		}
+
+
+
+		slider {
+			records {
+				limit			= 10
+				sortByFields		< plugin.tx_sbportfolio2.settings.sortByFields
+				sortBy			= crdate
+				sortDir			= DESC
+				selection		= 1
+				#include		=
+				#exclude		=
+			}
+		}
+
+
+
+		tag {
+			records {
+				limit			= 10
+				sortByFields		< plugin.tx_sbportfolio2.settings.sortByFields
+				sortBy			= title
+				sortDir			= ASC
+				selection		= 1
+				#include		=
+				#exclude		=
+			}
+
+			pageBrowser < plugin.tx_sbportfolio2.settings.pageBrowser
+		}
+
+
+
+		testimonial {
+			records {
+				limit			= 10
+				sortByFields		< plugin.tx_sbportfolio2.settings.sortByFields
+				sortBy			= crdate
+				sortDir			= DESC
+				selection		= 1
+				#include		=
+				#exclude		=
+			}
+
+			dateFormat = {$plugin.tx_sbportfolio2.settings.dateFormat}
+
+			pageBrowser < plugin.tx_sbportfolio2.settings.pageBrowser
+		}
+	}
+}
+
+
+
+### Module Setup ###
+### ------------ ###
+
+module.tx_sbportfolio2 {
+	persistence {
+		storagePid = {$module.tx_sbportfolio2.persistence.storagePid}
+	}
+
+
+
+	view {
+		templateRootPath = {$module.tx_sbportfolio2.view.templateRootPath}
+		partialRootPath = {$module.tx_sbportfolio2.view.partialRootPath}
+		layoutRootPath = {$module.tx_sbportfolio2.view.layoutRootPath}
+	}
+}

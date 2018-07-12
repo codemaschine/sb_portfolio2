@@ -1,0 +1,12 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<li class="{sbp2:classes(record: next)} next">
+	<p class="label"><strong>{f:translate(key:'sbp2_nextprevious_next')}</strong></p>
+	<div class="nextpreviousItem nextCategory">
+		<f:alias map="{title: '{sbp2:title(record: next)}'}">
+			<f:link.action pageUid="{settings.category.pids.single}" controller="Category" action="single" arguments="{category : next.uid}" title="{f:translate(key: 'sbp2_titletext_filter_item_category')} {title}">
+				{title}
+			</f:link.action>
+		</f:alias>
+	</div>
+</li>

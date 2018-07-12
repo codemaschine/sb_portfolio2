@@ -1,0 +1,38 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:layout name="TagList" />
+
+<f:section name="tagList">
+	<h1>Tag List</h1>
+	
+	<f:if condition="{tags}">
+		<f:then>
+			<f:widget.paginate objects="{tags}" as="paginatedTags" configuration="{settings.tag.pageBrowser}">
+				<ul class="tagList">
+					<f:for each="{paginatedTags}" as="tag" iteration="tagInfo">
+						<f:alias map="{title: '{tag.title}'}">
+							<f:if condition="{sbp2:filtering(name: 'tag', comparison: tag.uid)}">
+								<f:then>
+									<li class="{sbp2:classes(record: tag, info: tagInfo)} selected">
+										{title}
+									</li>
+								</f:then>
+								<f:else>
+									<li class="{sbp2:classes(record: tag, info: tagInfo)}">
+										<f:link.action pageUid="{settings.item.pids.list}" controller="Item" action="list" arguments="{tag : tag.uid}" title="{f:translate(key: 'sbp2_titletext_filter_item_tag')} {title}">
+											{title}
+										</f:link.action>
+									</li>
+								</f:else>
+							</f:if>
+						</f:alias>
+					</f:for>
+				</ul>
+			</f:widget.paginate>
+		</f:then>
+		
+		<f:else>
+			<p class="tagListEmpty">{f:translate(key:'sbp2_none_tag')}</p>
+		</f:else>
+	</f:if>
+</f:section>

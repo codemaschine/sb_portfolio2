@@ -1,0 +1,24 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{item.files}">
+	<p class="label"><strong>{f:translate(key:'sbp2_files')}</strong></p>
+	<ul class="files">
+		<f:for each="{sbp2:sortTitle(records: '{sbp2:combine.files(record: item)}')}" as="file" iteration="fileInfo">
+			<f:alias map="{title: '{sbp2:title(record: file)}'}">
+				<li class="{sbp2:classes(record: file, info: fileInfo)}">
+					<span class="fileicon">
+						<f:link.page pageUid="{file.file}" title="{f:translate(key: 'sbp2_titletext_files')} {title}">
+							<f:image src="{sbp2:file.icon(filetype: file.filetype)}" title="{f:translate(key: 'sbp2_titletext_files')} {title}" alt="{title}" />
+						</f:link.page>
+					</span> 
+					<span class="filelink">
+						<f:link.page pageUid="{file.file}" title="{f:translate(key: 'sbp2_titletext_files')} {title}">
+							{title}
+						</f:link.page>
+					</span> 
+					<span class="filesize">({sbp2:file.size(size: file.filesize)})</span>
+				</li>
+			</f:alias>
+		</f:for>
+	</ul>
+</f:if>

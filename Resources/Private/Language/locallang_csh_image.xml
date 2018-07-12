@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help (CSH) for table tx_sbportfolio2_domain_model_image</description>
+		<type>CSH</type>
+		<csh_table>tx_sbportfolio2_domain_model_image</csh_table>
+	</meta>
+	<data type="array">
+	<languageKey index="default" type="array">
+			<label index="title.description">The image's title. Used in the FE and in table listings in the BE.</label>
+			<label index="titlefull.description">An alternative title for use in the FE.</label>
+			<label index="titleshort.description">An alternative title for use in the FE when space is restricted.</label>
+			<label index="description.description">A short description of the image.</label>
+			<label index="imagefile.description">The actual image that this image record is for. This is a reference to an image in fileadmin.</label>
+			<label index="caption.description">A caption for this image.</label>
+			<label index="starttime.description">The date that this image should start showing up in the FE.</label>
+			<label index="endtime.description">The date that this image should stop showing up in the FE.</label>
+		</languageKey>
+	</data>
+</T3locallang>

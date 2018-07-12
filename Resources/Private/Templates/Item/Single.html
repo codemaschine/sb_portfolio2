@@ -1,0 +1,70 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:layout name="ItemSingle" />
+
+<f:section name="itemSingle">
+	<f:alias map="{title: '{sbp2:title(record: item)}'}">
+		<f:render partial="Shared/Metacontent" arguments="{record: item, title: title, meta: settings.meta}" />
+		
+		<h1>Item Single</h1>
+		
+		<f:if condition="{item}">
+			<f:then>
+				<div class="{sbp2:classes(record: item)}">
+					<h2>{title}</h2>
+					
+					<f:render partial="Shared/Datetime" arguments="{datetime: item.datetime, format: settings.item.dateFormat}" />
+					<f:render partial="Shared/Summary" arguments="{summary: item.summary}" />
+					<f:render partial="Shared/Fulldescription" arguments="{fulldescription: item.fulldescription}" />
+					<f:render partial="Item/Tags" arguments="{item: item, filtering: filtering}" />
+					<f:render partial="Item/Images" arguments="{item: item}" />
+					<f:render partial="Item/Imagefolders" arguments="{item: item}" />
+					<f:render partial="Item/Films" arguments="{item: item}" />
+					<f:render partial="Item/Files" arguments="{item: item}" />
+					<f:render partial="Item/Flickr" arguments="{item: item}" />
+					<f:render partial="Item/Linkurl" arguments="{item: item}" />
+					<f:render partial="Item/Links" arguments="{item: item}" />
+					<f:render partial="Item/Client" arguments="{client: item.client, filtering: filtering}" />
+					<f:render partial="Item/Categories" arguments="{categories: item.categories, filtering: filtering}" />
+					<f:render partial="Item/Testimonial" arguments="{testimonial: item.testimonial}" />
+					
+					<f:comment>
+						This partial will output the manually related items.
+						<f:render partial="Item/Related/Items" arguments="{relateditems: item.relateditems}" />
+						
+						This partial will output the manually related items from this item's categories.
+						<f:render partial="Item/Related/Category" arguments="{item: item}" />
+						
+						The following partial will output all manually related items
+						(manually related items and manually related items from this item's categories).
+					</f:comment>
+					
+					<f:render partial="Item/Related/Combined" arguments="{item: item}" />
+					
+					<f:comment>
+						The following partial will output all related items. These are the manually related items,
+						the manually related items from this item's categories, and items' related by tag.
+						This is also reciprocal, so manual relations from item A->B will show up in both the single view
+						for A and B, and not just A like with the Item/Related/Items partial.
+						
+						NOT yet working!
+					
+						<f:render partial="Item/Related/All" arguments="{item: item}" />
+					</f:comment>
+					
+					<f:render partial="Item/Nextprevious" arguments="{record: item, npField: settings.item.nextprevious.field}" />
+			
+					<p class="viewAllItems">
+						<f:link.action pageUid="{settings.item.pids.list}" action="list" title="{f:translate(key:'sbp2_back_item')}">
+							{f:translate(key:'sbp2_back_item')}
+						</f:link.action>
+					</p>
+				</div>
+			</f:then>
+			
+			<f:else>
+					<p class="itemSingleEmpty">{f:translate(key:'sbp2_none_item_single')}</p>
+			</f:else>
+		</f:if>
+	</f:alias>
+</f:section>

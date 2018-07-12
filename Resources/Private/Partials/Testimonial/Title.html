@@ -1,0 +1,15 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:alias map="{parentRecord: '{sbp2:testimonialParent(testimonial: testimonial)}'}">
+	<f:if condition="{testimonial.item} > 0">
+		<f:link.action controller="Item" pageUid="{settings.item.pids.single}" action="single" arguments="{item : testimonial.item}" title="{f:translate(key: 'sbp2_titletext_item')} {sbp2:title(record: parentRecord)}">
+			<h2 class="titel">{testimonial.title}</h2>
+		</f:link.action>
+	</f:if>
+		
+	<f:if condition="{testimonial.client} > 0">
+		<f:link.action controller="Client" pageUid="{settings.client.pids.single}" action="single" arguments="{client : testimonial.client}" title="{f:translate(key: 'sbp2_titletext_client')} {sbp2:title(record: parentRecord)}">
+			<h2 class="titel">{testimonial.title}</h2>
+		</f:link.action>
+	</f:if>
+</f:alias>

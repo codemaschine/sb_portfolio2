@@ -1,0 +1,8 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{image}">
+	<p class="label"><strong>{f:translate(key:'sbp2_image')}</strong></p>
+	<div class="image">
+		<f:image src="{image.imagefile}" width="60c" height="40c" title="{sbp2:title(record: image)}" alt="{image.description}" />
+	</div>
+</f:if>

@@ -1,0 +1,16 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:alias map="{title: '{sbp2:title(record: client)}'}">
+	<h2 class="title">
+		<f:if condition="{sbp2:filtering(name: 'client', comparison: client.uid)}">
+			<f:then>
+				{title}
+			</f:then>
+			<f:else>
+				<f:link.action pageUid="{settings.client.pids.single}" controller="Client" action="single" arguments="{client : client}" title="{f:translate(key: 'sbp2_titletext_client')} {title}">
+					{title}
+				</f:link.action>
+			</f:else>
+		</f:if>
+	</h2>
+</f:alias>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'sb_portfolio2'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<!-- Tabs -->
+			<label index="sbp2_tab.media">Media</label>
+			<label index="sbp2_tab.related">Related</label>
+			<label index="sbp2_tab.categorisation">Categorisation</label>
+			<label index="sbp2_tab.access">Visibility</label>
+			<label index="sbp2_tab.credit">Credit</label>
+			<label index="sbp2_tab.seo">SEO</label>
+
+			<!-- Palettes -->
+			<label index="sbp2_palette.title">Titles</label>
+			<label index="sbp2_palette.publishDates">Display Dates</label>
+			<label index="sbp2_palette.type">Type</label>
+			<label index="sbp2_palette.file">File Information</label>
+			<label index="sbp2_palette.image">Image Information</label>
+			<label index="sbp2_palette.flickr">Flickr</label>
+			<label index="sbp2_palette.og">Open Graph</label>
+			<label index="sbp2_palette.facebook">Facebook</label>
+			<label index="sbp2_palette.images">Images</label>
+
+			<!-- Shared -->
+			<label index="sbp2_shared.title">Title</label>
+			<label index="sbp2_shared.titlefull">Title (Full)</label>
+			<label index="sbp2_shared.titleshort">Title (Short)</label>
+			<label index="sbp2_shared.starttime">Display From</label>
+			<label index="sbp2_shared.endtime">Display Until</label>
+			<label index="sbp2_shared.crdate">Creation Date</label>
+			<label index="sbp2_shared.tstamp">Timestamp of last update</label>
+			<label index="sbp2_shared.seo_title">OG Title</label>
+			<label index="sbp2_shared.seo_type">OG Type</label>
+			<label index="sbp2_shared.seo_type.0">Activities</label>
+			<label index="sbp2_shared.seo_type.0.0">Activity</label>
+			<label index="sbp2_shared.seo_type.0.1">Sport</label>
+			<label index="sbp2_shared.seo_type.1">Businesses</label>
+			<label index="sbp2_shared.seo_type.1.0">Bar</label>
+			<label index="sbp2_shared.seo_type.1.1">Company</label>
+			<label index="sbp2_shared.seo_type.1.2">Cafe</label>
+			<label index="sbp2_shared.seo_type.1.3">Hotel</label>
+			<label index="sbp2_shared.seo_type.1.4">Restaurant</label>
+			<label index="sbp2_shared.seo_type.2">Groups</label>
+			<label index="sbp2_shared.seo_type.2.0">Cause</label>
+			<label index="sbp2_shared.seo_type.2.1">Sports League</label>
+			<label index="sbp2_shared.seo_type.2.2">Sports Team</label>
+			<label index="sbp2_shared.seo_type.3">Organizations</label>
+			<label index="sbp2_shared.seo_type.3.0">Band</label>
+			<label index="sbp2_shared.seo_type.3.1">Government</label>
+			<label index="sbp2_shared.seo_type.3.2">Non_profit</label>
+			<label index="sbp2_shared.seo_type.3.3">School</label>
+			<label index="sbp2_shared.seo_type.3.4">University</label>
+			<label index="sbp2_shared.seo_type.4">People</label>
+			<label index="sbp2_shared.seo_type.4.0">Actor</label>
+			<label index="sbp2_shared.seo_type.4.1">Athlete</label>
+			<label index="sbp2_shared.seo_type.4.2">Author</label>
+			<label index="sbp2_shared.seo_type.4.3">Director</label>
+			<label index="sbp2_shared.seo_type.4.4">Musician</label>
+			<label index="sbp2_shared.seo_type.4.5">Politician</label>
+			<label index="sbp2_shared.seo_type.4.6">Public_figure</label>
+			<label index="sbp2_shared.seo_type.5">Places</label>
+			<label index="sbp2_shared.seo_type.5.0">City</label>
+			<label index="sbp2_shared.seo_type.5.1">Country</label>
+			<label index="sbp2_shared.seo_type.5.2">Landmark</label>
+			<label index="sbp2_shared.seo_type.5.3">State Province</label>
+			<label index="sbp2_shared.seo_type.6">Products and Entertainment</label>
+			<label index="sbp2_shared.seo_type.6.0">Album</label>
+			<label index="sbp2_shared.seo_type.6.1">Book</label>
+			<label index="sbp2_shared.seo_type.6.2">Drink</label>
+			<label index="sbp2_shared.seo_type.6.3">Food</label>
+			<label index="sbp2_shared.seo_type.6.4">Game</label>
+			<label index="sbp2_shared.seo_type.6.5">Product</label>
+			<label index="sbp2_shared.seo_type.6.6">Song</label>
+			<label index="sbp2_shared.seo_type.6.7">Movie</label>
+			<label index="sbp2_shared.seo_type.6.8">TV Show</label>
+			<label index="sbp2_shared.seo_type.7">Websites</label>
+			<label index="sbp2_shared.seo_type.7.0">Blog</label>
+			<label index="sbp2_shared.seo_type.7.1">Website</label>
+			<label index="sbp2_shared.seo_type.7.2">Article</label>
+			<label index="sbp2_shared.seo_image">OG Image</label>
+			<label index="sbp2_shared.seo_description">OG Description</label>
+			<label index="sbp2_shared.seo_fbappid">FB App ID</label>
+			<label index="sbp2_shared.seo_fbadmins">FB Administrators</label>
+			<label index="sbp2_shared.files">Related Files</label>
+			<label index="sbp2_shared.file">File</label>
+			<label index="sbp2_shared.filename">File Name</label>
+			<label index="sbp2_shared.filepath">File Path</label>
+			<label index="sbp2_shared.filesize">File Size</label>
+			<label index="sbp2_shared.filetype">File Extension</label>
+			<label index="sbp2_shared.description">Description</label>
+			<label index="sbp2_shared.fulldescription">Full Description</label>
+			<label index="sbp2_shared.summary">Summary</label>
+			<label index="sbp2_shared.relateditems">Related Items</label>
+			<label index="sbp2_shared.relatedclients">Related Clients</label>
+			<label index="sbp2_shared.categories">Categories</label>
+			<label index="sbp2_shared.tags">Tags</label>
+			<label index="sbp2_shared.datetime">Date</label>
+			<label index="sbp2_shared.image">Image</label>
+			<label index="sbp2_shared.links">Related Links</label>
+			<label index="sbp2_shared.testimonial">Testimonial</label>
+			<label index="sbp2_shared.slider_title">Slider Title</label>
+			<label index="sbp2_shared.slider_description">Slider Description</label>
+			<label index="sbp2_shared.slider_image">Slider Image</label>
+			<label index="sbp2_shared.url">URl</label>
+			<label index="sbp2_shared.page">Page</label>
+			<label index="sbp2_shared.item">Item</label>
+			<label index="sbp2_shared.client">Client</label>
+			<label index="sbp2_shared.category">Category</label>
+			<label index="sbp2_shared.tag">Tag</label>
+			<label index="sbp2_shared.linkurl">Link</label>
+			<label index="sbp2_shared.logo">Logo</label>
+
+			<!-- Table Specific -->
+			<label index="sbp2_item">Portfolio Item</label>
+			<label index="sbp2_item.featured">Featured</label>
+			<label index="sbp2_item.inprogress">In-progress</label>
+			<label index="sbp2_item.imagefolders">Image Folders</label>
+			<label index="sbp2_item.films">Films</label>
+			<label index="sbp2_item.client">Client</label>
+			<label index="sbp2_item.images">Images</label>
+			<label index="sbp2_item.preview">Preview Image</label>
+			<label index="sbp2_item.type">Type of Item</label>
+			<label index="sbp2_item.type.0">Normal</label>
+			<label index="sbp2_item.type.1">Page</label>
+			<label index="sbp2_item.type.2">URL</label>
+			<label index="sbp2_item.type.3">File</label>
+			<label index="sbp2_item.url">Url</label>
+			<label index="sbp2_item.page">Page</label>
+			<label index="sbp2_item.setid">Photoset ID</label>
+
+			<label index="sbp2_client">Portfolio Client</label>
+
+			<label index="sbp2_category">Portfolio Category</label>
+			<label index="sbp2_category.parentcat">Parent Category</label>
+
+			<label index="sbp2_testimonial">Portfolio Testimonial</label>
+			<label index="sbp2_testimonial.body">Testimonial</label>
+			<label index="sbp2_testimonial.name">Name</label>
+			<label index="sbp2_testimonial.company">Company</label>
+			<label index="sbp2_testimonial.position">Position</label>
+
+			<label index="sbp2_file">Portfolio File</label>
+
+			<label index="sbp2_tag">Portfolio Tag</label>
+
+			<label index="sbp2_film">Portfolio Film</label>
+			<label index="sbp2_film.host">Host</label>
+			<label index="sbp2_film.host.0">Generic</label>
+			<label index="sbp2_film.host.1">Youtube</label>
+			<label index="sbp2_film.host.2">Vimeo</label>
+			<label index="sbp2_film.hostid">Host Film ID</label>
+			<label index="sbp2_film.film">Film File</label>
+			<label index="sbp2_film.url">Film URL</label>
+			<label index="sbp2_film.preview">Preview Image</label>
+			<label index="sbp2_film.type">Type of Film</label>
+			<label index="sbp2_film.type.0">Hosted Film</label>
+			<label index="sbp2_film.type.1">File</label>
+			<label index="sbp2_film.type.2">URL</label>
+
+			<label index="sbp2_imagefolder">Portfolio Image Folder</label>
+			<label index="sbp2_imagefolder.folders">Folders</label>
+
+			<label index="sbp2_image">Portfolio Image</label>
+			<label index="sbp2_image.imagefile">Image</label>
+			<label index="sbp2_image.caption">Caption</label>
+			<label index="sbp2_image.imagename">Image Name</label>
+			<label index="sbp2_image.imagepath">Image Path</label>
+			<label index="sbp2_image.imagesize">Image Size</label>
+			<label index="sbp2_image.imagetype">Image Extension</label>
+			<label index="sbp2_image.imagewidth">Image Width</label>
+			<label index="sbp2_image.imageheight">Image Height</label>
+			<label index="sbp2_image.imageorientation">Image Orientation</label>
+
+			<label index="sbp2_link">Portfolio Link</label>
+			<label index="sbp2_link.type">Type of Link</label>
+			<label index="sbp2_link.type.label.0">Normal</label>
+			<label index="sbp2_link.type.label.1">Portfolio Record</label>
+			<label index="sbp2_link.type.label.2">Portfolio Items</label>
+			<label index="sbp2_link.type.label.3">Portfolio Clients</label>
+			<label index="sbp2_link.type.0">URL</label>
+			<label index="sbp2_link.type.1">File</label>
+			<label index="sbp2_link.type.2">Page</label>
+			<label index="sbp2_link.type.10">Item</label>
+			<label index="sbp2_link.type.11">Client</label>
+			<label index="sbp2_link.type.12">Category</label>
+			<label index="sbp2_link.type.20">Items filtered by Category</label>
+			<label index="sbp2_link.type.21">Items filtered by Client</label>
+			<label index="sbp2_link.type.22">Items filtered by Tag</label>
+			<label index="sbp2_link.type.23">Clients filtered by Category</label>
+			<label index="sbp2_link.type.24">Clients filtered by Tag</label>
+			<label index="sbp2_link.nofollow">Search engines should not follow this link</label>
+
+			<label index="sbp2_slider">Portfolio Slider</label>
+			<label index="sbp2_slider.type">Type of Slider</label>
+			<label index="sbp2_slider.type.label.0">Normal</label>
+			<label index="sbp2_slider.type.label.1">Portfolio Record</label>
+			<label index="sbp2_slider.type.label.2">Portfolio Items</label>
+			<label index="sbp2_slider.type.label.3">Portfolio Clients</label>
+			<label index="sbp2_slider.type.0">URL</label>
+			<label index="sbp2_slider.type.2">Page</label>
+			<label index="sbp2_slider.type.10">Item</label>
+			<label index="sbp2_slider.type.11">Client</label>
+			<label index="sbp2_slider.type.12">Category</label>
+			<label index="sbp2_slider.type.20">Items filtered by Category</label>
+			<label index="sbp2_slider.type.21">Items filtered by Client</label>
+			<label index="sbp2_slider.type.22">Items filtered by Tag</label>
+			<label index="sbp2_slider.type.23">Clients filtered by Category</label>
+			<label index="sbp2_slider.type.24">Clients filtered by Tag</label>
+			<label index="sbp2_slider.image">Image</label>
+			<label index="sbp2_slider.imagero">Image (Rollover)</label>
+			<label index="sbp2_slider.icon">Icon</label>
+		</languageKey>
+	</data>
+</T3locallang>

@@ -1,0 +1,12 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{item.preview}">
+	<f:alias map="{title: '{sbp2:title(record: item.preview)}'}">
+		<p class="label"><strong>{f:translate(key:'sbp2_preview')}</strong></p>
+		<div class="previewImage">
+			<f:link.action pageUid="{settings.item.pids.single}" action="single" arguments="{item : item}" title="{f:translate(key: 'sbp2_titletext_item')} {title}">
+				<f:image src="{item.preview.imagefile}" width="60c" height="40c" title="{title}" alt="{item.preview.description}" />
+			</f:link.action>
+		</div>
+	</f:alias>
+</f:if>

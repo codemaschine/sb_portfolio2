@@ -1,0 +1,113 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+
+<f:flashMessages />
+
+<f:alias map="{LLL: 'LLL:EXT:sb_portfolio2/Resources/Private/Language/locallang_sbp2be.xml:'}">
+	<h1>{f:translate(key: '{LLL}spb2_be_import')}</h1>
+
+	<p class="sbp2Para"><strong>{f:translate(key: '{LLL}spb2_be_count_summary')}</strong></p>
+
+	<table class="typo3-dblist sbp2RecordSummaryTable" cellspacing="0" cellpadding="0" border="0">
+		<tr class="c-table-row-spacer">
+			<td nowrap="nowrap" class="col-icon"><img width="1" height="8" alt="" src="clear.gif"></td>
+			<td nowrap="nowrap" colspan="3" class="col-title"></td>
+		</tr>
+		<tr class="t3-row-header">
+			<td nowrap="nowrap" class="col-icon">&nbsp;</td>
+			<td nowrap="nowrap" class="col-title"><span class="c-table">{f:translate(key: '{LLL}spb2_be_thead_type')}</span></td>
+			<td nowrap="nowrap"><span class="c-table">{f:translate(key: '{LLL}spb2_be_thead_count')}</span></td>
+			<td nowrap="nowrap"><span class="c-table">{f:translate(key: '{LLL}spb2_be_thead_countbranch')}</span></td>
+		</tr>
+		<f:render partial="BeImport/RecordCount" arguments="{rowClass: 'db_list_normal', count: counts.categories, countBranch: counts.categoriesBranch, type: 'categories', LLL: LLL}" />
+		<f:render partial="BeImport/RecordCount" arguments="{rowClass: 'db_list_alt', count: counts.clients, countBranch: counts.clientsBranch, type: 'clients', LLL: LLL}" />
+		<f:render partial="BeImport/RecordCount" arguments="{rowClass: 'db_list_normal', count: counts.items, countBranch: counts.itemsBranch, type: 'items', LLL: LLL}" />
+	</table>
+
+	<f:render partial="FormErrors" />
+
+	<div id="sbp2ImportSubmitContainer">
+		<p class="sbp2Para">
+			{f:translate(key: '{LLL}spb2_be_import_options')} <label>
+			<f:form.radio onclick="sbp2ImportObj.setImportType()" checked="1" name="sbp2ImportOptions" value="0" /> Page</label>
+			<label><f:form.radio onclick="sbp2ImportObj.setImportType()" name="sbp2ImportOptions" value="1" /> Branch</label>
+		</p>
+		<table class="sbp2StorageTable">
+			<tbody>
+				<tr>
+					<td class="sbp2StorageTableLabelRow" colspan="4">{f:translate(key: '{LLL}spb2_be_import_storage')}</td>
+				</tr>
+				<tr>
+					<td class="sbp2StorageTableLabel">{f:translate(key: '{LLL}spb2_be_import_storage_clients')}</td>
+					<td class="sbp2StorageTableField"><f:form.textfield id="sbp2ImportStorageClients" title="{f:translate(key: '{LLL}spb2_be_import_storage_title')}" name="sbp2ImportStorageClients" maxlength="6" size="4" value="{storagePid}" /></td>
+					<td class="sbp2StorageTableLabel">{f:translate(key: '{LLL}spb2_be_import_storage_categories')}</td>
+					<td class="sbp2StorageTableField"><f:form.textfield id="sbp2ImportStorageCategories" title="{f:translate(key: '{LLL}spb2_be_import_storage_title')}" name="sbp2ImportStorageCategories" maxlength="6" size="4" value="{storagePid}" /></td>
+				</tr>
+				<tr>
+					<td class="sbp2StorageTableLabel">{f:translate(key: '{LLL}spb2_be_import_storage_tags')}</td>
+					<td class="sbp2StorageTableField"><f:form.textfield id="sbp2ImportStorageTags" title="{f:translate(key: '{LLL}spb2_be_import_storage_title')}" name="sbp2ImportStorageTags" maxlength="6" size="4" value="{storagePid}" /></td>
+					<td class="sbp2StorageTableLabel">{f:translate(key: '{LLL}spb2_be_import_storage_files')}</td>
+					<td class="sbp2StorageTableField"><f:form.textfield id="sbp2ImportStorageFiles" title="{f:translate(key: '{LLL}spb2_be_import_storage_title')}" name="sbp2ImportStorageFiles" maxlength="6" size="4" value="{storagePid}" /></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<f:form.submit id="sbp2ImportSubmitButton" onclick="sbp2ImportObj.init();" value="{f:translate(key: '{LLL}spb2_be_import_but_start')}" />
+	</div>
+
+	<div style="display: none;" class="sbp2InfoMsg-error sbp2Para sbp2ErrorMessage" id="sbp2ErrorMessage">ERROR</div>
+	<p style="display: none;" class="sbp2InfoMsg sbp2InfoMsg-info sbp2Para sbp2LoadingMessage loading-indicator" id="sbp2LoadingMessage"><span id="sbp2LoadingMessageAction">{f:translate(key: '{LLL}spb2_msgs_importing')}</span> <span id="sbp2LoadingMessageType">TYPE</span><span id="sbp2LoadingMessageCount">COUNT</span>...</p>
+	<p style="display: none;" class="sbp2InfoMsg sbp2InfoMsg-ok sbp2Para sbp2ImportComplete" id="sbp2ImportComplete">{f:translate(key: '{LLL}spb2_msgs_import_complete')}</p>
+
+	<div id="sbp2ResultsContainer"></div>
+
+	<script type="text/javascript">
+		var sbp2Msgs						= new Array();
+			sbp2Msgs['waitingRelated']		= {f:translate(key: '{LLL}spb2_msgs_waiting_related')};
+			sbp2Msgs['waitingTranslation']	= {f:translate(key: '{LLL}spb2_msgs_waiting_translation')};
+			sbp2Msgs['related']				= {f:translate(key: '{LLL}spb2_msgs_related')};
+			sbp2Msgs['translation']			= {f:translate(key: '{LLL}spb2_msgs_translation')};
+			sbp2Msgs['noPageId']			= {f:translate(key: '{LLL}spb2_msgs_nopageid')};
+			sbp2Msgs['noRelatedRecsFound']	= {f:translate(key: '{LLL}spb2_msgs_no_relatedrecs_found')};
+			sbp2Msgs['noTranslationFound']	= {f:translate(key: '{LLL}spb2_msgs_no_translation_found')};
+			sbp2Msgs['noCountOnPage']		= {f:translate(key: '{LLL}spb2_msgs_no_count_on_page')};
+
+		var sbp2Assets						= new Array();
+			sbp2Assets['items']				= '<img width="18" height="16" src="../typo3conf/ext/sb_portfolio/res/icon_tx_sbportfolio_items.gif" alt="" />';
+			sbp2Assets['clients']			= '<img width="18" height="16" src="../typo3conf/ext/sb_portfolio/res/icon_tx_sbportfolio_clients.gif" alt="" />';
+			sbp2Assets['categories']		= '<img width="18" height="16" src="../typo3conf/ext/sb_portfolio/res/icon_tx_sbportfolio_categories.gif" alt="" />';
+
+		var sbp2Be							= new Array();
+			sbp2Be['storagePid']			= '{storagePid}';
+			sbp2Be['branchPids']			= '{branchPids}';
+
+		var sbp2Data						= new Array();
+			sbp2Data[0]						= new Array();
+			sbp2Data[0]['type']				= 'categories';
+			sbp2Data[0]['repo']				= 'Category';
+			sbp2Data[0]['title']			= "{f:translate(key: '{LLL}spb2_be_rec_categories_plural')}";
+			sbp2Data[0]['count']			= {counts.categories};
+			sbp2Data[0]['countBranch']		= {counts.categoriesBranch};
+			sbp2Data[0]['icon']				= '<img alt="" width="16" height="16" src="../typo3conf/ext/sb_portfolio2/Resources/Public/Icons/Category/sbp2_category.gif"/>';
+
+			sbp2Data[1]						= new Array();
+			sbp2Data[1]['type']				= 'clients';
+			sbp2Data[1]['repo']				= 'Client';
+			sbp2Data[1]['title']			= "{f:translate(key: '{LLL}spb2_be_rec_clients_plural')}";
+			sbp2Data[1]['count']			= {counts.clients};
+			sbp2Data[1]['countBranch']		= {counts.clientsBranch};
+			sbp2Data[1]['icon']				= '<img alt="" width="16" height="16" src="../typo3conf/ext/sb_portfolio2/Resources/Public/Icons/Client/sbp2_client.gif"/>';
+
+			sbp2Data[2]						= new Array();
+			sbp2Data[2]['type']				= 'items';
+			sbp2Data[2]['repo']				= 'Item';
+			sbp2Data[2]['title']			= "{f:translate(key: '{LLL}spb2_be_rec_items_plural')}";
+			sbp2Data[2]['count']			= {counts.items};
+			sbp2Data[2]['countBranch']		= {counts.itemsBranch};
+			sbp2Data[2]['icon']				= '<img alt="" width="16" height="16" src="../typo3conf/ext/sb_portfolio2/Resources/Public/Icons/Item/sbp2_item.gif"/>';
+	</script>
+
+	<f:render partial="BeImport/Assets" />
+</f:alias>
+</f:section>

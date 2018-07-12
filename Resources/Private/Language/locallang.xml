@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the SB Portfolio 2 extension in the FRONTEND</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<!-- Fields -->
+			<label index="sbp2_categories">Categories:</label>
+			<label index="sbp2_client">Client:</label>
+			<label index="sbp2_datetime">Date:</label>
+			<label index="sbp2_files">Files:</label>
+			<label index="sbp2_films">Films:</label>
+			<label index="sbp2_fulldescription">Full Description:</label>
+			<label index="sbp2_image">Image:</label>
+			<label index="sbp2_image_plural">Images:</label>
+			<label index="sbp2_imagefolders">Image Folders:</label>
+			<label index="sbp2_linkurl">Link:</label>
+			<label index="sbp2_links">Links:</label>
+			<label index="sbp2_nextprevious">Next / Previous:</label>
+			<label index="sbp2_nextprevious_next">Next:</label>
+			<label index="sbp2_nextprevious_previous">Previous:</label>
+			<label index="sbp2_items">Items:</label>
+			<label index="sbp2_clients">Clients:</label>
+			<label index="sbp2_logo">Logo:</label>
+			<label index="sbp2_summary">Summary:</label>
+			<label index="sbp2_tags">Tags:</label>
+			<label index="sbp2_testimonial">Testimonial:</label>
+			<label index="sbp2_testimonial_company">Company:</label>
+			<label index="sbp2_testimonial_name">Name:</label>
+			<label index="sbp2_testimonial_position">Position:</label>
+			<label index="sbp2_title">Title:</label>
+			<label index="sbp2_preview">Preview Image:</label>
+			<label index="sbp2_relateditems">Related Items:</label>
+			<label index="sbp2_relateditems_category">Related Items (from categories):</label>
+			<label index="sbp2_relateditems_combined">Related Items (including category Related Items):</label>
+			<label index="sbp2_relateditems_all">Related Items (including category Related Items and items related by tag):</label>
+
+
+
+
+			<!-- Flickr -->
+			<label index="sbp2_flickr">Flickr</label>
+			<label index="sbp2_flickr_none">There were no public photos in the set.</label>
+			<label index="sbp2_error_code">Error code:</label>
+			<label index="sbp2_error_message">Error message:</label>
+			<label index="sbp2_error_explanation">Error explanation:</label>
+
+				<!-- Errors (method specific): flickr.photos.search -->
+				<label index="sbp2_error_flickr.photosets.search_1">When performing an 'all tags' search, you may not specify more than 20 tags to join together.</label>
+				<label index="sbp2_error_flickr.photosets.search_2">A user_id was passed which did not match a valid flickr user.</label>
+				<label index="sbp2_error_flickr.photosets.search_3">To perform a search with no parameters (to get the latest public photos, please use flickr.photos.getRecent instead).</label>
+				<label index="sbp2_error_flickr.photosets.search_4">The logged in user (if any) does not have permission to view the pool for this group.</label>
+				<label index="sbp2_error_flickr.photosets.search_10">The Flickr API search databases are temporarily unavailable.</label>
+				<label index="sbp2_error_flickr.photosets.search_11">The query styntax for the machine_tags argument did not validate.</label>
+				<label index="sbp2_error_flickr.photosets.search_12">The maximum number of machine tags in a single query was exceeded.</label>
+				<label index="sbp2_error_flickr.photosets.search_17">The call tried to use the contacts parameter with no user ID or a user ID other than that of the authenticated user.</label>
+				<label index="sbp2_error_flickr.photosets.search_18">The request contained contradictory arguments.</label>
+
+				<!-- Errors (method specific): flickr.photosets.getInfo -->
+				<label index="sbp2_error_flickr.photosets.getInfo_1">The photoset id passed was not a valid photoset id.</label>
+
+				<!-- Errors (method specific): flickr.photosets.getPhotos -->
+				<label index="sbp2_error_flickr.photosets.getPhotos_1">The photoset id passed was not a valid photoset id.</label>
+
+				<!-- Errors (method shared): 100+ -->
+				<label index="sbp2_error_shared_100">The API key passed was not valid or has expired.</label>
+				<label index="sbp2_error_shared_105">The requested service is temporarily unavailable.</label>
+				<label index="sbp2_error_shared_111">The requested response format was not found.</label>
+				<label index="sbp2_error_shared_112">The requested method was not found.</label>
+				<label index="sbp2_error_shared_114">The SOAP envelope send in the request could not be parsed.</label>
+				<label index="sbp2_error_shared_115">The XML-RPC request document could not be parsed.</label>
+				<label index="sbp2_error_shared_116">One or more arguments contained a URL that has been used for abuse on Flickr.</label>
+
+				<!-- Errors (basic) -->
+				<label index="sbp2_error_basic_tags">You can't search without tags</label>
+				<label index="sbp2_error_basic_tags_message">Tags are a necessary part of searching for images with flickrimages! Make sure that the page has tags, or enter tags in TS or the content element's tags form field. Alternatively, a single displayed record can be used as the source of tags - read the manual for more information.</label>
+				<label index="sbp2_error_basic_ts">TS setup missing</label>
+				<label index="sbp2_error_basic_ts_message">The default TS for flickrimages has not been added to your TS template.</label>
+				<label index="sbp2_error_basic_key">Flickr API key not set</label>
+				<label index="sbp2_error_basic_key_message">You must set the Flickr API key in your TypoScript setup. Without it, flickr cannot be queried via the API!</label>
+				<label index="sbp2_error_basic_psid">Photoset ID not set</label>
+				<label index="sbp2_error_basic_psid_message">You must set a Photoset ID in your TypoScript setup, or in the FlexForm field. Without it, a flickr set cannot be found via the API!</label>
+
+
+
+			<!-- Title Texts -->
+			<label index="sbp2_titletext_category">View category:</label>
+			<label index="sbp2_titletext_client">View client:</label>
+			<label index="sbp2_titletext_file">Download:</label>
+			<label index="sbp2_titletext_files">Download:</label>
+			<label index="sbp2_titletext_film">Watch:</label>
+			<label index="sbp2_titletext_filter_client_category">View all clients categorised as:</label>
+			<label index="sbp2_titletext_filter_client_tag">View all clients tagged with:</label>
+			<label index="sbp2_titletext_filter_item_category">View all items categorised as:</label>
+			<label index="sbp2_titletext_filter_item_client">View all items created for:</label>
+			<label index="sbp2_titletext_filter_item_tag">View all items tagged with:</label>
+			<label index="sbp2_titletext_item">View item:</label>
+			<label index="sbp2_titletext_page">Go to:</label>
+			<label index="sbp2_titletext_url">Go to:</label>
+			<label index="sbp2_titletext_url_notice">(You will leave this site)</label>
+
+
+
+			<!-- Back to list -->
+			<label index="sbp2_back_category">View all categories</label>
+			<label index="sbp2_back_client">View all clients</label>
+			<label index="sbp2_back_item">View all items</label>
+
+
+
+			<!-- No Records -->
+			<label index="sbp2_none_category">No categories were found.</label>
+			<label index="sbp2_none_category_tag">No categories were found tagged with</label>
+			<label index="sbp2_none_category_single">The requested category could be found.</label>
+			<label index="sbp2_none_client">No clients were found.</label>
+			<label index="sbp2_none_client_category">No clients were found to be categorised as</label>
+			<label index="sbp2_none_client_single">The requested client could be found.</label>
+			<label index="sbp2_none_client_tag">No clients were found tagged with</label>
+			<label index="sbp2_none_item">No items were found</label>
+			<label index="sbp2_none_item_category">No items were found to be categorised as</label>
+			<label index="sbp2_none_item_client">No items were found for</label>
+			<label index="sbp2_none_item_single">The requested item could be found.</label>
+			<label index="sbp2_none_item_tag">No items were found tagged with</label>
+			<label index="sbp2_none_tag">No tags were found.</label>
+			<label index="sbp2_none_testimonial">No testimonials were found.</label>
+			<label index="sbp2_none_slider">No sliders were found.</label>
+
+
+
+			<!-- Misc Texts -->
+			<label index="sbp2_filter_tag">Portfolio Tag:</label>
+			<label index="sbp2_filter_client">Portfolio Client:</label>
+			<label index="sbp2_filter_category">Portfolio Category:</label>
+		</languageKey>
+	</data>
+</T3locallang>

@@ -1,0 +1,39 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<ul class="categoryList">
+	<f:for each="{categories}" as="category" iteration="categoryInfo">
+		<f:alias map="{title: '{sbp2:title(record: category)}'}">
+			<f:if condition="{sbp2:filtering(name: 'category', comparison: category.uid)}">
+				<f:then>
+					<li class="{sbp2:classes(record: category, info: categoryInfo)} selected">
+						{title}
+						
+						<f:if condition="{category.children}">
+							<f:render partial="Category/CategoryListItem" arguments="{categories: category.children}" />
+						</f:if>
+					</li>
+				</f:then>
+				<f:else>
+					<li class="{sbp2:classes(record: category, info: categoryInfo)}">
+							
+							<f:link.action pageUid="{settings.category.pids.single}" controller="Category" action="single" arguments="{category : category}" title="{f:translate(key: 'sbp2_titletext_category')} {title}">
+								{title}
+							</f:link.action>
+						
+						<f:comment>
+							This is to link the category to the category single view
+							
+							<f:link.action pageUid="{settings.category.pids.single}" controller="Category" action="single" arguments="{category : category}" title="{f:translate(key: 'sbp2_titletext_category')} {title}">
+								{title}
+							</f:link.action>
+						</f:comment>
+						
+						<f:if condition="{category.children}">
+							<f:render partial="Category/CategoryListItem" arguments="{categories: category.children}" />
+						</f:if>
+					</li>
+				</f:else>
+			</f:if>
+		</f:alias>
+	</f:for>
+</ul>

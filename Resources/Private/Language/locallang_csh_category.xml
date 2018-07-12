@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help (CSH) for table tx_sbportfolio2_domain_model_category</description>
+		<type>CSH</type>
+		<csh_table>tx_sbportfolio2_domain_model_category</csh_table>
+	</meta>
+	<data type="array">
+	<languageKey index="default" type="array">
+			<label index="title.description">The category's title. Used in the FE and in table listings in the BE.</label>
+			<label index="titlefull.description">An alternative title for use in the FE.</label>
+			<label index="titleshort.description">An alternative title for use in the FE when space is restricted.</label>
+			<label index="description.description">A short summary of the category.</label>
+			<label index="summary.description">A short summary of the category.</label>
+			<label index="fulldescription.description">The category's full description, this can include links and images.</label>
+			<label index="links.description">The category's links.</label>
+			<label index="files.description">The category's files.</label>
+			<label index="tags.description">The category's tags.</label>
+			<label index="parentcat.description">The category's Parent category. This enables you to make a hierarchy of categories.</label>
+			<label index="image.description">The category's image.</label>
+			<label index="slider_title.description">The category's content slider title.</label>
+			<label index="slider_image.description">The category's content slider image.</label>
+			<label index="slider_description.description">The category's content slider description.</label>
+			<label index="seo_title.description">The category's title for SEO metatags.</label>
+			<label index="seo_type.description">The category's type for SEO metatags.</label>
+			<label index="seo_image.detail">The category's image for SEO metatags.</label>
+			<label index="seo_image.description">Facebook uses a square image at least 50x50 pixels, the image cannot exceed 130x110 pixels.</label>
+			<label index="seo_description.description">The category's description for SEO metatags.</label>
+			<label index="seo_fbappid.description">The category's Facebook Application ID.</label>
+			<label index="seo_fbadmins.description">The category's Facebook Admin IDs.</label>
+			<label index="starttime.description">The date that this item should start showing up in the FE.</label>
+			<label index="endtime.description">The date that this item should stop showing up in the FE.</label>
+		</languageKey>
+	</data>
+</T3locallang>

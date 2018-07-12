@@ -1,0 +1,35 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{item.imagefolders}">
+	<p class="label"><strong>{f:translate(key:'sbp2_imagefolders')}</strong></p>
+	<ul class="imagefolders">
+		<f:for each="{sbp2:sortTitle(records: item.imagefolders)}" as="imagefolder" iteration="imagefolderInfo">
+			<f:alias map="{title: '{sbp2:title(record: imagefolder)}'}">
+				<li class="{sbp2:classes(record: imagefolder, info: imagefolderInfo)}">
+					<p class="title"><strong>{title}</strong></p>
+
+					<f:if condition="{imagefolder.description}">
+						<p class="description">{imagefolder.description}</p>
+					</f:if>
+
+					<f:if condition="{imagefolder.imagefolderimages}">
+						<ul class="imagefolderImages">
+							<f:for each="{imagefolder.imagefolderimages}" as="image" iteration="imageInfo">
+									<li class="{sbp2:classes(record: image, info: imageInfo)} image">
+										<f:image src="{image.imagefile}" height="40c" width="60c" title="An image from: {title}" alt="{title} {imagefolderInfo.cycle}-{imageInfo.cycle}" />
+									</li>
+							</f:for>
+						</ul>
+					</f:if>
+				</li>
+			</f:alias>
+		</f:for>
+	</ul>
+</f:if>
+
+<f:comment>
+	The example above will work whether the image folder has a manifest file or not. If you create a manifest file then just use
+	the field names like any other object property. If you have a field called description, then in the for loop
+	that goes through {imagefolder.imagefolderimages} you can ouput the description for each image from
+	the manifest file so: {image.description}
+</f:comment>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for plugin FlexForm fields in the extension 'sb_portfolio2'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="sbp2_tab.general">General</label>
+
+			<label index="sbp2_field.shared.sortBy">Sort field</label>
+			<label index="sbp2_field.shared.sortBy.1">Title</label>
+			<label index="sbp2_field.shared.sortBy.2">ID</label>
+			<label index="sbp2_field.shared.sortBy.3">Date / Time</label>
+			<label index="sbp2_field.shared.sortBy.4">Updated Date</label>
+			<label index="sbp2_field.shared.sortBy.5">Creation Date</label>
+			<label index="sbp2_field.shared.sortDir">Sort direction</label>
+			<label index="sbp2_field.shared.sortDir.1">Ascending</label>
+			<label index="sbp2_field.shared.sortDir.2">Descending</label>
+			<label index="sbp2_field.shared.selection">Record selection</label>
+			<label index="sbp2_field.shared.selection.0">Automatic</label>
+			<label index="sbp2_field.shared.selection.1">Manual</label>
+
+			<label index="sbp2_field.item.limit">Number of items</label>
+			<label index="sbp2_field.item.itemsPerPage">Number of items per page</label>
+			<label index="sbp2_field.item.featured">Featured Items</label>
+			<label index="sbp2_field.item.featured.0">Include featured</label>
+			<label index="sbp2_field.item.featured.1">Exclude featured</label>
+			<label index="sbp2_field.item.featured.2">Only featured</label>
+			<label index="sbp2_field.item.inprogress">In-progress Items</label>
+			<label index="sbp2_field.item.inprogress.0">Include in-progress</label>
+			<label index="sbp2_field.item.inprogress.1">Exclude in-progress</label>
+			<label index="sbp2_field.item.inprogress.2">Only in-progress</label>
+			<label index="sbp2_field.item.exclude">Exclude these items</label>
+			<label index="sbp2_field.item.include">Items to display</label>
+
+			<label index="sbp2_field.client.limit">Number of clients</label>
+			<label index="sbp2_field.client.itemsPerPage">Number of clients per page</label>
+			<label index="sbp2_field.client.exclude">Exclude these clients</label>
+			<label index="sbp2_field.client.include">Clients to display</label>
+
+			<label index="sbp2_field.tag.limit">Number of tags</label>
+			<label index="sbp2_field.tag.itemsPerPage">Number of tags per page</label>
+			<label index="sbp2_field.tag.exclude">Exclude these tags</label>
+			<label index="sbp2_field.tag.include">Tags to display</label>
+
+			<label index="sbp2_field.category.limit">Number of categories</label>
+			<label index="sbp2_field.category.itemsPerPage">Number of categories per page</label>
+			<label index="sbp2_field.category.displayAs">Display categories as:</label>
+			<label index="sbp2_field.category.beginAt">Select the start of the tree (if you don't want the whole tree displayed)</label>
+			<label index="sbp2_field.category.depth">Number of levels in the tree to display</label>
+			<label index="sbp2_field.category.exclude">Exclude these categories</label>
+			<label index="sbp2_field.category.include">Categories to display</label>
+
+			<label index="sbp2_field.testimonial.limit">Number of testimonials</label>
+			<label index="sbp2_field.testimonial.itemsPerPage">Number of testimonials per page</label>
+			<label index="sbp2_field.testimonial.exclude">Exclude these testimonials</label>
+			<label index="sbp2_field.testimonial.include">Testimonials to display</label>
+
+			<label index="sbp2_field.slider.limit">Number of sliders</label>
+			<label index="sbp2_field.slider.exclude">Exclude these sliders</label>
+			<label index="sbp2_field.slider.include">Sliders to display</label>
+		</languageKey>
+	</data>
+</T3locallang>

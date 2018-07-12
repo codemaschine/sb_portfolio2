@@ -1,0 +1,35 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:alias map="{uid: record.uid, datetime: record.crdate}">
+	<f:alias map="{next: '{sbp2:nextPrevious(npType: \'next\', recordType: \'category\', npField: npField, uid: uid, datetime: datetime)}', previous: '{sbp2:nextprevious(npType: \'previous\', recordType: \'category\', npField: npField, uid: uid, datetime: datetime)}'}">
+		<f:if condition="{next}">
+			<f:then>
+				<f:if condition="{previous}">
+					<f:then>
+						<p class="label"><strong>{f:translate(key:'sbp2_nextprevious')}</strong></p>
+						<ul class="nextPrevious">
+							<f:render partial="Category/Nextprevious/Next" arguments="{next: next}" />
+							<f:render partial="Category/Nextprevious/Previous" arguments="{previous: previous}" />
+						</ul>
+					</f:then>
+
+					<f:else>
+						<p class="label"><strong>{f:translate(key:'sbp2_nextprevious')}</strong></p>
+						<ul class="nextPrevious">
+							<f:render partial="Category/Nextprevious/Next" arguments="{next: next}" />
+						</ul>
+					</f:else>
+				</f:if>
+			</f:then>
+
+			<f:else>
+				<f:if condition="{previous}">
+					<p class="label"><strong>{f:translate(key:'sbp2_nextprevious')}</strong></p>
+					<ul class="nextPrevious">
+						<f:render partial="Category/Nextprevious/Previous" arguments="{previous: previous}" />
+					</ul>
+				</f:if>
+			</f:else>
+		</f:if>
+	</f:alias>
+</f:alias>

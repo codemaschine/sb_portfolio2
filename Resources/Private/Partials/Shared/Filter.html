@@ -1,0 +1,32 @@
+<f:if condition="{filtering.enabled}">
+	<p class="filter">
+		{f:translate(key:'sbp2_filter_{filtering.type}')} 
+		<f:if condition="{filtering.type} == 'client'">
+			<f:then>
+				{filtering.client.title}
+			</f:then>
+			
+			<f:else>
+				<f:if condition="{filtering.type} == 'catgeory'">
+					<f:then>
+						{filtering.category.title}
+					</f:then>
+					
+					<f:else>
+						<f:if condition="{filtering.type} == 'tag'">
+							<f:then>
+								{filtering.tag.title}
+							</f:then>
+							
+							<f:else>
+							</f:else>
+						</f:if>
+					</f:else>
+				</f:if>
+			</f:else>
+		</f:if>
+		<span class="clearFilter">
+			<f:link.action action="list">Clear Filter</f:link.action>
+		</span>
+	</p>
+</f:if>

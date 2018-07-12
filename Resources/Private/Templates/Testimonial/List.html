@@ -1,0 +1,36 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:layout name="TestimonialList" />
+
+<f:section name="testimonialList">
+	<h1>Testimonial List</h1>
+	
+	<f:if condition="{testimonials}">
+		<f:then>
+			<f:widget.paginate objects="{testimonials}" as="paginatedTestimonials" configuration="{settings.testimonial.pageBrowser}">
+				<ul class="testimonialList">
+					<f:for each="{paginatedTestimonials}" as="testimonial" iteration="testimonialInfo">
+						<li class="{sbp2:classes(record: testimonial, info: testimonialInfo)}">
+							<f:render partial="Testimonial/Title" arguments="{testimonial: testimonial}" />
+							
+							<p class="label"><strong>{f:translate(key:'sbp2_testimonial')}</strong></p>
+							<p class="body">{testimonial.body}</p>
+							
+							<div class="credit">
+								<f:render partial="Shared/Datetime" arguments="{datetime: testimonial.datetime, format: settings.testimonial.dateFormat}" />
+								<f:render partial="Testimonial/Name" arguments="{name: testimonial.name}" />
+								<f:render partial="Testimonial/Company" arguments="{company: testimonial.company}" />
+								<f:render partial="Testimonial/Position" arguments="{position: testimonial.position}" />
+								<f:render partial="Testimonial/Image" arguments="{image: testimonial.image}" />
+							</div>
+						</li>
+					</f:for>
+				</ul>
+			</f:widget.paginate>
+		</f:then>
+		
+		<f:else>
+			<p class="testimonialListEmpty">{f:translate(key:'sbp2_none_testimonial')}</p>
+		</f:else>
+	</f:if>
+</f:section>

@@ -1,0 +1,34 @@
+Todo:
+----
+
+* Format page browser
+* make a flags table for finding items in the FE
+* Link testimonials to parent
+* Add filtering selected to catgeory and client list tags and stuff
+* remove the get methods for booleans
+
+
+
+Done:
+----
+  # Viewhelper
+* Added image class specific classes
+
+  # File
+* Added file type class to links of type = 1 (file)
+
+  # Client
+* Added logo
+
+  # Item
+* Added featured and inprogress to TS
+* Items can be filtered via TS of FF for inprogress or featured
+* Create manifest file if there is none on saving a record with image folders
+
+  # Flickr
+* Fixed problem with flickr trying to use a flickrimages oauth class.
+
+  # Shared
+* Changed several templates slightly
+* Changed tca for clients, list, and tags
+* Added film host to film type 2: url

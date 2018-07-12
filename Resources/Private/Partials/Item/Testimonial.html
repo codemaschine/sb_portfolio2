@@ -1,0 +1,45 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{testimonial}">
+	<p class="label"><strong>{f:translate(key:'sbp2_testimonial')}</strong></p>
+	<p class="testimonial">{testimonial.body}</p>
+	
+	<ul class="testimonialCredit">
+		<f:if condition="{testimonial.datetime}">
+			<li>
+				<p class="label"><strong>{f:translate(key:'sbp2_datetime')}</strong></p>
+				<p class="date">{f:format.date(date: testimonial.datetime, format: settings.testimonial.dateFormat)}</p>
+			</li>
+		</f:if>
+		
+		<f:if condition="{testimonial.name}">
+			<li>
+				<p class="label"><strong>{f:translate(key:'sbp2_testimonial_name')}</strong></p>
+				<p class="name">{testimonial.name}</p>
+			</li>
+		</f:if>
+		
+		<f:if condition="{testimonial.company}">
+			<li>
+				<p class="label"><strong>{f:translate(key:'sbp2_testimonial_company')}</strong></p>
+				<p class="company">{testimonial.company}</p>
+				</li>
+		</f:if>
+		
+		<f:if condition="{testimonial.position}">
+			<li>
+				<p class="label"><strong>{f:translate(key:'sbp2_testimonial_position')}</strong></p>
+				<p class="position">{testimonial.position}</p>
+			</li>
+		</f:if>
+		
+		<f:if condition="{testimonial.image}">
+			<li>
+				<p class="label"><strong>{f:translate(key:'sbp2_image')}</strong></p>
+				<div class="image">
+					<f:image src="{testimonial.image.imagefile}" width="60c" height="40c" title="{sbp2:title(record: testimonial.image)}" alt="{testimonial.image.description}" />
+				</div>
+			</li>
+		</f:if>
+	</ul>
+</f:if>

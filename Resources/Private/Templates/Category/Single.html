@@ -1,0 +1,68 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:layout name="CategorySingle" />
+
+<f:section name="categorySingle">
+	<f:alias map="{title: '{sbp2:title(record: category)}'}">
+		<f:render partial="Shared/Metacontent" arguments="{record: category, title: title}" />
+		
+		<h1>Category Single</h1>
+		
+		<f:if condition="{category}">
+			<f:then>
+				<div class="{sbp2:classes(record: category)}">
+					<h2>{title}</h2>
+					
+					<f:render partial="Shared/Summary" arguments="{summary: category.summary}" />
+					<f:render partial="Shared/Fulldescription" arguments="{fulldescription: category.fulldescription}" />
+					<f:render partial="Category/Image" arguments="{category: category}" />
+					<f:render partial="Category/Tags" arguments="{tags: category.tags}" />
+					<f:render partial="Category/Files" arguments="{files: category.files}" />
+					<f:render partial="Category/Links" arguments="{category: category}" />
+					
+					<f:comment>The following will show all items related to this category.</f:comment>
+					<f:alias map="{items: '{sbp2:items(record: category, type: \'category\', itemSetup: settings.category.items.records)}'}">
+						<f:if condition="{items}">
+							<p class="label"><strong>{f:translate(key:'sbp2_items')}</strong></p>
+							<ul class="categoryItems">
+								<f:for each="{items}" as="item" iteration="itemInfo">
+									<li class="{sbp2:classes(record: item, info: itemInfo)}">
+										<f:render partial="Item/Title" arguments="{item: item}" />
+										<f:render partial="Shared/Datetime" arguments="{datetime: item.datetime, format: settings.item.dateFormat}" />
+										<f:render partial="Shared/Summary" arguments="{summary: item.summary}" />
+										<f:render partial="Item/Images" arguments="{item: item}" />
+									</li>
+								</f:for>
+							</ul>
+						</f:if>
+					</f:alias>
+					
+					<f:comment>The following will show all clients related to this category.</f:comment>
+					<f:alias map="{clients: '{sbp2:clients(record: category, clientSetup: settings.category.clients.records)}'}">
+						<f:if condition="{clients}">
+							<p class="label"><strong>{f:translate(key:'sbp2_clients')}</strong></p>
+							<ul class="categoryClients">
+								<f:for each="{clients}" as="client" iteration="clientInfo">
+									<li class="{sbp2:classes(record: client, info: clientInfo)}">
+										<f:render partial="Client/Title" arguments="{client: client}" />
+										<f:render partial="Shared/Datetime" arguments="{datetime: client.datetime, format: settings.client.dateFormat}" />
+										<f:render partial="Shared/Summary" arguments="{summary: client.summary}" />
+										<f:render partial="Client/Image" arguments="{client: client}" />
+									</li>
+								</f:for>
+							</ul>
+						</f:if>
+					</f:alias>
+					
+					<f:render partial="Item/Related/Items" arguments="{relateditems: category.relateditems}" />
+					
+					<f:render partial="Category/Nextprevious" arguments="{record: category, npField: settings.category.nextprevious.field}" />
+				</div>
+			</f:then>
+			
+			<f:else>
+				<p class="categorySingleEmpty">{f:translate(key:'sbp2_none_category_single')}</p>
+			</f:else>
+		</f:if>
+	</f:alias>
+</f:section>

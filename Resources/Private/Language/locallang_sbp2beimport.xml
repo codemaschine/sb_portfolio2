@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for backend module SB Portfolio 2 BE 1 belonging to extension 'sb_portfolio2'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+				<!-- Module Labels -->
+			<label index="mlang_tabs_tab">Portfolio</label>
+			<label index="mlang_labels_tabdescr">This module allows you to manipulate your Portfolio Records.</label>
+			<label index="mlang_labels_tablabel">Edit and administer your portfolio</label>
+
+				<!-- Import -->
+			<label index="spb2_be_import_storage">Storage page IDs for:</label>
+			<label index="spb2_be_import_storage_tags">Tags:</label>
+			<label index="spb2_be_import_storage_files">Related Files:</label>
+			<label index="spb2_be_import_storage_clients">Clients:</label>
+			<label index="spb2_be_import_storage_categories">Categories:</label>
+			<label index="spb2_be_import_storage_title">Enter a page UID where these records should be stored</label>
+			<label index="spb2_be_import">Import sb_portfolio data into sb_portfolio2</label>
+			<label index="spb2_be_import_options">Import data from the current</label>
+			<label index="spb2_be_import_but_start">Start Inport</label>
+			<label index="spb2_be_rec_items">Item</label>
+			<label index="spb2_be_rec_items_plural">Items</label>
+			<label index="spb2_be_rec_clients">Client</label>
+			<label index="spb2_be_rec_clients_plural">Clients</label>
+			<label index="spb2_be_rec_categories">Category</label>
+			<label index="spb2_be_rec_categories_plural">Categories</label>
+			<label index="spb2_be_count_summary">Importable records in this page/folder:</label>
+			<label index="spb2_be_thead_type">Type</label>
+			<label index="spb2_be_thead_count">Record Count</label>
+			<label index="spb2_be_thead_countbranch">Record Count (branch)</label>
+			<label index="spb2_msgs_waiting_related">'Waiting to create related items...'</label>
+			<label index="spb2_msgs_import_complete">Importation complete.</label>
+			<label index="spb2_msgs_importing">Importing</label>
+			<label index="spb2_msgs_no_count_on_page">'There is nothing to import on this page. Please select another page, or try selecting the branch import option.'</label>
+			<label index="spb2_msgs_no_relatedrecs_found">'Related records could not be found for '</label>
+			<label index="spb2_msgs_related">'Creating related items for'</label>
+			<label index="spb2_msgs_nopageid">'Unable to determine current page ID. Import can not continue, sorry!'</label>
+		</languageKey>
+	</data>
+</T3locallang>

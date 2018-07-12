@@ -1,0 +1,18 @@
+<tr class="{rowClass}">
+	<td nowrap="nowrap" class="col-icon sbp2Icon">
+		<img width="18" height="16" src="../typo3conf/ext/sb_portfolio/res/icon_tx_sbportfolio_{type}.gif" alt="" />
+	</td>
+	
+	<f:if condition="{count} == 1">
+		<f:then>
+			<td nowrap="nowrap" class="col-title">{f:translate(key: '{LLL}spb2_be_rec_{type}')}</td>
+		</f:then>
+		<f:else>
+			<td nowrap="nowrap" class="col-title">{f:translate(key: '{LLL}spb2_be_rec_{type}_plural')}</td>
+		</f:else>
+	</f:if>
+		
+	</td>
+	<td nowrap="sbp2Count" class="">{count}</td>
+	<td nowrap="sbp2Count" class="">{countBranch}</td>
+</tr>

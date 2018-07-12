@@ -1,0 +1,25 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{categories}">
+	<p class="label"><strong>{f:translate(key:'sbp2_categories')}</strong></p>
+	<ul class="categories">
+		<f:for each="{sbp2:sortTitle(records: categories)}" as="category" iteration="catInfo">
+			<f:alias map="{title: '{sbp2:title(record: category)}'}">
+				<f:if condition="{sbp2:filtering(name: 'category', comparison: category.uid)}">
+					<f:then>
+						<li class="{sbp2:classes(record: category, info: catInfo)} selected">
+							{title}
+						</li>
+					</f:then>
+					<f:else>
+						<li class="{sbp2:classes(record: category, info: catInfo)}">
+							<f:link.action pageUid="{settings.item.pids.list}" controller="Item" action="list" arguments="{category : category.uid}" title="{f:translate(key: 'sbp2_titletext_filter_item_category')} {title}">
+								{title}
+							</f:link.action>
+						</li>
+					</f:else>
+				</f:if>
+			</f:alias>
+		</f:for>
+	</ul>
+</f:if>

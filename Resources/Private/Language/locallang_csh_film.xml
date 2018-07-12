@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help (CSH) for table tx_sbportfolio2_domain_model_film</description>
+		<type>CSH</type>
+		<csh_table>tx_sbportfolio2_domain_model_film</csh_table>
+	</meta>
+	<data type="array">
+	<languageKey index="default" type="array">
+			<label index="type.description">What type of film is this? A hosted film (i.e. YouTube), a film file located in fileadmin, or a URL to a film.</label>
+			<label index="title.description">The item's title. Used in the FE and in table listings in the BE.</label>
+			<label index="titlefull.description">An alternative title for use in the FE.</label>
+			<label index="titleshort.description">An alternative title for use in the FE when space is restricted.</label>
+			<label index="host.description">Which host is used to host this film: YouTube or Vimeo? More can be added via TypoScript. Different templates will be used in the FE based on who the host is.</label>
+			<label index="hostid.description">This film's host's id for this film.</label>
+			<label index="url.description">This film's URL, this will be used to make a link to the film.</label>
+			<label index="film.description">The actual film file that this film record is for. This is a reference to a film in fileadmin.</label>
+			<label index="description.description">A short description of the film.</label>
+			<label index="preview.description">An image to be used as a preview of the film.</label>
+			<label index="starttime.description">The date that this film should start showing up in the FE.</label>
+			<label index="endtime.description">The date that this film should stop showing up in the FE.</label>
+		</languageKey>
+	</data>
+</T3locallang>

@@ -1,0 +1,97 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{client.links}">
+	<p class="label"><strong>{f:translate(key:'sbp2_links')}</strong></p>
+	<ul class="links">
+		<f:for each="{sbp2:sortTitle(records: '{sbp2:combine.links(record: client)}')}" as="link" iteration="linkInfo">
+			<f:alias map="{title: '{sbp2:title(record: link)}'}">
+				<li class="{sbp2:classes(record: link, info: linkInfo)}">
+					<f:comment>External URLs</f:comment>
+					<f:if condition="{link.type} == 0">
+						<f:link.external target="_blank" rel="{sbp2:link.rel(link: link)}" uri="{link.url}" title="{f:translate(key: 'sbp2_titletext_url')} {title} {f:translate(key: 'sbp2_titletext_url_notice')}">
+							{title}
+						</f:link.external>
+					</f:if>
+					
+					<f:comment>Files</f:comment>
+					<f:if condition="{link.type} == 1">
+						<span class="fileicon">
+							<f:link.page pageUid="{link.file}" title="{f:translate(key: 'sbp2_titletext_file')} {title}">
+								<f:image src="{sbp2:file.icon(filetype: link.filetype)}" title="{f:translate(key: 'sbp2_titletext_file')} {title}" alt="{link.title}" />
+							</f:link.page>
+						</span> 
+						<span class="filelink">
+							<f:link.page pageUid="{link.file}" title="{f:translate(key: 'sbp2_titletext_file')} {title}">
+								{title}
+							</f:link.page>
+						</span> 
+						<span class="filesize">({sbp2:file.size(size: link.filesize)})</span>
+					</f:if>
+					
+					<f:comment>TYPO3 Pages</f:comment>
+					<f:if condition="{link.type} == 2">
+						<f:link.page pageUid="{link.page}" title="{f:translate(key: 'sbp2_titletext_page')} {title}">
+							{title}
+						</f:link.page>
+					</f:if>
+					
+					<f:comment>Single Record: Item</f:comment>
+					<f:if condition="{link.type} == 10">
+						<f:link.action controller="Item" arguments="{item: link.item}" pageUid="{settings.item.pids.single}" action="single" title="{f:translate(key: 'sbp2_titletext_item')} {sbp2:title(record: link.item)}">
+							{title}
+						</f:link.action>
+					</f:if>
+					
+					<f:comment>Single Record: Client</f:comment>
+					<f:if condition="{link.type} == 11">
+						<f:link.action controller="Client" arguments="{client: link.client}" pageUid="{settings.client.pids.single}" action="single" title="{f:translate(key: 'sbp2_titletext_client')} {sbp2:title(record: link.client)}">
+							{title}
+						</f:link.action>
+					</f:if>
+					
+					<f:comment>Single Record: Category</f:comment>
+					<f:if condition="{link.type} == 12">
+						<f:link.action controller="Category" arguments="{category: link.category}" pageUid="{settings.category.pids.single}" action="single" title="{f:translate(key: 'sbp2_titletext_category')} {sbp2:title(record: link.category)}">
+							{title}
+						</f:link.action>
+					</f:if>
+					
+					<f:comment>Filtered Items: Category</f:comment>
+					<f:if condition="{link.type} == 20">
+						<f:link.action controller="Item" arguments="{category: link.category}" pageUid="{settings.item.pids.list}" action="list" title="{f:translate(key: 'sbp2_titletext_filter_item_category')} {link.category.title}">
+							{title}
+						</f:link.action>
+					</f:if>
+					
+					<f:comment>Filtered Items: Client</f:comment>
+					<f:if condition="{link.type} == 21">
+						<f:link.action controller="Item" arguments="{client: link.client}" pageUid="{settings.item.pids.list}" action="list" title="{f:translate(key: 'sbp2_titletext_filter_item_client')} {sbp2:title(record: link.client)}">
+							{title}
+						</f:link.action>
+					</f:if>
+					
+					<f:comment>Filtered Items: Tag</f:comment>
+					<f:if condition="{link.type} == 22">
+						<f:link.action controller="Item" arguments="{tag: link.tag}" pageUid="{settings.item.pids.list}" action="list" title="{f:translate(key: 'sbp2_titletext_filter_item_tag')} {link.tag.title}">
+							{title}
+						</f:link.action>
+					</f:if>
+					
+					<f:comment>Filtered Clients: Category</f:comment>
+					<f:if condition="{link.type} == 23">
+						<f:link.action controller="Client" arguments="{category: link.category}" pageUid="{settings.client.pids.list}" action="list" title="{f:translate(key: 'sbp2_titletext_filter_client_category')} {link.category.title}">
+							{title}
+						</f:link.action>
+					</f:if>
+					
+					<f:comment>Filtered Clients: Tag</f:comment>
+					<f:if condition="{link.type} == 24">
+						<f:link.action controller="Client" arguments="{tag: link.tag}" pageUid="{settings.client.pids.list}" action="list" title="{f:translate(key: 'sbp2_titletext_filter_client_tag')} {link.tag.title}">
+							{title}
+						</f:link.action>
+					</f:if>
+				</li>
+			</f:alias>
+		</f:for>
+	</ul>
+</f:if>

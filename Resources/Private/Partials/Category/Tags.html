@@ -1,0 +1,17 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{tags}">
+	<p class="label"><strong>{f:translate(key:'sbp2_tags')}</strong></p>
+	<ul class="tags">
+		<f:for each="{sbp2:sortTitle(records: tags)}" as="tag" iteration="tagInfo">
+			<f:alias map="{title: '{tag.title}'}">
+				<li class="{sbp2:classes(record: tag, info: tagInfo)}">
+					<f:link.action controller="Item" pageUid="{settings.item.pids.list}" action="list" arguments="{tag : tag.uid}" title="{f:translate(key: 'sbp2_titletext_filter_item_tag')} {title}">
+						{title}
+					</f:link.action>
+				</li>
+			</f:alias>
+		</f:for>
+	</ul>
+</f:if>
+

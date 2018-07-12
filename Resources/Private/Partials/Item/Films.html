@@ -1,0 +1,35 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{item.films}">
+	<p class="label"><strong>{f:translate(key:'sbp2_films')}</strong></p>
+	<ul class="films">
+		<f:for each="{item.films}" as="film" iteration="filmInfo">
+			<li class="{sbp2:classes(record: film, info: filmInfo)}">
+				<f:comment>Hosted films</f:comment>
+				<f:if condition="{film.type} == 0">
+					<f:if condition="{film.host} == 0">
+						<f:render partial="Item/Hosts/Youtube" arguments="{film: film}" />
+					</f:if>
+					
+					<f:if condition="{film.host} == 1">
+						<f:render partial="Item/Hosts/Vimeo" arguments="{film: film}" />
+					</f:if>
+				</f:if>
+				
+				<f:comment>Film File</f:comment>
+				<f:if condition="{film.type} == 1">
+					<f:cObject typoscriptObjectPath="plugin.tx_sbportfolio2.settings.item.films.media" data="{film}" />
+				</f:if>
+				
+				<f:comment>URL</f:comment>
+				<f:if condition="{film.type} == 2">
+					<f:alias map="{title: '{sbp2:title(record: film)}'}">
+						<f:link.external uri="{film.url}" title="{f:translate(key: 'sbp2_titletext_film')} {title}">
+							{title}
+						</f:link.external>
+					</f:alias>
+				</f:if>
+			</li>
+		</f:for>
+	</ul>
+</f:if>

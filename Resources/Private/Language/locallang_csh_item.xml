@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help (CSH) for table tx_sbportfolio2_domain_model_item</description>
+		<type>CSH</type>
+		<csh_table>tx_sbportfolio2_domain_model_item</csh_table>
+	</meta>
+	<data type="array">
+	<languageKey index="default" type="array">
+			<label index="type.description">What type of item is this? A normal item, a shortcut to a page or a link to a remote URL.</label>
+			<label index="title.description">The item's title. Used in the FE and in table listings in the BE.</label>
+			<label index="titlefull.description">An alternative title for use in the FE.</label>
+			<label index="titleshort.description">An alternative title for use in the FE when space is restricted.</label>
+			<label index="summary.description">A short summary of the item.</label>
+			<label index="linkurl.description">The item's main link. This could be a file for print material, or a url if the item was a website and so on.</label>
+			<label index="fulldescription.description">The item's full description, this can include links and images.</label>
+			<label index="datetime.description">The date this item was "published" / "went live" or was completed.</label>
+			<label index="featured.description">Is this item a featured item?</label>
+			<label index="inprogress.description">Is this item "in progress", and not yet published/live - useful for displaying current projects.</label>
+			<label index="testimonial.description">The item's testimonial.</label>
+			<label index="tags.description">The item's tags.</label>
+			<label index="imagefolders.description">The item's image folders (folders in fileadmin that contain images that are to be displayed with this item).</label>
+			<label index="links.description">The item's links.</label>
+			<label index="files.description">The item's files.</label>
+			<label index="relateditems.description">Portfolio items related to this item.</label>
+			<label index="films.description">The item's films.</label>
+			<label index="setid.description">A flickr Photo Set ID to be associated with this item.</label>
+			<label index="categories.description">The item's categories.</label>
+			<label index="client.description">The item's client - the individual or company this item was made for.</label>
+			<label index="images.description">The item's images.</label>
+			<label index="url.description">The URL that this item should link to instead of showing the Single display.</label>
+			<label index="page.description">The page that this item should link to instead of showing the Single display.</label>
+			<label index="starttime.description">The date that this item should start showing up in the FE.</label>
+			<label index="endtime.description">The date that this item should stop showing up in the FE.</label>
+			<label index="preview.description">A preview image, that could be used in lists.</label>
+			<label index="slider_title.description">The item's content slider title.</label>
+			<label index="slider_image.description">The item's content slider image.</label>
+			<label index="slider_description.description">The item's content slider description.</label>
+			<label index="seo_title.description">The item's title for SEO metatags.</label>
+			<label index="seo_type.description">The item's type for SEO metatags.</label>
+			<label index="seo_image.detail">The item's image for SEO metatags.</label>
+			<label index="seo_image.description">Facebook uses a square image at least 50x50 pixels, the image cannot exceed 130x110 pixels.</label>
+			<label index="seo_description.description">The item's description for SEO metatags.</label>
+			<label index="seo_fbappid.description">The item's Facebook Application ID.</label>
+			<label index="seo_fbadmins.description">The item's Facebook Admin IDs.</label>
+		</languageKey>
+	</data>
+</T3locallang>

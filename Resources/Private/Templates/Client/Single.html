@@ -1,0 +1,59 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:layout name="ClientSingle" />
+
+<f:section name="clientSingle">
+	<f:alias map="{title: '{sbp2:title(record: client)}'}">
+		<f:render partial="Shared/Metacontent" arguments="{record: client, title: title}" />
+		
+		<h1>Client Single</h1>
+		
+		<f:if condition="{client}">
+			<f:then>
+				<div class="{sbp2:classes(record: client)}">
+					<h2>{title}</h2>
+					
+					<f:render partial="Shared/Datetime" arguments="{datetime: client.datetime, format: settings.client.dateFormat}" />
+					<f:render partial="Shared/Summary" arguments="{summary: client.summary}" />
+					<f:render partial="Shared/Fulldescription" arguments="{fulldescription: client.fulldescription}" />
+					<f:render partial="Client/Links" arguments="{client: client}" />
+					<f:render partial="Client/Files" arguments="{client: client}" />
+					<f:render partial="Client/Image" arguments="{client: client}" />
+					<f:render partial="Client/Linkurl" arguments="{client: client}" />
+					<f:render partial="Client/Testimonial" arguments="{testimonial: client.testimonial}" />
+					<f:render partial="Client/Categories" arguments="{categories: client.categories}" />
+					<f:render partial="Client/Tags" arguments="{client: client, filtering: filtering}" />
+					
+					<f:comment>The following will show all items related to this client.</f:comment>
+					<f:alias map="{items: '{sbp2:items(record: client, type: \'client\', itemSetup: settings.client.items)}'}">
+						<f:if condition="{items}">
+							<p class="label"><strong>{f:translate(key:'sbp2_items')}</strong></p>
+							<ul class="clientPortfolio">
+								<f:for each="{items}" as="item" iteration="itemInfo">
+									<li class="{sbp2:classes(record: item, info: itemInfo)}">
+										<f:render partial="Item/Title" arguments="{item: item}" />
+										<f:render partial="Shared/Datetime" arguments="{datetime: item.datetime, format: settings.item.dateFormat}" />
+										<f:render partial="Shared/Summary" arguments="{summary: item.summary}" />
+										<f:render partial="Item/Images" arguments="{item: item}" />
+									</li>
+								</f:for>
+							</ul>
+						</f:if>
+					</f:alias>
+					
+					<f:render partial="Client/Nextprevious" arguments="{record: client, npField: settings.client.nextprevious.field}" />
+			
+					<p class="viewAll viewAllClients">
+						<f:link.action pageUid="{settings.client.pids.list}" action="list" title="{f:translate(key:'sbp2_back_client')}">
+							{f:translate(key:'sbp2_back_client')}
+						</f:link.action>
+					</p>
+				</div>
+			</f:then>
+			
+			<f:else>
+					<p class="itemSingleEmpty">{f:translate(key:'sbp2_none_client_single')}</p>
+			</f:else>
+		</f:if>
+	</f:alias>
+</f:section>

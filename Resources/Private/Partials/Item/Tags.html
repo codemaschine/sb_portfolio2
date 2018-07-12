@@ -1,0 +1,29 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{item}">
+	<f:alias map="{combinedTags: '{sbp2:combine.tags(record: item)}'}">
+		<f:if condition="{combinedTags}">
+			<p class="label"><strong>{f:translate(key:'sbp2_tags')}</strong></p>
+			<ul class="tags">
+				<f:for each="{sbp2:sortTitle(records: combinedTags)}" as="tag" iteration="tagInfo">
+					<f:alias map="{title: '{tag.title}'}">
+						<f:if condition="{sbp2:filtering(name: 'tag', comparison: tag.uid)}">
+							<f:then>
+								<li class="{sbp2:classes(record: tag, info: tagInfo)} selected">
+									{title}
+								</li>
+							</f:then>
+							<f:else>
+								<li class="{sbp2:classes(record: tag, info: tagInfo)}">
+									<f:link.action pageUid="{settings.item.pids.list}" action="list" arguments="{tag : tag.uid}" title="{f:translate(key: 'sbp2_titletext_filter_item_tag')} {title}">
+										{title}
+									</f:link.action>
+								</li>
+							</f:else>
+						</f:if>
+					</f:alias>
+				</f:for>
+			</ul>
+		</f:if>
+	</f:alias>
+</f:if>

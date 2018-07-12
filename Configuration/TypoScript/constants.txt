@@ -1,0 +1,74 @@
+### Add Constant Sections ###
+### --------------------- ###
+
+# customsubcategory=flickr=Flickr
+# customsubcategory=metatags=Meta Tags
+
+
+
+### Plugin Constants ###
+### ---------------- ###
+
+plugin.tx_sbportfolio2 {
+	view {
+			# cat=plugin.tx_sbportfolio2/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:sb_portfolio2/Resources/Private/Templates/
+
+			# cat=plugin.tx_sbportfolio2/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:sb_portfolio2/Resources/Private/Partials/
+
+			# cat=plugin.tx_sbportfolio2/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:sb_portfolio2/Resources/Private/Layouts/
+	}
+
+
+
+	persistence {
+			# cat=plugin.tx_sbportfolio2/a; type=string; label=Default storage PID
+		storagePid =
+	}
+
+
+
+	settings {
+			# cat=plugin.tx_sbportfolio2/flickr/1; type=string; label=Flickr API Key
+		api_key =
+
+			# cat=plugin.tx_sbportfolio2/metatags/1; type=string; label=Facebook App ID
+		app_id =
+
+			# cat=plugin.tx_sbportfolio2/metatags/2; type=string; label=Facebook Admins
+		admins =
+
+			# cat=plugin.tx_sbportfolio2/metatags/3; type=string; label=Site Name
+		site_name =
+
+			# cat=plugin.tx_sbportfolio2/language/1; type=string; label=Date Format
+		dateFormat = d/m/Y
+	}
+}
+
+
+
+### Module Constants ###
+### ---------------- ###
+
+module.tx_sbportfolio2 {
+	view {
+			# cat=module.tx_sbportfolio2/file; type=string; label=Path to template root (BE)
+		templateRootPath = EXT:sb_portfolio2/Resources/Private/Backend/Templates/
+
+			# cat=module.tx_sbportfolio2/file; type=string; label=Path to template partials (BE)
+		partialRootPath = EXT:sb_portfolio2/Resources/Private/Backend/Partials/
+
+			# cat=module.tx_sbportfolio2/file; type=string; label=Path to template layouts (BE)
+		layoutRootPath = EXT:sb_portfolio2/Resources/Private/Backend/Layouts/
+	}
+
+
+
+	persistence {
+			# cat=module.tx_sbportfolio2//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

@@ -1,0 +1,47 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:layout name="ClientList" />
+
+<f:section name="clientList">
+	<h1>Client List</h1>
+
+	<f:render partial="Shared/Filter" arguments="{filtering: filtering}" />
+
+	<f:if condition="{clients}">
+		<f:then>
+			<f:widget.paginate objects="{clients}" as="paginatedClients" configuration="{settings.client.pageBrowser}">
+				<ul class="clientList">
+					<f:for each="{paginatedClients}" as="client" iteration="clientInfo">
+						<li class="{sbp2:classes(record: client, info: clientInfo)}">
+							<f:render partial="Client/Title" arguments="{client: client}" />
+							<f:render partial="Client/Logo" arguments="{client: client}" />
+							<f:render partial="Shared/Datetime" arguments="{datetime: client.datetime, format: settings.client.dateFormat}" />
+							<f:render partial="Shared/Summary" arguments="{summary: client.summary}" />
+							<f:render partial="Client/Categories" arguments="{categories: client.categories}" />
+							<f:render partial="Client/Tags" arguments="{client: client, filtering: filtering}" />
+						</li>
+					</f:for>
+				</ul>
+			</f:widget.paginate>
+		</f:then>
+
+		<f:else>
+			<p class="clientListEmpty">
+				<f:if condition="{filtering}">
+					<f:then>
+						<f:if condition="{filtering.tag}">
+							{f:translate(key:'sbp2_none_client_tag')} {filtering.record.title}.
+						</f:if>
+						<f:if condition="{filtering.category}">
+							{f:translate(key:'sbp2_none_client_category')} {filtering.record.title}.
+						</f:if>
+					</f:then>
+
+					<f:else>
+						{f:translate(key:'sbp2_none_client')}
+					</f:else>
+				</f:if>
+			</p>
+		</f:else>
+	</f:if>
+</f:section>

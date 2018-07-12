@@ -1,0 +1,20 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{item}">
+	<f:alias map="{categoryRelatedItems: '{sbp2:combine.relateditems(record: item, catOnly: 1)}'}">
+		<f:if condition="{categoryRelatedItems}">
+			<p class="label"><strong>{f:translate(key:'sbp2_relateditems_category')}</strong></p>
+			<ul class="relatedItems">
+				<f:for each="{sbp2:sortTitle(records: categoryRelatedItems)}" as="relatedItem" iteration="relatedItemInfo">
+				<f:alias map="{title: '{sbp2:title(record: relatedItem)}'}">
+					<li class="{sbp2:classes(record: relatedItem, info: relatedItemInfo)}">
+						<f:link.action pageUid="{settings.item.pids.single}" controller="Item" action="single" arguments="{item : relatedItem.uid}" title="{f:translate(key: 'sbp2_titletext_item')} {title}">
+							{title}
+						</f:link.action>
+					</li>
+				</f:alias>
+				</f:for>
+			</ul>
+		</f:if>
+	</f:alias>
+</f:if>

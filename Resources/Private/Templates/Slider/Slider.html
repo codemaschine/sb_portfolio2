@@ -1,0 +1,47 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:layout name="Slider" />
+
+<f:section name="slider">
+	<h1>Slider</h1>
+
+	<f:if condition="{sliders}">
+		<f:then>
+			<ul class="sliderList">
+				<f:for each="{sliders}" as="slider" iteration="sliderInfo">
+					<li class="{sbp2:classes(record: slider, info: sliderInfo)}">
+						<f:render partial="Slider/Title" arguments="{slider: slider}" />
+
+						<f:if condition="{slider.summary}">
+							<p class="summary">{slider.summary}</p>
+						</f:if>
+
+						<f:if condition="{slider.fulldescription}">
+							<p class="fulldescription"><f:format.html>{slider.fulldescription}</f:format.html></p>
+						</f:if>
+
+						<f:if condition="{slider.image}">
+							<f:image src="{slider.image}" class="sliderImage sliderImage-normal"width="100" height="60" alt="" />
+						</f:if>
+
+						<f:if condition="{slider.imagero}">
+							<f:image src="{slider.imagero}" class="sliderImage sliderImage-rollover" width="100" height="60" alt="" />
+						</f:if>
+
+						<f:if condition="{slider.icon}">
+							<f:image src="{slider.icon}" class="sliderImage sliderImage-icon"width="50" height="30" alt="" />
+						</f:if>
+
+						<f:if condition="{slider.logo}">
+							<f:image src="{slider.logo}" class="sliderImage sliderImage-logo"width="50" height="30" alt="" />
+						</f:if>
+					</li>
+				</f:for>
+			</ul>
+		</f:then>
+
+		<f:else>
+			<p class="sliderListEmpty">{f:translate(key:'sbp2_none_slider')}</p>
+		</f:else>
+	</f:if>
+</f:section>

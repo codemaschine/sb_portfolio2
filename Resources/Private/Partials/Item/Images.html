@@ -1,0 +1,14 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{item.images}">
+	<p class="label"><strong>{f:translate(key:'sbp2_image_plural')}</strong></p>
+	<ul class="images">
+		<f:for each="{item.images}" as="image" iteration="imageInfo">
+			<li class="{sbp2:classes(record: image, info: imageInfo)}">
+				<f:link.action pageUid="{settings.item.pids.single}" action="single" arguments="{item : item}" title="{f:translate(key: 'sbp2_titletext_item')} {sbp2:title(record: item)}">
+					<f:image src="{image.imagefile}" width="60c" height="40c" title="{sbp2:title(record: image)}" alt="{image.description}" />
+				</f:link.action>
+			</li>
+		</f:for>
+	</ul>
+</f:if>

@@ -1,0 +1,9 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<li class="{sbp2:classes(record: previous)} previous">
+	<p class="label"><strong>{f:translate(key:'sbp2_nextprevious_previous')}</strong></p>
+	<div class="nextpreviousClient previousClient">
+		<f:render partial="Client/Title" arguments="{client: previous}" />
+		<f:render partial="Shared/Datetime" arguments="{datetime: previous.datetime, format: settings.client.dateFormat}" />
+	</div>
+</li>

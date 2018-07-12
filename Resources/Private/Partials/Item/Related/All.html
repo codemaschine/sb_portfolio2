@@ -1,0 +1,9 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{item}">
+	<f:alias map="{relatedItems: '{sbp2:relatedItems(record: item)}'}">
+		<f:if condition="{relatedItems}">
+			<p class="label"><strong>{f:translate(key:'sbp2_relateditems_all')}</strong></p>
+		</f:if>
+	</f:alias>
+</f:if>

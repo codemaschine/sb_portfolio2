@@ -1,0 +1,10 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:if condition="{client.image}">
+	<p class="label"><strong>{f:translate(key:'sbp2_image')}</strong></p>
+	<div class="image">
+		<f:link.action pageUid="{settings.client.pids.single}" controller="Client" action="single" arguments="{client : client}" title="{f:translate(key: 'sbp2_titletext_client')} {sbp2:title(record: client)}">
+			<f:image src="{client.image.imagefile}" width="60c" height="40c" title="{sbp2:title(record: client.image)}" alt="{client.image.description}" />
+		</f:link.action>
+	</div>
+</f:if>

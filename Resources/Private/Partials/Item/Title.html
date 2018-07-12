@@ -1,0 +1,33 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+<f:alias map="{title: '{sbp2:title(record: item)}'}">
+	<h2 class="title">
+		<f:comment>Normal</f:comment>
+		<f:if condition="{item.type} == 0">
+			<f:link.action controller="Item" pageUid="{settings.item.pids.single}" action="single" arguments="{item : item}" title="{f:translate(key: 'sbp2_titletext_item')} {title}">
+				{title}
+			</f:link.action>
+		</f:if>
+		
+		<f:comment>Page</f:comment>
+		<f:if condition="{item.type} == 1">
+			<f:link.page pageUid="{item.page}" title="{f:translate(key: 'sbp2_title_titletext_item_page')} {title}">
+				{title}
+			</f:link.page>
+		</f:if>
+		
+		<f:comment>URL</f:comment>
+		<f:if condition="{item.type} == 2">
+			<f:link.external target="_blank" uri="{item.url}" title="{f:translate(key: 'sbp2_title_titletext_item_url')} {title} {f:translate(key: 'sbp2_title_titletext_item_url_notice')}">
+				{title}
+			</f:link.external>
+		</f:if>
+		
+		<f:comment>File</f:comment>
+		<f:if condition="{item.type} == 3">
+			<f:link.page pageUid="{item.file}" title="{f:translate(key: 'sbp2_titletext_file')} {title}">
+				{title}
+			</f:link.page>
+		</f:if>
+	</h2>
+</f:alias>

@@ -1,0 +1,39 @@
+{namespace sbp2=Tx_SbPortfolio2_ViewHelpers}
+
+	<f:comment>Set the page title to the title of the single record</f:comment>
+<sbp2:meta.title title="{title}" />
+
+
+
+	<f:comment>OG meta tags. OG requires four tags: title, type, image, and url. Any others are optional.</f:comment>
+<f:alias map="{combinedTags: '{sbp2:combine.tags(record: record)}'}">
+	<f:alias map="{sortedTags: '{sbp2:sortTitle(records: combinedTags)}'}">
+		<sbp2:meta.tag content="{sbp2:meta.keywords(tags: sortedTags)}" name="keywords" />
+	</f:alias>
+</f:alias>
+	
+<f:alias map="{description: '{sbp2:meta.description(record: record)}'}">
+	<sbp2:meta.tag content="{description}" name="description" />
+	<sbp2:meta.tag content="{sbp2:value(val1: description, val2: record.seodescription)}" name="og:description" />
+</f:alias>
+
+<sbp2:meta.tag content="{sbp2:value(val1: title, val2: record.seotitle)}" name="og:title" />
+<sbp2:meta.tag content="{record.seotype}" name="og:type" />
+<sbp2:meta.tag content="{meta.site_name}" name="og:site_name" />
+<sbp2:meta.tag content="{f:cObject(typoscriptObjectPath: 'plugin.tx_sbportfolio2.settings.meta.url')}" name="og:url" />
+
+	<f:comment>
+		The og:image must be at least 50px by 50px and have a maximum aspect ratio of 3:1.
+		FB supports PNG, JPEG and GIF formats.
+		You may include multiple og:image tags to associate multiple images with your page.
+		The following tag assumes that your image is already 50x50 as this is a special image with it's own field.
+		If not you can set other properties like width, and height etc...
+	</f:comment>
+	
+<sbp2:meta.tag content="{f:cObject(typoscriptObjectPath: 'plugin.tx_sbportfolio2.settings.meta.image', data: record.seoimage)}" name="og:image" />
+
+
+
+	<f:comment>FaceBook proprietary meta tags.</f:comment>
+<sbp2:meta.tag content="{sbp2:value(val1: meta.app_id, val2: record.seofbappid)}" name="fb:app_id" />
+<sbp2:meta.tag content="{sbp2:value(val1: meta.admins, val2: record.seofbadmins)}" name="fb:admins" />

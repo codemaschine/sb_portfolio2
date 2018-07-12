@@ -1,0 +1,8 @@
+<f:if condition="{filtering}">
+	<p class="filter">
+		Portfolio {filtering.type}: {filtering.record.title}
+		<span class="clearFilter">
+			<f:link.action action="list">Clear Filter</f:link.action>
+		</span>
+	</p>
+</f:if>
