@@ -31,7 +31,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Controller_CoreRecordController extends \TYPO3\CMS\Extbase\MVC\Controller\ActionController {
+class Tx_SbPortfolio2_Controller_CoreRecordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * Merges two TS setting arrays.
