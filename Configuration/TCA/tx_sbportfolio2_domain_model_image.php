@@ -3,25 +3,41 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$sbp2ExtRelPath		= t3lib_extMgm::extRelPath('sb_portfolio2');
-$sbp2IconPath		= 'Resources/Public/Icons/';
 $sbp2LabelPath		= 'LLL:EXT:sb_portfolio2/Resources/Private/Language/locallang_db.xml:';
-$sbp2Label			= $sbp2LabelPath . 'sbp2_film.';
+$sbp2Label			= $sbp2LabelPath . 'sbp2_image.';
 $sbp2LabelShared	= $sbp2LabelPath . 'sbp2_shared.';
 $sbp2Tab			= '--div--;' . $sbp2LabelPath . 'sbp2_tab';
 $sbp2Pal			= '--palette--;' . $sbp2LabelPath . 'sbp2_palette';
 
-$sbp2Fields	= 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, ' . $sbp2Pal . '.title;titlePalette, ' . $sbp2Pal . '.type;typePalette, ' . $sbp2Pal . '.file;filePalette, description, ' . $sbp2Tab . '.media, preview, ' . $sbp2Tab . '.access, hidden;;1, ' . $sbp2Pal . '.publishDates;publishDatesPalette';
-
-$TCA['tx_sbportfolio2_domain_model_film'] = array(
-	'ctrl' => $TCA['tx_sbportfolio2_domain_model_film']['ctrl'],
-	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, type, title, titlefull, titleshort, hostid, film, filename, filetype, filesize, filepath, url, description, preview',
+return array(
+    'ctrl' => array(
+        'title'	=> $sbp2LabelPath . 'sbp2_image',
+        'label' => 'title',
+        'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'cruser_id' => 'cruser_id',
+        'dividers2tabs' => TRUE,
+        'versioningWS' => 2,
+        'versioning_followPages' => TRUE,
+        'origUid' => 't3_origuid',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'default_sortby' => 'ORDER BY title ASC',
+        'delete' => 'deleted',
+        'enablecolumns' => array(
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+        ),
+        'iconfile' => $sbp2ExtRelPath	 . $sbp2IconPath . 'Image/sbp2_image.gif',
+        'searchFields' => 'title,titlefull,titleshort,description,caption'
+    ),
+  'interface' => array(
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, titlefull, titleshort, description, imagefile, caption, imagename, imagepath, imagesize, imagetype, imagewidth, imageheight, imageorientation',
 	),
 	'types' => array(
-		'0' => array('showitem' => $sbp2Fields),
-		'1' => array('showitem' => $sbp2Fields),
-		'2' => array('showitem' => $sbp2Fields),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, ' . $sbp2Pal . '.title;titlePalette, imagefile, ' . $sbp2Pal . '.image;imagePalette, description, caption, ' . $sbp2Tab . '.access, hidden;;1, ' . $sbp2Pal . '.publishDates;publishDatesPalette'),
 	),
 	'palettes' => array(
 		'titlePalette' => array(
@@ -32,12 +48,8 @@ $TCA['tx_sbportfolio2_domain_model_film'] = array(
 			'showitem'			=> 'starttime, endtime',
 			'canNotCollapse'	=> 1
 		),
-		'typePalette' => array(
-			'showitem'			=> 'type, host, hostid, film, url',
-			'canNotCollapse'	=> 1
-		),
-		'filePalette' => array(
-			'showitem'			=> 'filename, --linebreak--, filetype, filesize, --linebreak--, filepath',
+		'imagePalette' => array(
+			'showitem'			=> 'imagename, --linebreak--, imagetype, imagesize, --linebreak--, imagepath, --linebreak--, imagewidth, imageheight, imageorientation',
 			'canNotCollapse'	=> 0
 		),
 	),
@@ -64,8 +76,8 @@ $TCA['tx_sbportfolio2_domain_model_film'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table' => 'tx_sbportfolio2_domain_model_film',
-				'foreign_table_where' => 'AND tx_sbportfolio2_domain_model_film.pid=###CURRENT_PID### AND tx_sbportfolio2_domain_model_film.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_sbportfolio2_domain_model_image',
+				'foreign_table_where' => 'AND tx_sbportfolio2_domain_model_image.pid=###CURRENT_PID### AND tx_sbportfolio2_domain_model_image.sys_language_uid IN (-1,0)',
 			),
 		),
 		'l10n_diffsource' => array(
@@ -135,71 +147,25 @@ $TCA['tx_sbportfolio2_domain_model_film'] = array(
 				'eval' => 'trim'
 			),
 		),
-		'type' => array(
+		'imagefile' => array(
 			'exclude' => 1,
-			'label' => $sbp2Label . 'type',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type' => 'select',
-				'items' => array(
-					array($sbp2Label . 'type.0', 0, $sbp2ExtRelPath . $sbp2IconPath . 'Film/sbp2_film.gif'),
-					array($sbp2Label . 'type.1', 1, $sbp2ExtRelPath . $sbp2IconPath . 'Shared/sbp2_shared_file.gif'),
-					array($sbp2Label . 'type.2', 2, $sbp2ExtRelPath . $sbp2IconPath . 'Shared/sbp2_shared_link.gif'),
-				),
-				'size' => 1,
-				'maxitems' => 1,
-				'eval' => 'required',
-                'default' => 0
-			),
-		),
-		'host' => array(
-			'exclude' => 1,
-			'label' => $sbp2Label . 'host',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type' => 'select',
-				'items' => array(
-					array('', -1,),
-					array($sbp2Label . 'host.1', 0, $sbp2ExtRelPath . $sbp2IconPath . 'Film/sbp2_host_youtube.gif'),
-					array($sbp2Label . 'host.2', 1, $sbp2ExtRelPath . $sbp2IconPath . 'Film/sbp2_host_vimeo.gif'),
-				),
-				'size' => 1,
-				'maxitems' => 1,
-				'eval' => 'required',
-                'default' => '-1'
-			),
-			'displayCond' => 'FIELD:type:IN:0,2'
-		),
-		'hostid' => array(
-			'exclude' => 1,
-			'label' => $sbp2Label . 'hostid',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type' => 'input',
-				'size' => 30,
-				'eval' => 'trim'
-			),
-			'displayCond' => 'FIELD:type:=:0'
-		),
-		'film' => array(
-			'exclude' => 1,
-			'label' => $sbp2Label . 'film',
+			'label' => $sbp2Label . 'imagefile',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
 				'type' => 'group',
 				'internal_type' => 'file_reference',
-				'allowed' => 'avi,mpg,vob,mp4,mov,3gp,flv',
-				'disallowed' => 'php',
 				'size' => 1,
 				'maxitems' => 1,
 				'minitems' => 0,
+				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
+				'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
 				'disable_controls' => 'upload',
+				'show_thumbs' => true
 			),
-			'displayCond' => 'FIELD:type:=:1'
 		),
-		'filename' => array(
+		'imagename' => array(
 			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'filename',
+			'label' => $sbp2Label . 'imagename',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
 				'type'     => 'input',
@@ -208,11 +174,11 @@ $TCA['tx_sbportfolio2_domain_model_film'] = array(
 				'default'  => '',
 				'readOnly' => 1
 			),
-			'displayCond' => 'FIELD:film:REQ:true',
+			'displayCond' => 'FIELD:imagefile:REQ:true',
 		),
-		'filepath' => array(
+		'imagepath' => array(
 			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'filepath',
+			'label' => $sbp2Label . 'imagepath',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
 				'type'     => 'input',
@@ -221,11 +187,11 @@ $TCA['tx_sbportfolio2_domain_model_film'] = array(
 				'default'  => '',
 				'readOnly' => 1
 			),
-			'displayCond' => 'FIELD:film:REQ:true',
+			'displayCond' => 'FIELD:imagefile:REQ:true',
 		),
-		'filesize' => array(
+		'imagesize' => array(
 			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'filesize',
+			'label' => $sbp2Label . 'imagesize',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
 				'type'     => 'input',
@@ -235,11 +201,11 @@ $TCA['tx_sbportfolio2_domain_model_film'] = array(
 				'default'  => 0,
 				'readOnly' => 1
 			),
-			'displayCond' => 'FIELD:film:REQ:true',
+			'displayCond' => 'FIELD:imagefile:REQ:true',
 		),
-		'filetype' => array(
+		'imagetype' => array(
 			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'filetype',
+			'label' => $sbp2Label . 'imagetype',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
 				'type'     => 'input',
@@ -249,18 +215,49 @@ $TCA['tx_sbportfolio2_domain_model_film'] = array(
 				'default'  => '',
 				'readOnly' => 1
 			),
-			'displayCond' => 'FIELD:film:REQ:true',
+			'displayCond' => 'FIELD:imagefile:REQ:true',
 		),
-		'url' => array(
+		'imagewidth' => array(
 			'exclude' => 1,
-			'label' => $sbp2Label . 'url',
+			'label' => $sbp2Label . 'imagewidth',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
-				'eval' => 'trim'
+				'type'     => 'input',
+				'size'     => 8,
+				'max'      => 10,
+				'eval'     => 'num',
+				'default'  => 0,
+				'readOnly' => 1
 			),
-			'displayCond' => 'FIELD:type:=:2'
+			'displayCond' => 'FIELD:imagefile:REQ:true',
+		),
+		'imageheight' => array(
+			'exclude' => 1,
+			'label' => $sbp2Label . 'imageheight',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type'     => 'input',
+				'size'     => 8,
+				'max'      => 10,
+				'eval'     => 'num',
+				'default'  => 0,
+				'readOnly' => 1
+			),
+			'displayCond' => 'FIELD:imagefile:REQ:true',
+		),
+		'imageorientation' => array(
+			'exclude' => 1,
+			'label' => $sbp2Label . 'imageorientation',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type'     => 'input',
+				'size'     => 1,
+				'max'      => 1,
+				'eval'     => 'num',
+				'default'  => 0,
+				'readOnly' => 1
+			),
+			'displayCond' => 'FIELD:imagefile:REQ:true',
 		),
 		'description' => array(
 			'exclude' => 1,
@@ -273,33 +270,15 @@ $TCA['tx_sbportfolio2_domain_model_film'] = array(
 				'eval' => 'trim'
 			),
 		),
-		'preview' => array(
+		'caption' => array(
 			'exclude' => 1,
-			'label' => $sbp2Label . 'preview',
+			'label' => $sbp2Label . 'caption',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_sbportfolio2_domain_model_image',
-				'minitems' => 0,
-				'maxitems' => 1,
-				'appearance' => array(
-					'collapse' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1,
-					'newRecordLinkAddTitle' => 1,
-					'expandSingle' => 1,
-					'newRecordLinkAddTitle' => 1,
-					'enabledControls' => array(
-						'info' => true,
-						'new' => true,
-						'dragdrop' => false,
-						'sort' => false,
-						'hide' => true,
-						'delete' => true,
-					),
-				),
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 3,
+				'eval' => 'trim'
 			),
 		),
 		'hidden' => array(

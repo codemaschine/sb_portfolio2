@@ -4,7 +4,7 @@ if (!defined ('TYPO3_MODE')) {
 }
 
 $sbp2SuggestLimit	= '5';
-$sbp2ExtRelPath		= t3lib_extMgm::extRelPath('sb_portfolio2');
+$sbp2ExtRelPath		= \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('sb_portfolio2');
 $sbp2IconPath		= 'Resources/Public/Icons/';
 $sbp2LabelPath		= 'LLL:EXT:sb_portfolio2/Resources/Private/Language/locallang_db.xml:';
 $sbp2Label			= $sbp2LabelPath . 'sbp2_item.';
@@ -14,8 +14,38 @@ $sbp2Pal			= '--palette--;' . $sbp2LabelPath . 'sbp2_palette';
 
 $sbp2Fields	= 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, ' . $sbp2Pal . '.title;titlePalette, ' . $sbp2Pal . '.type;typePalette, ' . $sbp2Pal . '.file;filePalette, datetime, summary, fulldescription;;;richtext::rte_transform[flag=rte_enabled|mode=ts_css], ' . $sbp2Tab . '.media, preview, images, imagefolders, films, ' . $sbp2Pal . '.flickr;flickrPalette, ' . $sbp2Tab . '.related, linkurl, testimonial, links, files, relateditems, ' . $sbp2Tab . '.categorisation, client, categories, tags, ' . $sbp2Tab . '.seo, ' . $sbp2Pal . '.og;ogPalette, ' . $sbp2Pal . '.facebook;facebookPalette, ' . $sbp2Tab . '.access, hidden;;1, ' . $sbp2Pal . '.publishDates;publishDatesPalette';
 
-$TCA['tx_sbportfolio2_domain_model_item'] = array(
-	'ctrl' => $TCA['tx_sbportfolio2_domain_model_item']['ctrl'],
+return array(
+    'ctrl' => array(
+        'title'	=> $sbp2LabelPath . 'sbp2_item',
+        'label' => 'title',
+        'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'cruser_id' => 'cruser_id',
+        'dividers2tabs' => TRUE,
+        'versioningWS' => 2,
+        'versioning_followPages' => TRUE,
+        'origUid' => 't3_origuid',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'default_sortby' => 'ORDER BY title ASC',
+        'delete' => 'deleted',
+        'type' => 'type',
+        'enablecolumns' => array(
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+        ),
+        'iconfile' => $sbp2ExtRelPath	 . $sbp2IconPath . 'Item/sbp2_item.gif',
+        'searchFields' => 'title,titlefull,titleshort,fulldescription,summary',
+        'typeicon_column' => 'type',
+        'typeicons' => array(
+            '0' => $sbp2ExtRelPath	 . $sbp2IconPath . 'Item/sbp2_item.gif',
+            '1' => $sbp2ExtRelPath	 . $sbp2IconPath . 'Item/sbp2_item_page.gif',
+            '2' => $sbp2ExtRelPath	 . $sbp2IconPath . 'Item/sbp2_item_url.gif',
+            '3' => $sbp2ExtRelPath	 . $sbp2IconPath . 'Item/sbp2_item_file.gif',
+        ),
+    ),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, type, title, titlefull, titleshort, datetime, fulldescription, featured, inprogress, summary, tags, links, testimonial, images, imagefolders, films, page, url, files, client, categories, preview, setid, relateditems, seo_title, seo_type, seo_image, seo_description, seo_fbappid, seo_fbadmins, slider_title, slider_image, slider_description, linkurl, file, filename, filetype, filesize, filepath',
 	),

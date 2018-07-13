@@ -60,7 +60,7 @@ class Tx_SbPortfolio2_Controller_ItemController extends Tx_SbPortfolio2_Controll
      * @param Tx_SbPortfolio2_Domain_Model_Client $client A client record to filter the view by.
      * @param Tx_SbPortfolio2_Domain_Model_Category $category A category record to filter the view by.
      * @param Tx_SbPortfolio2_Domain_Model_Tag $tag A client record to filter the view by.
-	 * @return voidtag	 */
+	 * @return void	 */
 	public function listAction(Tx_SbPortfolio2_Domain_Model_Client $client = NULL, Tx_SbPortfolio2_Domain_Model_Category $category = NULL, Tx_SbPortfolio2_Domain_Model_Tag $tag = NULL) {
 		$this->mergeFlexFormSettings('item');
 		$filters = array(

@@ -126,7 +126,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	/**
 	 * Counts the number of portfolioConstraints
 	 *
-	 * @return The number of constraints.
+	 * @return integer The number of constraints.
 	 */
 	public function countPortfolioConstraints() {
 		return count($this->portfolioConstraints);
@@ -187,7 +187,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	 * @return string A string of category UIDs.
 	 */
 	protected function findCategoriesByTag(Tx_SbPortfolio2_Domain_Model_Tag $tag) {
-		$categoryRepository	= t3lib_div::makeInstance('Tx_SbPortfolio2_Domain_Repository_CategoryRepository');
+		$categoryRepository	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_CategoryRepository');
 		$categories			= $categoryRepository->findByTags($tag); // This is the findByTags() method in the category repository!
 		$categoryUids		= '';
 
@@ -326,10 +326,10 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	 *
 	 * @param integer $uid The uid of the sb_portfolio item that has related items.
 	 * @param integer $pageId The pid to use in the query.
-	 * @param Tx_Extbase_Persistence_QueryResult $items The items found.
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $items The items found.
 	 * @return string $result The result of the attempt to related items.
 	 */
-	public function importRelated($uid, $pageId, Tx_Extbase_Persistence_QueryResult $items) {
+	public function importRelated($uid, $pageId, \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $items) {
 		$sbp2Item	= $this->findOneBySbpuid($uid);
 		$result		= array('success' => FALSE, 'relatedrecords' => array());
 
@@ -413,20 +413,20 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	/**
 	 * Sets the query limit if required.
 	 *
-	 * @param Tx_Extbase_Persistence_Query $query The query object making the query.
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Query $query The query object making the query.
 	 * @param array $portSetup The TS setup for the query.
-	 * @return Tx_Extbase_Persistence_Query $query The query object making the query, modified.
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query $query The query object making the query, modified.
 	 */
-	public function adjustQueryOrder(Tx_Extbase_Persistence_Query $query, array $portSetup) {
+	public function adjustQueryOrder(\TYPO3\CMS\Extbase\Persistence\Generic\Query $query, array $portSetup) {
 		if ($this->isAutomatic()) {
 			if (isset($portSetup['sortBy']) && isset($portSetup['sortDir'])) {
 				$sortDir = strtoupper($portSetup['sortDir']);
 	
 				if ($sortDir == 'ASC') {
-					$sortDir = Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
+					$sortDir = \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
 	
 				} else {
-					$sortDir = Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING;
+					$sortDir = \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING;
 				}
 	
 				$sortBy = strtolower($portSetup['sortBy']);
@@ -445,11 +445,11 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	/**
 	 * Sets the query limit if required.
 	 *
-	 * @param Tx_Extbase_Persistence_Query $query The query object making the query.
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Query $query The query object making the query.
 	 * @param array $portSetup The TS setup for the query.
-	 * @return Tx_Extbase_Persistence_Query $query The query object making the query, modified.
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query $query The query object making the query, modified.
 	 */
-	public function adjustQueryLimit(Tx_Extbase_Persistence_Query $query, array $portSetup) {
+	public function adjustQueryLimit(\TYPO3\CMS\Extbase\Persistence\Generic\Query $query, array $portSetup) {
 		if ($this->isAutomatic()) {
 			$limit = intval($portSetup['limit']);
 	
@@ -465,11 +465,11 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	 * Adjusts the query based on properties of this repo's models. Over-ride this function
 	 * in the model specific repo if you queries need model specific constraints (see the item repo as an example).
 	 *
-	 * @param Tx_Extbase_Persistence_Query $query The query object making the query.
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Query $query The query object making the query.
 	 * @param array $portSetup The TS setup for the query.
-	 * @return Tx_Extbase_Persistence_Query $query The query object making the query, modified.
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query $query The query object making the query, modified.
 	 */
-	public function adjustQueryConstraints(Tx_Extbase_Persistence_Query $query, array $portSetup) {
+	public function adjustQueryConstraints(\TYPO3\CMS\Extbase\Persistence\Generic\Query $query, array $portSetup) {
 		$query = $this->adjustQueryConstraintsCommon($query, $portSetup);
 		$query = $this->setQueryConstraints($query);
 
@@ -479,11 +479,11 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	/**
 	 * Makes changes to the query used by all plugins.
 	 *
-	 * @param Tx_Extbase_Persistence_Query $query The query object making the query.
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Query $query The query object making the query.
 	 * @param array $portSetup The TS setup for the query.
-	 * @return Tx_Extbase_Persistence_Query $query The query object making the query, modified.
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query $query The query object making the query, modified.
 	 */
-	public function adjustQueryConstraintsCommon(Tx_Extbase_Persistence_Query $query, array $portSetup) {
+	public function adjustQueryConstraintsCommon(\TYPO3\CMS\Extbase\Persistence\Generic\Query $query, array $portSetup) {
 		if (!$this->isAutomatic() && $this->hasIncludes()) { // Manual record selection
 			$inValues = $this->getValuesForInClause($portSetup['include']);
 			$this->setPortfolioConstraints($query->in('uid', $inValues));
@@ -501,10 +501,10 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	/**
 	 * Adds the creaated query constraint objects to the current query.
 	 *
-	 * @param Tx_Extbase_Persistence_Query $query The query object making the query.
-	 * @return Tx_Extbase_Persistence_Query $query The query object making the query, modified.
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Query $query The query object making the query.
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query $query The query object making the query, modified.
 	 */
-	public function setQueryConstraints(Tx_Extbase_Persistence_Query $query) {
+	public function setQueryConstraints(\TYPO3\CMS\Extbase\Persistence\Generic\Query $query) {
 		$numOfConstraints = $this->countPortfolioConstraints();
 
 		if ($numOfConstraints > 0){
@@ -531,7 +531,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	 */
 	public function getValuesForInClause($intList) {
 		$intListCleanded	= $GLOBALS['TYPO3_DB']->cleanIntList($intList);
-		$intListArray		= t3lib_div::trimExplode(',', $intListCleanded);
+		$intListArray		= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $intListCleanded);
 		
 		return $intListArray;
 	}

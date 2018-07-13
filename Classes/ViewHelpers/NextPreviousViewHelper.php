@@ -30,7 +30,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_NextPreviousViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_SbPortfolio2_ViewHelpers_NextPreviousViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Returns the next or previous record.
@@ -50,7 +50,7 @@ class Tx_SbPortfolio2_ViewHelpers_NextPreviousViewHelper extends Tx_Fluid_Core_V
 		
 		$recordType = ucfirst($recordType);
 		
-		$repository	= t3lib_div::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $recordType .'Repository');
+		$repository	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $recordType .'Repository');
 		$npRecord	= NULL;
 		
 		if ($npType == 'next') {

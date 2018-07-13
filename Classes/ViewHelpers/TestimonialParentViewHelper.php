@@ -30,7 +30,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_TestimonialParentViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_SbPortfolio2_ViewHelpers_TestimonialParentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 	
 	/**
 	 * What type of record is this a testimonial for? Either "item", or "client".
@@ -64,7 +64,7 @@ class Tx_SbPortfolio2_ViewHelpers_TestimonialParentViewHelper extends Tx_Fluid_C
 		}
 		
 		if ($parentId >= 1) {
-			$repository		= t3lib_div::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $this->testimonialType .'Repository');
+			$repository		= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $this->testimonialType .'Repository');
 			$parentRecord	= $repository->findByUid($parentId);
 		}
 		

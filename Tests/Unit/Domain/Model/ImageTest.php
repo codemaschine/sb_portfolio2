@@ -36,7 +36,7 @@
  *
  * @author Stephen Bungert <stephenbungert@yahoo.de>
  */
-class Tx_SbPortfolio2_Domain_Model_ImageTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_SbPortfolio2_Domain_Model_ImageTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @var Tx_SbPortfolio2_Domain_Model_Image
 	 */

@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Repository_FileRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_SbPortfolio2_Domain_Repository_FileRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 }
 ?>

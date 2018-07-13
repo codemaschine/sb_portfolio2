@@ -140,15 +140,15 @@ class Tx_SbPortfolio2_Domain_Model_ImageFolder extends Tx_SbPortfolio2_Domain_Mo
 	 * @todo Add manifest file support
 	 */
 	protected function getImagesFromDir($sortOrder = 'mtime') {
-		$folders = t3lib_div::trimExplode(',', $this->getFolders(), true);
+		$folders = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->getFolders(), true);
 
 		if (!empty($folders)) {
 			$images		= array();
-			$manifest	= t3lib_div::makeInstance('Tx_SbPortfolio2_Domain_Model_Manifest_File');
+			$manifest	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Model_Manifest_File');
 
 			foreach ($folders as $folderIndex => $folderPath) {
 				$manifestData	= $manifest->getManifestData($folderPath);
-				$folderImgs		= t3lib_div::getFilesInDir($folderPath, $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'], TRUE, $sortOrder);
+				$folderImgs		= \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir($folderPath, $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'], TRUE, $sortOrder);
 
 				// Remove hashed index
 				foreach ($folderImgs as $imageHash => $imagePath) {

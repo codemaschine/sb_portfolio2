@@ -42,9 +42,9 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 	protected $sbpRec;
 
 	/**
-	 * A instance of t3lib_basicFileFunctions used for file manipulation.
+	 * A instance of \TYPO3\CMS\Core\Utility\File\BasicFileUtility used for file manipulation.
 	 *
-	 * @var t3lib_basicFileFunctions
+	 * @var \TYPO3\CMS\Core\Utility\File\BasicFileUtility
 	 */
 	protected $filer;
 
@@ -85,7 +85,7 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 	 */
 	public function __construct($sbpRec) {
 		$this->setSbpRec($sbpRec);
-		#$this->filer = t3lib_div::makeInstance('t3lib_basicFileFunctions');
+		#$this->filer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Core\Utility\File\BasicFileUtility');
 	}
 
 
@@ -215,11 +215,11 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 
 		} else if ($indexPos !== FALSE) { // Could be a url to a TYPO3 page
 			$queryString	= substr($linkUrl, $indexPos + 10);
-			$queryVars		= t3lib_div::trimExplode('&', $queryString, TRUE);
+			$queryVars		= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode('&', $queryString, TRUE);
 
 			foreach ($queryVars as $value) {
 				if (strpos($value, 'id') !== FALSE) {
-					$idVar = t3lib_div::trimExplode('=', $value, TRUE);
+					$idVar = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode('=', $value, TRUE);
 
 					if (intval($idVar[1]) > 0) {
 						$linkType[0] = 2;
@@ -310,7 +310,7 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 			$filePathData = pathinfo($linkType[1]);
 
 			$link->setFiletype(strtolower($filePathData['extension']));
-			$link->setFilesize(filesize(t3lib_div::getFileAbsFileName($linkType[1])));
+			$link->setFilesize(filesize(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($linkType[1])));
 			$link->setFilename($filePathData['filename']);
 			$link->setFilepath($filePathData['dirname']);
 
@@ -362,10 +362,10 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 
 			// Set image data fields
 		$imagePathData = pathinfo($filePath);
-		$imageSizeData = getimagesize(t3lib_div::getFileAbsFileName($filePath));
+		$imageSizeData = getimagesize(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($filePath));
 
 		$image->setImagetype(strtolower($imagePathData['extension']));
-		$image->setImagesize(filesize(t3lib_div::getFileAbsFileName($filePath)));
+		$image->setImagesize(filesize(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($filePath)));
 		$image->setImagename($imagePathData['filename']);
 		$image->setImagepath($imagePathData['dirname']);
 		$image->setImagewidth($imageSizeData[0]);
@@ -458,7 +458,7 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 		$filePathData = pathinfo($filePath);
 
 		$file->setFiletype(strtolower($filePathData['extension']));
-		$file->setFilesize(filesize(t3lib_div::getFileAbsFileName($filePath)));
+		$file->setFilesize(filesize(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($filePath)));
 		$file->setFilename($filePathData['filename']);
 		$file->setFilepath($filePathData['dirname']);
 

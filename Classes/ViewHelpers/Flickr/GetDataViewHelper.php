@@ -32,7 +32,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_Flickr_GetDataViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_SbPortfolio2_ViewHelpers_Flickr_GetDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Flickr model
@@ -93,7 +93,7 @@ class Tx_SbPortfolio2_ViewHelpers_Flickr_GetDataViewHelper extends Tx_Fluid_Core
 		$this->checkForBasicErrors();
 		
 		if ($this->basicError === FALSE) {
-			$this->flickr = t3lib_div::makeInstance('Tx_SbPortfolio2_Domain_Flickr_Flickr', $this->getApiKey());
+			$this->flickr = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Flickr_Flickr', $this->getApiKey());
 			
 				// Get params
 			$methodParams	= $this->getMethodParams('getPhotos');

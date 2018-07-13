@@ -36,7 +36,7 @@
  *
  * @author Stephen Bungert <stephenbungert@yahoo.de>
  */
-class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_SbPortfolio2_Domain_Model_ItemTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @var Tx_SbPortfolio2_Domain_Model_Item
 	 */
@@ -187,7 +187,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 * @test
 	 */
 	public function getTagsReturnsInitialValueForObjectStorageContainingTx_SbPortfolio2_Domain_Model_Tag() { 
-		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
 			$this->fixture->getTags()
@@ -199,7 +199,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function setTagsForObjectStorageContainingTx_SbPortfolio2_Domain_Model_TagSetsTags() { 
 		$tag = new Tx_SbPortfolio2_Domain_Model_Tag();
-		$objectStorageHoldingExactlyOneTags = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneTags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneTags->attach($tag);
 		$this->fixture->setTags($objectStorageHoldingExactlyOneTags);
 
@@ -214,7 +214,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function addTagToObjectStorageHoldingTags() {
 		$tag = new Tx_SbPortfolio2_Domain_Model_Tag();
-		$objectStorageHoldingExactlyOneTag = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneTag = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneTag->attach($tag);
 		$this->fixture->addTag($tag);
 
@@ -229,7 +229,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function removeTagFromObjectStorageHoldingTags() {
 		$tag = new Tx_SbPortfolio2_Domain_Model_Tag();
-		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$localObjectStorage->attach($tag);
 		$localObjectStorage->detach($tag);
 		$this->fixture->addTag($tag);
@@ -245,7 +245,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 * @test
 	 */
 	public function getImagefoldersReturnsInitialValueForObjectStorageContainingTx_SbPortfolio2_Domain_Model_ImageFolder() { 
-		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
 			$this->fixture->getImagefolders()
@@ -257,7 +257,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function setImagefoldersForObjectStorageContainingTx_SbPortfolio2_Domain_Model_ImageFolderSetsImagefolders() { 
 		$imagefolder = new Tx_SbPortfolio2_Domain_Model_ImageFolder();
-		$objectStorageHoldingExactlyOneImagefolders = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneImagefolders = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneImagefolders->attach($imagefolder);
 		$this->fixture->setImagefolders($objectStorageHoldingExactlyOneImagefolders);
 
@@ -272,7 +272,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function addImagefolderToObjectStorageHoldingImagefolders() {
 		$imagefolder = new Tx_SbPortfolio2_Domain_Model_ImageFolder();
-		$objectStorageHoldingExactlyOneImagefolder = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneImagefolder = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneImagefolder->attach($imagefolder);
 		$this->fixture->addImagefolder($imagefolder);
 
@@ -287,7 +287,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function removeImagefolderFromObjectStorageHoldingImagefolders() {
 		$imagefolder = new Tx_SbPortfolio2_Domain_Model_ImageFolder();
-		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$localObjectStorage->attach($imagefolder);
 		$localObjectStorage->detach($imagefolder);
 		$this->fixture->addImagefolder($imagefolder);
@@ -303,7 +303,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 * @test
 	 */
 	public function getLinksReturnsInitialValueForObjectStorageContainingTx_SbPortfolio2_Domain_Model_Link() { 
-		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
 			$this->fixture->getLinks()
@@ -315,7 +315,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function setLinksForObjectStorageContainingTx_SbPortfolio2_Domain_Model_LinkSetsLinks() { 
 		$link = new Tx_SbPortfolio2_Domain_Model_Link();
-		$objectStorageHoldingExactlyOneLinks = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneLinks->attach($link);
 		$this->fixture->setLinks($objectStorageHoldingExactlyOneLinks);
 
@@ -330,7 +330,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function addLinkToObjectStorageHoldingLinks() {
 		$link = new Tx_SbPortfolio2_Domain_Model_Link();
-		$objectStorageHoldingExactlyOneLink = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneLink = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneLink->attach($link);
 		$this->fixture->addLink($link);
 
@@ -345,7 +345,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function removeLinkFromObjectStorageHoldingLinks() {
 		$link = new Tx_SbPortfolio2_Domain_Model_Link();
-		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$localObjectStorage->attach($link);
 		$localObjectStorage->detach($link);
 		$this->fixture->addLink($link);
@@ -361,7 +361,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 * @test
 	 */
 	public function getFilesReturnsInitialValueForObjectStorageContainingTx_SbPortfolio2_Domain_Model_File() { 
-		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
 			$this->fixture->getFiles()
@@ -373,7 +373,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function setFilesForObjectStorageContainingTx_SbPortfolio2_Domain_Model_FileSetsFiles() { 
 		$file = new Tx_SbPortfolio2_Domain_Model_File();
-		$objectStorageHoldingExactlyOneFiles = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneFiles->attach($file);
 		$this->fixture->setFiles($objectStorageHoldingExactlyOneFiles);
 
@@ -388,7 +388,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function addFileToObjectStorageHoldingFiles() {
 		$file = new Tx_SbPortfolio2_Domain_Model_File();
-		$objectStorageHoldingExactlyOneFile = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneFile = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneFile->attach($file);
 		$this->fixture->addFile($file);
 
@@ -403,7 +403,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function removeFileFromObjectStorageHoldingFiles() {
 		$file = new Tx_SbPortfolio2_Domain_Model_File();
-		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$localObjectStorage->attach($file);
 		$localObjectStorage->detach($file);
 		$this->fixture->addFile($file);
@@ -419,7 +419,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 * @test
 	 */
 	public function getFilmsReturnsInitialValueForObjectStorageContainingTx_SbPortfolio2_Domain_Model_Film() { 
-		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
 			$this->fixture->getFilms()
@@ -431,7 +431,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function setFilmsForObjectStorageContainingTx_SbPortfolio2_Domain_Model_FilmSetsFilms() { 
 		$film = new Tx_SbPortfolio2_Domain_Model_Film();
-		$objectStorageHoldingExactlyOneFilms = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneFilms = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneFilms->attach($film);
 		$this->fixture->setFilms($objectStorageHoldingExactlyOneFilms);
 
@@ -446,7 +446,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function addFilmToObjectStorageHoldingFilms() {
 		$film = new Tx_SbPortfolio2_Domain_Model_Film();
-		$objectStorageHoldingExactlyOneFilm = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneFilm = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneFilm->attach($film);
 		$this->fixture->addFilm($film);
 
@@ -461,7 +461,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function removeFilmFromObjectStorageHoldingFilms() {
 		$film = new Tx_SbPortfolio2_Domain_Model_Film();
-		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$localObjectStorage->attach($film);
 		$localObjectStorage->detach($film);
 		$this->fixture->addFilm($film);
@@ -477,7 +477,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 * @test
 	 */
 	public function getCategoriesReturnsInitialValueForObjectStorageContainingTx_SbPortfolio2_Domain_Model_Category() { 
-		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
 			$this->fixture->getCategories()
@@ -489,7 +489,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function setCategoriesForObjectStorageContainingTx_SbPortfolio2_Domain_Model_CategorySetsCategories() { 
 		$category = new Tx_SbPortfolio2_Domain_Model_Category();
-		$objectStorageHoldingExactlyOneCategories = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneCategories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneCategories->attach($category);
 		$this->fixture->setCategories($objectStorageHoldingExactlyOneCategories);
 
@@ -504,7 +504,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function addCategoryToObjectStorageHoldingCategories() {
 		$category = new Tx_SbPortfolio2_Domain_Model_Category();
-		$objectStorageHoldingExactlyOneCategory = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneCategory = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneCategory->attach($category);
 		$this->fixture->addCategory($category);
 
@@ -519,7 +519,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function removeCategoryFromObjectStorageHoldingCategories() {
 		$category = new Tx_SbPortfolio2_Domain_Model_Category();
-		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$localObjectStorage->attach($category);
 		$localObjectStorage->detach($category);
 		$this->fixture->addCategory($category);
@@ -545,7 +545,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 * @test
 	 */
 	public function getImagesReturnsInitialValueForObjectStorageContainingTx_SbPortfolio2_Domain_Model_Image() { 
-		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
 			$this->fixture->getImages()
@@ -557,7 +557,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function setImagesForObjectStorageContainingTx_SbPortfolio2_Domain_Model_ImageSetsImages() { 
 		$image = new Tx_SbPortfolio2_Domain_Model_Image();
-		$objectStorageHoldingExactlyOneImages = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneImages = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneImages->attach($image);
 		$this->fixture->setImages($objectStorageHoldingExactlyOneImages);
 
@@ -572,7 +572,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function addImageToObjectStorageHoldingImages() {
 		$image = new Tx_SbPortfolio2_Domain_Model_Image();
-		$objectStorageHoldingExactlyOneImage = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneImage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneImage->attach($image);
 		$this->fixture->addImage($image);
 
@@ -587,7 +587,7 @@ class Tx_SbPortfolio2_Domain_Model_ItemTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 */
 	public function removeImageFromObjectStorageHoldingImages() {
 		$image = new Tx_SbPortfolio2_Domain_Model_Image();
-		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$localObjectStorage->attach($image);
 		$localObjectStorage->detach($image);
 		$this->fixture->addImage($image);

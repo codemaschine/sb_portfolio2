@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Model_Manifest_File extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_SbPortfolio2_Domain_Model_Manifest_File extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * The name of manifest files.
@@ -69,7 +69,7 @@ class Tx_SbPortfolio2_Domain_Model_Manifest_File extends Tx_Extbase_DomainObject
 	 * @return void
 	 */
 	public function __construct() {
-		$this->t3Version = class_exists('t3lib_utility_VersionNumber') ? t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) : t3lib_div::int_from_ver(TYPO3_version);
+		$this->t3Version = class_exists('\TYPO3\CMS\Core\Utility\VersionNumberUtility') ? \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) : \TYPO3\CMS\Core\Utility\GeneralUtility::int_from_ver(TYPO3_version);
 	}
 
 	/**
@@ -82,16 +82,16 @@ class Tx_SbPortfolio2_Domain_Model_Manifest_File extends Tx_Extbase_DomainObject
 		$fileData	= false;
 		$file		= $folder . self::MANIFEST_FILE_NAME;
 
-		if (t3lib_div::validPathStr($folder) && file_exists($file)) {
+		if (\TYPO3\CMS\Core\Utility\GeneralUtility::validPathStr($folder) && file_exists($file)) {
 			if ($this->t3Version >= 4007000) {
-				$llXmlParser	= t3lib_div::makeInstance('t3lib_l10n_parser_Llxml');
+				$llXmlParser	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_l10n_parser_Llxml');
 				$fileData		= $llXmlParser->getParsedData($file, $GLOBALS['LANG']->lang, $GLOBALS['TSFE']->renderCharset);
 
 			} else if ($this->t3Version >= 4006000) {
-				$fileData = t3lib_div::readLLXMLfile($file, $GLOBALS['LANG']->lang, $GLOBALS['TSFE']->renderCharset);
+				$fileData = \TYPO3\CMS\Core\Utility\GeneralUtility::readLLXMLfile($file, $GLOBALS['LANG']->lang, $GLOBALS['TSFE']->renderCharset);
 
 			} else {
-				$fileData = t3lib_div::readLLfile($file, $GLOBALS['LANG']->lang, $GLOBALS['TSFE']->renderCharset);
+				$fileData = \TYPO3\CMS\Core\Utility\GeneralUtility::readLLfile($file, $GLOBALS['LANG']->lang, $GLOBALS['TSFE']->renderCharset);
 			}
 
 			$defaultLangStrings	= $fileData['default'];
@@ -191,7 +191,7 @@ class Tx_SbPortfolio2_Domain_Model_Manifest_File extends Tx_Extbase_DomainObject
 		$file		= $folder . self::MANIFEST_FILE_NAME;
 
 		if (TYPO3_MODE == 'BE') {
-			$file = t3lib_div::getFileAbsFileName($file, FALSE);
+			$file = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($file, FALSE);
 		}
 
 		if (file_exists($file)) {
@@ -226,10 +226,10 @@ class Tx_SbPortfolio2_Domain_Model_Manifest_File extends Tx_Extbase_DomainObject
 	 */
 	protected function getFolderImages($folder) {
 		if (TYPO3_MODE == 'BE') {
-			$folder = t3lib_div::getFileAbsFileName($folder, FALSE);
+			$folder = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($folder, FALSE);
 		}
 
-		return t3lib_div::getFilesInDir($folder, $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'], TRUE, '1');
+		return \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir($folder, $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'], TRUE, '1');
 	}
 
 	/**
@@ -243,7 +243,7 @@ class Tx_SbPortfolio2_Domain_Model_Manifest_File extends Tx_Extbase_DomainObject
 		$file = $folder . self::MANIFEST_FILE_NAME;
 
 		if (TYPO3_MODE == 'BE') {
-			$file = t3lib_div::getFileAbsFileName($file, FALSE);
+			$file = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($file, FALSE);
 		}
 
 		if (@is_file($file)) {
@@ -252,7 +252,7 @@ class Tx_SbPortfolio2_Domain_Model_Manifest_File extends Tx_Extbase_DomainObject
 			$fileData = file_get_contents($file);
 
 				// And use TYPO3's own native functions to convert an xml string to an array
-			$manifestData = t3lib_div::xml2array($fileData);
+			$manifestData = \TYPO3\CMS\Core\Utility\GeneralUtility::xml2array($fileData);
 
 				// If not already updated for sb_portfolio2
 			if (!empty($manifestData)) {
@@ -275,9 +275,9 @@ class Tx_SbPortfolio2_Domain_Model_Manifest_File extends Tx_Extbase_DomainObject
 	 * @return	void.
 	 */
 	public function writeManifestFile($folder, $manifestXML) {
-		$absFilePath = t3lib_div::getFileAbsFileName($folder);
+		$absFilePath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($folder);
 
-		return t3lib_div::writeFile($absFilePath . self::MANIFEST_FILE_NAME, $manifestXML);
+		return \TYPO3\CMS\Core\Utility\GeneralUtility::writeFile($absFilePath . self::MANIFEST_FILE_NAME, $manifestXML);
 	}
 
 	/**
@@ -300,7 +300,7 @@ class Tx_SbPortfolio2_Domain_Model_Manifest_File extends Tx_Extbase_DomainObject
 			'time'			=> htmlspecialchars(date('H:i:s')),
 			'user'			=> htmlspecialchars($GLOBALS['BE_USER']->user['username']),
 			'compatibility'	=> htmlspecialchars($extName),
-			'version'		=> htmlspecialchars(t3lib_extMgm::getExtensionVersion($extName))
+			'version'		=> htmlspecialchars(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getExtensionVersion($extName))
 		);
 
 		$manifestData['data'] = $existingData;
@@ -315,12 +315,12 @@ class Tx_SbPortfolio2_Domain_Model_Manifest_File extends Tx_Extbase_DomainObject
 				$imagePathData	= pathinfo($imageFile);
 				$imageName		= $imagePathData['filename'];
 
-				$imageSizeData	= getimagesize(t3lib_div::getFileAbsFileName($imageFile));
+				$imageSizeData	= getimagesize(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($imageFile));
 				$imageWidth		= $imageSizeData[0];
 				$imageHeight	= $imageSizeData[1];
 
 				$manifestData['data'][$langKey][$imageName . '.imagetype']		= strtolower($imagePathData['extension']);
-				$manifestData['data'][$langKey][$imageName . '.imagesize']		= filesize(t3lib_div::getFileAbsFileName($imageFile));
+				$manifestData['data'][$langKey][$imageName . '.imagesize']		= filesize(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($imageFile));
 				$manifestData['data'][$langKey][$imageName . '.imagename']		= $imagePathData['filename'];
 				$manifestData['data'][$langKey][$imageName . '.imagepath']		= $folder;
 				$manifestData['data'][$langKey][$imageName . '.imagewidth']		= $imageWidth;
@@ -347,7 +347,7 @@ class Tx_SbPortfolio2_Domain_Model_Manifest_File extends Tx_Extbase_DomainObject
 			)
 		);
 
-		return t3lib_div::array2xml_cs($manifestData, 'T3locallang', $options, 'utf-8');
+		return \TYPO3\CMS\Core\Utility\GeneralUtility::array2xml_cs($manifestData, 'T3locallang', $options, 'utf-8');
 	}
 }
 ?>

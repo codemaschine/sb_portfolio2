@@ -30,7 +30,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_ClassesViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_SbPortfolio2_ViewHelpers_ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * The type of model that $record is.
@@ -236,11 +236,11 @@ class Tx_SbPortfolio2_ViewHelpers_ClassesViewHelper extends Tx_Fluid_Core_ViewHe
 	/**
 	 * Adds classes to the $classes array based on category id's.
 	 *
-	 * @param Tx_Extbase_Persistence_LazyObjectStorage $categories The record's categories.
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage $categories The record's categories.
 	 * @param array $classes The array of classes.
 	 * @return array $classes The array of classes.
 	 */
-	protected function getCatIdClasses(Tx_Extbase_Persistence_LazyObjectStorage $categories, array $classes) {
+	protected function getCatIdClasses(\TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage $categories, array $classes) {
 		foreach ($categories as $key => $cat) {
 			$classes[] = 'category-' . $cat->getUid();
 		}

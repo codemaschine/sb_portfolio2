@@ -4,31 +4,53 @@ if (!defined ('TYPO3_MODE')) {
 }
 
 $sbp2LabelPath		= 'LLL:EXT:sb_portfolio2/Resources/Private/Language/locallang_db.xml:';
-$sbp2Label			= $sbp2LabelPath . 'sbp2_image.';
+$sbp2Label			= $sbp2LabelPath . 'sbp2_file.';
 $sbp2LabelShared	= $sbp2LabelPath . 'sbp2_shared.';
 $sbp2Tab			= '--div--;' . $sbp2LabelPath . 'sbp2_tab';
 $sbp2Pal			= '--palette--;' . $sbp2LabelPath . 'sbp2_palette';
 
-$TCA['tx_sbportfolio2_domain_model_image'] = array(
-	'ctrl' => $TCA['tx_sbportfolio2_domain_model_image']['ctrl'],
+return array(
+    'ctrl' => array(
+        'title'	=> $sbp2LabelPath . 'sbp2_file',
+        'label' => 'title',
+        'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'cruser_id' => 'cruser_id',
+        'dividers2tabs' => TRUE,
+        'versioningWS' => 2,
+        'versioning_followPages' => TRUE,
+        'origUid' => 't3_origuid',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'default_sortby' => 'ORDER BY title ASC',
+        'delete' => 'deleted',
+        'enablecolumns' => array(
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+        ),
+        'iconfile' => $sbp2ExtRelPath	 . $sbp2IconPath . 'File/sbp2_file.gif',
+        'searchFields' => 'title,titlefull,titleshort,description'
+    ),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, titlefull, titleshort, description, imagefile, caption, imagename, imagepath, imagesize, imagetype, imagewidth, imageheight, imageorientation',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, titlefull, titleshort, description, file, filename, filetype, filesize, filepath',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, ' . $sbp2Pal . '.title;titlePalette, imagefile, ' . $sbp2Pal . '.image;imagePalette, description, caption, ' . $sbp2Tab . '.access, hidden;;1, ' . $sbp2Pal . '.publishDates;publishDatesPalette'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, ' . $sbp2Pal . '.title;titlePalette, description, file, ' . $sbp2Pal . '.file;filePalette, ' . $sbp2Tab . '.access, hidden;;1, ' . $sbp2Pal . '.publishDates;publishDatesPalette'),
 	),
 	'palettes' => array(
 		'titlePalette' => array(
 			'showitem'			=> 'title, --linebreak--, titlefull, titleshort',
 			'canNotCollapse'	=> 1
 		),
+		'filePalette' => array(
+			'showitem'			=> 'filename, --linebreak--, filetype, filesize, --linebreak--, filepath',
+			'canNotCollapse'	=> 0
+		),
 		'publishDatesPalette' => array(
 			'showitem'			=> 'starttime, endtime',
 			'canNotCollapse'	=> 1
-		),
-		'imagePalette' => array(
-			'showitem'			=> 'imagename, --linebreak--, imagetype, imagesize, --linebreak--, imagepath, --linebreak--, imagewidth, imageheight, imageorientation',
-			'canNotCollapse'	=> 0
 		),
 	),
 	'columns' => array(
@@ -54,8 +76,8 @@ $TCA['tx_sbportfolio2_domain_model_image'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table' => 'tx_sbportfolio2_domain_model_image',
-				'foreign_table_where' => 'AND tx_sbportfolio2_domain_model_image.pid=###CURRENT_PID### AND tx_sbportfolio2_domain_model_image.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_sbportfolio2_domain_model_file',
+				'foreign_table_where' => 'AND tx_sbportfolio2_domain_model_file.pid=###CURRENT_PID### AND tx_sbportfolio2_domain_model_file.sys_language_uid IN (-1,0)',
 			),
 		),
 		'l10n_diffsource' => array(
@@ -125,118 +147,6 @@ $TCA['tx_sbportfolio2_domain_model_image'] = array(
 				'eval' => 'trim'
 			),
 		),
-		'imagefile' => array(
-			'exclude' => 1,
-			'label' => $sbp2Label . 'imagefile',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type' => 'group',
-				'internal_type' => 'file_reference',
-				'size' => 1,
-				'maxitems' => 1,
-				'minitems' => 0,
-				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
-				'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
-				'disable_controls' => 'upload',
-				'show_thumbs' => true
-			),
-		),
-		'imagename' => array(
-			'exclude' => 1,
-			'label' => $sbp2Label . 'imagename',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type'     => 'input',
-				'size'     => 30,
-				'eval'     => 'trim',
-				'default'  => '',
-				'readOnly' => 1
-			),
-			'displayCond' => 'FIELD:imagefile:REQ:true',
-		),
-		'imagepath' => array(
-			'exclude' => 1,
-			'label' => $sbp2Label . 'imagepath',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type'     => 'input',
-				'size'     => 30,
-				'eval'     => 'trim',
-				'default'  => '',
-				'readOnly' => 1
-			),
-			'displayCond' => 'FIELD:imagefile:REQ:true',
-		),
-		'imagesize' => array(
-			'exclude' => 1,
-			'label' => $sbp2Label . 'imagesize',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type'     => 'input',
-				'size'     => 15,
-				'max'      => 30,
-				'eval'     => 'num',
-				'default'  => 0,
-				'readOnly' => 1
-			),
-			'displayCond' => 'FIELD:imagefile:REQ:true',
-		),
-		'imagetype' => array(
-			'exclude' => 1,
-			'label' => $sbp2Label . 'imagetype',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type'     => 'input',
-				'size'     => 4,
-				'max'      => 4,
-				'eval'     => 'alphanum',
-				'default'  => '',
-				'readOnly' => 1
-			),
-			'displayCond' => 'FIELD:imagefile:REQ:true',
-		),
-		'imagewidth' => array(
-			'exclude' => 1,
-			'label' => $sbp2Label . 'imagewidth',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 10,
-				'eval'     => 'num',
-				'default'  => 0,
-				'readOnly' => 1
-			),
-			'displayCond' => 'FIELD:imagefile:REQ:true',
-		),
-		'imageheight' => array(
-			'exclude' => 1,
-			'label' => $sbp2Label . 'imageheight',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 10,
-				'eval'     => 'num',
-				'default'  => 0,
-				'readOnly' => 1
-			),
-			'displayCond' => 'FIELD:imagefile:REQ:true',
-		),
-		'imageorientation' => array(
-			'exclude' => 1,
-			'label' => $sbp2Label . 'imageorientation',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type'     => 'input',
-				'size'     => 1,
-				'max'      => 1,
-				'eval'     => 'num',
-				'default'  => 0,
-				'readOnly' => 1
-			),
-			'displayCond' => 'FIELD:imagefile:REQ:true',
-		),
 		'description' => array(
 			'exclude' => 1,
 			'label' => $sbp2LabelShared . 'description',
@@ -248,16 +158,76 @@ $TCA['tx_sbportfolio2_domain_model_image'] = array(
 				'eval' => 'trim'
 			),
 		),
-		'caption' => array(
+		'file' => array(
 			'exclude' => 1,
-			'label' => $sbp2Label . 'caption',
+			'label' => $sbp2LabelShared . 'file',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
-				'type' => 'text',
-				'cols' => 40,
-				'rows' => 3,
-				'eval' => 'trim'
+				'type' => 'group',
+				'internal_type' => 'file_reference',
+				'allowed' => '*',
+				'disallowed' => 'php',
+				'size' => 1,
+				'autoSizeMax' => 10,
+				'maxitems' => 1,
+				'minitems' => 0,
+				'disable_controls' => 'upload',
+				'show_thumbs' => true
 			),
+		),
+		'filename' => array(
+			'exclude' => 1,
+			'label' => $sbp2LabelShared . 'filename',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type'     => 'input',
+				'size'     => 30,
+				'eval'     => 'trim',
+				'default'  => '',
+				'readOnly' => 1
+			),
+			'displayCond' => 'FIELD:file:REQ:true',
+		),
+		'filepath' => array(
+			'exclude' => 1,
+			'label' => $sbp2LabelShared . 'filepath',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type'     => 'input',
+				'size'     => 30,
+				'eval'     => 'trim',
+				'default'  => '',
+				'readOnly' => 1
+			),
+			'displayCond' => 'FIELD:file:REQ:true',
+		),
+		'filesize' => array(
+			'exclude' => 1,
+			'label' => $sbp2LabelShared . 'filesize',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type'     => 'input',
+				'size'     => 15,
+				'max'      => 30,
+				'eval'     => 'num',
+				'default'  => 0,
+				'readOnly' => 1
+			),
+			'displayCond' => 'FIELD:file:REQ:true',
+		),
+		'filetype' => array(
+			'exclude' => 1,
+			'label' => $sbp2LabelShared . 'filetype',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type'     => 'input',
+				'size'     => 4,
+				'max'      => 4,
+				'eval'     => 'alphanum',
+				'default'  => '',
+				'readOnly' => 1
+			),
+			'displayCond' => 'FIELD:file:REQ:true',
 		),
 		'hidden' => array(
 			'exclude' => 1,
@@ -297,16 +267,6 @@ $TCA['tx_sbportfolio2_domain_model_image'] = array(
 				'range' => array(
 					'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
 				),
-			),
-		),
-		'item' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
-		),
-		'sorting' => array(
-			'config' => array(
-				'type' => 'passthrough',
 			),
 		),
 	),

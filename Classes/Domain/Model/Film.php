@@ -124,7 +124,7 @@ class Tx_SbPortfolio2_Domain_Model_Film extends Tx_SbPortfolio2_Domain_Model_Bas
 	}
 
 	/**
-	 * Initializes all Tx_Extbase_Persistence_ObjectStorage properties.
+	 * Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage properties.
 	 *
 	 * @return void
 	 */
@@ -134,7 +134,7 @@ class Tx_SbPortfolio2_Domain_Model_Film extends Tx_SbPortfolio2_Domain_Model_Bas
 		 * It will be rewritten on each save in the extension builder
 		 * You may modify the constructor of this class instead
 		 */
-		#$this->preview = new Tx_Extbase_Persistence_ObjectStorage();
+		#$this->preview = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**

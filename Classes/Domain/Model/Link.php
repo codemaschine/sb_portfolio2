@@ -141,7 +141,7 @@ class Tx_SbPortfolio2_Domain_Model_Link extends Tx_SbPortfolio2_Domain_Model_Com
 	}
 
 	/**
-	 * Initializes all Tx_Extbase_Persistence_ObjectStorage properties.
+	 * Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage properties.
 	 *
 	 * @return void
 	 */
@@ -151,13 +151,13 @@ class Tx_SbPortfolio2_Domain_Model_Link extends Tx_SbPortfolio2_Domain_Model_Com
 		 * It will be rewritten on each save in the extension builder
 		 * You may modify the constructor of this class instead
 		 */
-		#$this->client = new Tx_Extbase_Persistence_ObjectStorage();
+		#$this->client = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		
-		#$this->tag = new Tx_Extbase_Persistence_ObjectStorage();
+		#$this->tag = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		
-		#$this->item = new Tx_Extbase_Persistence_ObjectStorage();
+		#$this->item = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		
-		#$this->category = new Tx_Extbase_Persistence_ObjectStorage();
+		#$this->category = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**

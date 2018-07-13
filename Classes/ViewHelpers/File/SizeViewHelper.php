@@ -30,7 +30,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_File_SizeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_SbPortfolio2_ViewHelpers_File_SizeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Outputs the file size of a file
@@ -41,7 +41,7 @@ class Tx_SbPortfolio2_ViewHelpers_File_SizeViewHelper extends Tx_Fluid_Core_View
 	 */
 	public function render($size, $labels = ' B| KB| MB| GB') {
 		if (!empty($size)) {
-			$size = t3lib_div::formatSize($size, $labels);
+			$size = \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize($size, $labels);
 		}
 		
 		return $size;

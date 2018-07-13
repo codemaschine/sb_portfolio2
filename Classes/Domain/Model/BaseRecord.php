@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Model_BaseRecord extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_SbPortfolio2_Domain_Model_BaseRecord extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * The record's title. Used in the FE and in table listings in the BE.

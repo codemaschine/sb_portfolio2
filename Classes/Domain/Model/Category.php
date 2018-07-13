@@ -37,7 +37,7 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	/**
 	 * The category's tags.
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SbPortfolio2_Domain_Model_Tag>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Tag>
 	 */
 	protected $tags;
 
@@ -51,7 +51,7 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	/**
 	 * The category's links.
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SbPortfolio2_Domain_Model_Link>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Link>
 	 * @lazy
 	 */
 	protected $links;
@@ -59,7 +59,7 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	/**
 	 * The category's files.
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SbPortfolio2_Domain_Model_File>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_File>
 	 * @lazy
 	 */
 	protected $files;
@@ -68,7 +68,7 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	 * The category's related items.
 	 * @lazy
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SbPortfolio2_Domain_Model_Item>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Item>
 	 * @lazy
 	 */
 	protected $relateditems;
@@ -77,7 +77,7 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	 * The category's subcategories (when rendering a tree)
 	 * @lazy
 	 *
-	 * @var Tx_Extbase_Persistence_QueryResult
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
 	 * @lazy
 	 */
 	protected $children;
@@ -93,7 +93,7 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	}
 
 	/**
-	 * Initializes all Tx_Extbase_Persistence_ObjectStorage properties.
+	 * Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage properties.
 	 *
 	 * @return void
 	 */
@@ -103,13 +103,13 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 		 * It will be rewritten on each save in the extension builder
 		 * You may modify the constructor of this class instead
 		 */
-		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		
-		$this->links = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->links = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		
-		$this->files = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->files = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		
-		$this->relateditems = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->relateditems = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
@@ -135,7 +135,7 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	/**
 	 * Returns the tags
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_SbPortfolio2_Domain_Model_Tag> $tags
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Tag> $tags
 	 */
 	public function getTags() {
 		return $this->tags;
@@ -144,10 +144,10 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	/**
 	 * Sets the tags
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_SbPortfolio2_Domain_Model_Tag> $tags
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Tag> $tags
 	 * @return void
 	 */
-	public function setTags(Tx_Extbase_Persistence_ObjectStorage $tags) {
+	public function setTags(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags) {
 		$this->tags = $tags;
 	}
 
@@ -193,7 +193,7 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	/**
 	 * Returns the links
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_SbPortfolio2_Domain_Model_Link> $links
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Link> $links
 	 */
 	public function getLinks() {
 		return $this->links;
@@ -202,10 +202,10 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	/**
 	 * Sets the links
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_SbPortfolio2_Domain_Model_Link> $links
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Link> $links
 	 * @return void
 	 */
-	public function setLinks(Tx_Extbase_Persistence_ObjectStorage $links) {
+	public function setLinks(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $links) {
 		$this->links = $links;
 	}
 
@@ -232,7 +232,7 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	/**
 	 * Returns the files
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_SbPortfolio2_Domain_Model_File> $files
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_File> $files
 	 */
 	public function getFiles() {
 		return $this->files;
@@ -241,10 +241,10 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	/**
 	 * Sets the files
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_SbPortfolio2_Domain_Model_File> $files
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_File> $files
 	 * @return void
 	 */
-	public function setFiles(Tx_Extbase_Persistence_ObjectStorage $files) {
+	public function setFiles(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $files) {
 		$this->files = $files;
 	}
 
@@ -271,7 +271,7 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	/**
 	 * Returns relateditems
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_SbPortfolio2_Domain_Model_Item> $links
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Item> $links
 	 */
 	public function getRelateditems() {
 		return $this->relateditems;
@@ -280,17 +280,17 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	/**
 	 * Sets relateditems
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_SbPortfolio2_Domain_Model_Item> $relateditems
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Item> $relateditems
 	 * @return void
 	 */
-	public function setRelateditems(Tx_Extbase_Persistence_ObjectStorage $relateditems) {
+	public function setRelateditems(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $relateditems) {
 		$this->relateditems = $relateditems;
 	}
 
 	/**
 	 * Returns the children
 	 *
-	 * @return Tx_Extbase_Persistence_QueryResult $children
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $children
 	 */
 	public function getChildren() {
 		return $this->children;
@@ -299,10 +299,10 @@ class Tx_SbPortfolio2_Domain_Model_Category extends Tx_SbPortfolio2_Domain_Model
 	/**
 	 * Sets the children
 	 *
-	 * @param Tx_Extbase_Persistence_QueryResult $children
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $children
 	 * @return void
 	 */
-	public function setChildren(Tx_Extbase_Persistence_QueryResult $children) {
+	public function setChildren(\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $children) {
 		$this->children = $children;
 	}
 }

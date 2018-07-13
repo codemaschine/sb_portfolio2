@@ -41,10 +41,10 @@ class Tx_SbPortfolio2_Hooks_Tcemain {
 	 * @param string $table The table that the record is in.
 	 * @param integer $uid The uid of the record.
 	 * @param array $fields The record itself, an array of fields.
-	 * @param t3lib_TCEmain $tceMainObj The tcemain object.
+	 * @param \TYPO3\CMS\Core\DataHandling\DataHandler $tceMainObj The tcemain object.
 	 * @return void
 	 */
-	public function processDatamap_postProcessFieldArray($status, $table, $uid, array &$fields, t3lib_TCEmain $tceMainObj) {
+  public function processDatamap_postProcessFieldArray($status, $table, $uid, array &$fields, \TYPO3\CMS\Core\DataHandling\DataHandler $tceMainObj) {
 		if ($table == 'tx_sbportfolio2_domain_model_link' || $table == 'tx_sbportfolio2_domain_model_file' || $table == 'tx_sbportfolio2_domain_model_item') {
 			if (isset($fields['file'])) {
 				$fields = $this->updateFileFields($fields, 'file');
@@ -60,7 +60,7 @@ class Tx_SbPortfolio2_Hooks_Tcemain {
 
 		} else if ($table == 'tx_sbportfolio2_domain_model_imagefolder') {
 			if (isset($fields['folders']) && !empty($fields['folders'])) {
-				$folders = t3lib_div::trimExplode(',', $fields['folders'], true);
+				$folders = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $fields['folders'], true);
 
 					// Check each folder for an image manifest file
 				foreach ($folders as $folderIndex => $folderPath) {
@@ -80,7 +80,7 @@ class Tx_SbPortfolio2_Hooks_Tcemain {
 	 * @return void.
 	 */
 	protected function proofManifestFile($folder) {
-		$manifest = t3lib_div::makeInstance('Tx_SbPortfolio2_Domain_Model_Manifest_File');
+		$manifest = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Model_Manifest_File');
 
 		if ($manifest->manifestFileExists($folder)) {
 			$manifest->checkManifestFileForCompatability($folder);
@@ -110,10 +110,10 @@ class Tx_SbPortfolio2_Hooks_Tcemain {
 
 			} else { // Image is being added
 				$imagePathData = pathinfo($fields['imagefile']);
-				$imageSizeData = getimagesize(t3lib_div::getFileAbsFileName($fields['imagefile']));
+				$imageSizeData = getimagesize(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($fields['imagefile']));
 
 				$fields['imagetype']		= strtolower($imagePathData['extension']);
-				$fields['imagesize']		= filesize(t3lib_div::getFileAbsFileName($fields['imagefile']));
+				$fields['imagesize']		= filesize(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($fields['imagefile']));
 				$fields['imagename']		= $imagePathData['filename'];
 				$fields['imagepath']		= $imagePathData['dirname'];
 				$fields['imagewidth']		= $imageSizeData[0];
@@ -153,7 +153,7 @@ class Tx_SbPortfolio2_Hooks_Tcemain {
 			$filePathData = pathinfo($fields[$fieldName]);
 
 			$fields['filetype'] = strtolower($filePathData['extension']);
-			$fields['filesize'] = filesize(t3lib_div::getFileAbsFileName($fields[$fieldName]));
+			$fields['filesize'] = filesize(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($fields[$fieldName]));
 			$fields['filename'] = $filePathData['filename'];
 			$fields['filepath'] = $filePathData['dirname'];
 		}

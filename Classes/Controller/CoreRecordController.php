@@ -31,7 +31,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Controller_CoreRecordController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_SbPortfolio2_Controller_CoreRecordController extends \TYPO3\CMS\Extbase\MVC\Controller\ActionController {
 
 	/**
 	 * Merges two TS setting arrays.
@@ -42,8 +42,10 @@ class Tx_SbPortfolio2_Controller_CoreRecordController extends Tx_Extbase_MVC_Con
 	 */
 	protected function mergeSettings(array $tsSettings1, array $tsSettings2) {
 		$tsSettings2 = $this->removeEmptyValues($tsSettings2);
+		
+		\TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule($tsSettings1, $tsSettings2);
 
-		return t3lib_div::array_merge_recursive_overrule($tsSettings1, $tsSettings2);
+		return $tsSettings1;
 	}
 
 	/**

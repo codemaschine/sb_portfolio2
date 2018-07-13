@@ -114,11 +114,11 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 
 				// Tags
 			if (!empty($sbpCat['tags'])) {
-				$sepTags	= t3lib_div::trimExplode(',', $sbpCat['tags'], TRUE);
+				$sepTags	= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sbpCat['tags'], TRUE);
 				$tagRepo	= $this->objectManager->get('Tx_SbPortfolio2_Domain_Repository_TagRepository');
 
 					// Change the PID so that the queries work
-				$querySettings = $this->objectManager->create('Tx_Extbase_Persistence_Typo3QuerySettings');
+				$querySettings = $this->objectManager->create('\TYPO3\CMS\Extbase\Persistence\Typo3QuerySettings');
 				$querySettings->setStoragePageIds(array($sbpCat['pid']));
 				$tagRepo->setDefaultQuerySettings($querySettings);
 
@@ -149,13 +149,13 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 	/**
 	 * Recursively gets subcategories ,if required, upto a maximum depth set in TS.
 	 *
-	 * @param Tx_Extbase_Persistence_QueryResult $categories The current depth's categories.
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $categories The current depth's categories.
 	 * @param array $portSetup The TS setup for the query.
 	 * @param array $filterBy An array with the name of the filter var and its value.
 	 * @param integer $currentDepth The current depth level.
 	 * @return void
 	 */
-	public function getSubcategories(Tx_Extbase_Persistence_QueryResult $categories, array $portSetup, array $filterBy, $currentDepth = 1) {
+	public function getSubcategories(\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $categories, array $portSetup, array $filterBy, $currentDepth = 1) {
 		if($currentDepth < $portSetup['depth'] && count($categories) > 0) {
 			foreach ($categories as $category) {
 				$portSetup['beginAt'] 	= intval($category->getUid());
@@ -174,11 +174,11 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 	/**
 	 * Adjusts the query based on properties of this repo's models.
 	 *
-	 * @param Tx_Extbase_Persistence_Query $query The query object making the query.
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Query $query The query object making the query.
 	 * @param array $portSetup The TS setup for the query.
-	 * @return Tx_Extbase_Persistence_Query The query object making the query, modified.
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query The query object making the query, modified.
 	 */
-	public function adjustQueryConstraints(Tx_Extbase_Persistence_Query $query, array $portSetup) {
+	public function adjustQueryConstraints(\TYPO3\CMS\Extbase\Persistence\Generic\Query $query, array $portSetup) {
 			// If createing a tree, set the starting level
 		if ($portSetup['beginAt'] >= 0 && $this->isTree()) {
 			$this->setPortfolioConstraints($query->equals('parentcat', intval($portSetup['beginAt'])));

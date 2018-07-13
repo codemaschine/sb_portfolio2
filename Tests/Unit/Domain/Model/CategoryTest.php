@@ -36,7 +36,7 @@
  *
  * @author Stephen Bungert <stephenbungert@yahoo.de>
  */
-class Tx_SbPortfolio2_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_SbPortfolio2_Domain_Model_CategoryTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @var Tx_SbPortfolio2_Domain_Model_Category
 	 */
@@ -89,7 +89,7 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Unit_Ba
 	 * @test
 	 */
 	public function getTagsReturnsInitialValueForObjectStorageContainingTx_SbPortfolio2_Domain_Model_Tag() { 
-		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
 			$this->fixture->getTags()
@@ -101,7 +101,7 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Unit_Ba
 	 */
 	public function setTagsForObjectStorageContainingTx_SbPortfolio2_Domain_Model_TagSetsTags() { 
 		$tag = new Tx_SbPortfolio2_Domain_Model_Tag();
-		$objectStorageHoldingExactlyOneTags = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneTags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneTags->attach($tag);
 		$this->fixture->setTags($objectStorageHoldingExactlyOneTags);
 
@@ -116,7 +116,7 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Unit_Ba
 	 */
 	public function addTagToObjectStorageHoldingTags() {
 		$tag = new Tx_SbPortfolio2_Domain_Model_Tag();
-		$objectStorageHoldingExactlyOneTag = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneTag = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneTag->attach($tag);
 		$this->fixture->addTag($tag);
 
@@ -131,7 +131,7 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Unit_Ba
 	 */
 	public function removeTagFromObjectStorageHoldingTags() {
 		$tag = new Tx_SbPortfolio2_Domain_Model_Tag();
-		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$localObjectStorage->attach($tag);
 		$localObjectStorage->detach($tag);
 		$this->fixture->addTag($tag);

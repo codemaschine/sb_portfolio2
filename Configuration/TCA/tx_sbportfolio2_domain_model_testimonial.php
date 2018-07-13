@@ -4,28 +4,42 @@ if (!defined ('TYPO3_MODE')) {
 }
 
 $sbp2LabelPath		= 'LLL:EXT:sb_portfolio2/Resources/Private/Language/locallang_db.xml:';
-$sbp2Label			= $sbp2LabelPath . 'sbp2_file.';
+$sbp2Label			= $sbp2LabelPath . 'sbp2_testimonial.';
 $sbp2LabelShared	= $sbp2LabelPath . 'sbp2_shared.';
 $sbp2Tab			= '--div--;' . $sbp2LabelPath . 'sbp2_tab';
 $sbp2Pal			= '--palette--;' . $sbp2LabelPath . 'sbp2_palette';
 
-$TCA['tx_sbportfolio2_domain_model_file'] = array(
-	'ctrl' => $TCA['tx_sbportfolio2_domain_model_file']['ctrl'],
+return array(
+    'ctrl' => array(
+        'title'	=> $sbp2LabelPath . 'sbp2_testimonial',
+        'label' => 'title',
+        'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'cruser_id' => 'cruser_id',
+        'dividers2tabs' => TRUE,
+        'versioningWS' => 2,
+        'versioning_followPages' => TRUE,
+        'origUid' => 't3_origuid',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'default_sortby' => 'ORDER BY title ASC',
+        'delete' => 'deleted',
+        'enablecolumns' => array(
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+        ),
+        'iconfile' => $sbp2ExtRelPath	 . $sbp2IconPath . 'Testimonial/sbp2_testimonial.gif',
+        'searchFields' => 'title,body,name,company,position'
+    ),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, titlefull, titleshort, description, file, filename, filetype, filesize, filepath',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, body, name, datetime, company, position, image',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, ' . $sbp2Pal . '.title;titlePalette, description, file, ' . $sbp2Pal . '.file;filePalette, ' . $sbp2Tab . '.access, hidden;;1, ' . $sbp2Pal . '.publishDates;publishDatesPalette'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, title, body, datetime, ' . $sbp2Tab . '.credit, name, company, position, image, ' . $sbp2Tab . '.access, hidden;;1, ' . $sbp2Pal . '.publishDates;publishDatesPalette'),
 	),
 	'palettes' => array(
-		'titlePalette' => array(
-			'showitem'			=> 'title, --linebreak--, titlefull, titleshort',
-			'canNotCollapse'	=> 1
-		),
-		'filePalette' => array(
-			'showitem'			=> 'filename, --linebreak--, filetype, filesize, --linebreak--, filepath',
-			'canNotCollapse'	=> 0
-		),
 		'publishDatesPalette' => array(
 			'showitem'			=> 'starttime, endtime',
 			'canNotCollapse'	=> 1
@@ -54,8 +68,8 @@ $TCA['tx_sbportfolio2_domain_model_file'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table' => 'tx_sbportfolio2_domain_model_file',
-				'foreign_table_where' => 'AND tx_sbportfolio2_domain_model_file.pid=###CURRENT_PID### AND tx_sbportfolio2_domain_model_file.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_sbportfolio2_domain_model_testimonial',
+				'foreign_table_where' => 'AND tx_sbportfolio2_domain_model_testimonial.pid=###CURRENT_PID### AND tx_sbportfolio2_domain_model_testimonial.sys_language_uid IN (-1,0)',
 			),
 		),
 		'l10n_diffsource' => array(
@@ -72,8 +86,8 @@ $TCA['tx_sbportfolio2_domain_model_file'] = array(
 			)
 		),
 		'tstamp' => array(
-			'label'   => $sbp2LabelShared . 'tstamp',
 			'l10n_mode' => 'mergeIfNotBlank',
+			'label'   => $sbp2LabelShared . 'tstamp',
 			'config'  => array(
 				'type'     => 'input',
 				'size'     => 8,
@@ -83,8 +97,8 @@ $TCA['tx_sbportfolio2_domain_model_file'] = array(
 			)
 		),
 		'crdate' => array(
-			'label'   => $sbp2LabelShared . 'crdate',
 			'l10n_mode' => 'mergeIfNotBlank',
+			'label'   => $sbp2LabelShared . 'crdate',
 			'config'  => array(
 				'type'     => 'input',
 				'size'     => 8,
@@ -96,16 +110,6 @@ $TCA['tx_sbportfolio2_domain_model_file'] = array(
 		'title' => array(
 			'exclude' => 1,
 			'label' => $sbp2LabelShared . 'title',
-			'config' => array(
-				'type' => 'input',
-				'size' => 30,
-				'max' => 255,
-				'eval' => 'trim,required'
-			),
-		),
-		'titlefull' => array(
-			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'titlefull',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
 				'type' => 'input',
@@ -114,98 +118,88 @@ $TCA['tx_sbportfolio2_domain_model_file'] = array(
 				'eval' => 'trim'
 			),
 		),
-		'titleshort' => array(
+		'body' => array(
 			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'titleshort',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type' => 'input',
-				'size' => 20,
-				'max' => 33,
-				'eval' => 'trim'
-			),
-		),
-		'description' => array(
-			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'description',
+			'label' => $sbp2Label . 'body',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
 				'rows' => 3,
+				'eval' => 'trim,required'
+			),
+		),
+		'datetime' => array(
+			'exclude' => 1,
+			'label' => $sbp2LabelShared . 'datetime',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type' => 'input',
+				'size' => 12,
+				'max' => 20,
+				'eval' => 'datetime',
+				'checkbox' => 1,
+				'default' => time()
+			),
+		),
+		'name' => array(
+			'exclude' => 1,
+			'label' => $sbp2Label . 'name',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
 				'eval' => 'trim'
 			),
 		),
-		'file' => array(
+		'company' => array(
 			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'file',
+			'label' => $sbp2Label . 'company',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
-				'type' => 'group',
-				'internal_type' => 'file_reference',
-				'allowed' => '*',
-				'disallowed' => 'php',
-				'size' => 1,
-				'autoSizeMax' => 10,
-				'maxitems' => 1,
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'position' => array(
+			'exclude' => 1,
+			'label' => $sbp2Label . 'position',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'image' => array(
+			'exclude' => 1,
+			'label' => $sbp2LabelShared . 'image',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_sbportfolio2_domain_model_image',
 				'minitems' => 0,
-				'disable_controls' => 'upload',
-				'show_thumbs' => true
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapse' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'newRecordLinkAddTitle' => 1,
+					'expandSingle' => 1,
+					'newRecordLinkAddTitle' => 1,
+					'enabledControls' => array(
+						'info' => true,
+						'new' => true,
+						'dragdrop' => false,
+						'sort' => false,
+						'hide' => true,
+						'delete' => true,
+					),
+				),
 			),
-		),
-		'filename' => array(
-			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'filename',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type'     => 'input',
-				'size'     => 30,
-				'eval'     => 'trim',
-				'default'  => '',
-				'readOnly' => 1
-			),
-			'displayCond' => 'FIELD:file:REQ:true',
-		),
-		'filepath' => array(
-			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'filepath',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type'     => 'input',
-				'size'     => 30,
-				'eval'     => 'trim',
-				'default'  => '',
-				'readOnly' => 1
-			),
-			'displayCond' => 'FIELD:file:REQ:true',
-		),
-		'filesize' => array(
-			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'filesize',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type'     => 'input',
-				'size'     => 15,
-				'max'      => 30,
-				'eval'     => 'num',
-				'default'  => 0,
-				'readOnly' => 1
-			),
-			'displayCond' => 'FIELD:file:REQ:true',
-		),
-		'filetype' => array(
-			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'filetype',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type'     => 'input',
-				'size'     => 4,
-				'max'      => 4,
-				'eval'     => 'alphanum',
-				'default'  => '',
-				'readOnly' => 1
-			),
-			'displayCond' => 'FIELD:file:REQ:true',
 		),
 		'hidden' => array(
 			'exclude' => 1,

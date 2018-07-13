@@ -31,7 +31,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Controller_BeImportController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_SbPortfolio2_Controller_BeImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * beImportItemRepository
@@ -55,9 +55,9 @@ class Tx_SbPortfolio2_Controller_BeImportController extends Tx_Extbase_MVC_Contr
 	protected $beImportCategoryRepository;
 
 	/**
-	 * An instance of t3lib_queryGenerator.
+	 * An instance of \TYPO3\CMS\Core\Database\QueryGenerator.
 	 *
-	 * @var t3lib_queryGenerator
+	 * @var \TYPO3\CMS\Core\Database\QueryGenerator
 	 */
 	protected $queryGen;
 
@@ -105,13 +105,13 @@ class Tx_SbPortfolio2_Controller_BeImportController extends Tx_Extbase_MVC_Contr
 	 * @return void
 	 */
 	public function importAction() {
-		$pageId				= intval(t3lib_div::_GET('id'));
-		$this->queryGen		= $this->objectManager->get('t3lib_queryGenerator');
+		$pageId				= intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('id'));
+		$this->queryGen		= $this->objectManager->get('\TYPO3\CMS\Core\Database\QueryGenerator');
 		$this->permsClause	= $GLOBALS['BE_USER']->getPagePermsClause(1);
 
-		$extConfig	= $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+		$extConfig	= $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 		$storagePid	= $extConfig['persistence']['storagePid']; // This is the storagePid set for the BE module in TS
-		$storagePid = t3lib_div::trimExplode(',', $storagePid);
+		$storagePid = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $storagePid);
 		$storagePid = intval($storagePid[0]); // Get first in case of a list
 
 		$branchPids = $this->getBranchUids($pageId);
@@ -160,7 +160,7 @@ class Tx_SbPortfolio2_Controller_BeImportController extends Tx_Extbase_MVC_Contr
 				$findPids = $branchIds;
 			}
 
-			$recRepo	= t3lib_div::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $repo . 'Repository');
+			$recRepo	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $repo . 'Repository');
 			$records	= $recRepo->findImportRecords($findPids, $requestIndex, $type);
 
 			if ($records == null) {
@@ -211,13 +211,13 @@ class Tx_SbPortfolio2_Controller_BeImportController extends Tx_Extbase_MVC_Contr
 
 			if ($branchIds != 0 && $branchIds != '') {
 				$findPids		= $branchIds;
-				$findPidsArray	= t3lib_div::trimExplode(',', $branchIds);
+				$findPidsArray	= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $branchIds);
 			}
 
-			$itemRepo	= t3lib_div::makeInstance('Tx_SbPortfolio2_Domain_Repository_ItemRepository');
-			$recRepo	= t3lib_div::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $repo . 'Repository');
+			$itemRepo	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_ItemRepository');
+			$recRepo	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $repo . 'Repository');
 
-			$querySettings = t3lib_div::makeInstance('Tx_Extbase_Persistence_Typo3QuerySettings');
+			$querySettings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Persistence\Typo3QuerySettings');
 			$querySettings->setStoragePageIds($findPidsArray);
 			$itemRepo->setDefaultQuerySettings($querySettings);
 			$recRepo->setDefaultQuerySettings($querySettings);
@@ -268,12 +268,12 @@ class Tx_SbPortfolio2_Controller_BeImportController extends Tx_Extbase_MVC_Contr
 
 			if ($branchIds != 0 && $branchIds != '') {
 				$findPids		= $branchIds;
-				$findPidsArray	= t3lib_div::trimExplode(',', $branchIds);
+				$findPidsArray	= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $branchIds);
 			}
 
-			$recRepo = t3lib_div::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $repo . 'Repository');
+			$recRepo = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $repo . 'Repository');
 
-			$querySettings = t3lib_div::makeInstance('Tx_Extbase_Persistence_Typo3QuerySettings');
+			$querySettings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Persistence\Typo3QuerySettings');
 			$querySettings->setStoragePageIds($findPidsArray);
 			$recRepo->setDefaultQuerySettings($querySettings);
 
@@ -305,7 +305,7 @@ class Tx_SbPortfolio2_Controller_BeImportController extends Tx_Extbase_MVC_Contr
 		$value	= 0;
 
 		if ($getVar == 'sbp2Type' || $getVar == 'sbp2Repo') {
-			$getVar	= trim(t3lib_div::_POST($getVar));
+			$getVar	= trim(\TYPO3\CMS\Core\Utility\GeneralUtility::_POST($getVar));
 
 			if (!empty($getVar)) {
 				$value = json_decode($getVar);
@@ -313,10 +313,10 @@ class Tx_SbPortfolio2_Controller_BeImportController extends Tx_Extbase_MVC_Contr
 
 		} else {
 			if ($getVar == 'sbp2BranchIds') {
-				$value = $GLOBALS['TYPO3_DB']->cleanIntList(t3lib_div::_POST($getVar));
+				$value = $GLOBALS['TYPO3_DB']->cleanIntList(\TYPO3\CMS\Core\Utility\GeneralUtility::_POST($getVar));
 
 			} else {
-				$getVar	= intval(t3lib_div::_POST($getVar));
+				$getVar	= intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_POST($getVar));
 
 				if ($getVar > 0) {
 					$value = $getVar;
@@ -333,12 +333,13 @@ class Tx_SbPortfolio2_Controller_BeImportController extends Tx_Extbase_MVC_Contr
 	 * Get the UIDs of a branch.
 	 *
 	 * @param integer $uid The uid of the current page.
-	 * @return t3lib_queryGenerator $queryGen An instance of t3lib_queryGenerator
+	 * @return \TYPO3\CMS\Core\Database\QueryGenerator $queryGen An instance of \TYPO3\CMS\Core\Database\QueryGenerator
 	 * @return string $pids The UIDs of the current page and all pages in the branch.es in the branch.
 	 */
 	public function getBranchUids($uid, $numOfLevels = 100) {
 		$uid	= intval($uid);
 		$uids	= $uid;
+		
 
 		if ($uid > 0) {
 			$numOfLevels = intval($numOfLevels);

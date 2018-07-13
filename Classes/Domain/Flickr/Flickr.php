@@ -34,7 +34,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Flickr_Flickr extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_SbPortfolio2_Domain_Flickr_Flickr extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * The base url for API queries.
@@ -82,7 +82,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Flickr extends Tx_Extbase_DomainObject_Abstr
 	 * @return void
 	 */
 	public function __construct($apiKey) {
-		$this->oAuth = t3lib_div::makeInstance('Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth', $apiKey);
+		$this->oAuth = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth', $apiKey);
 	}
 
 

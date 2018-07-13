@@ -89,7 +89,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function __construct($apiKey) {
 		$this->setApiKey($apiKey);
 		
-		$this->setCallbackUrl(t3lib_div::getIndpEnv('HTTP_HOST') . t3lib_div::getIndpEnv('REQUEST_URI'));
+		$this->setCallbackUrl(\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('HTTP_HOST') . \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REQUEST_URI'));
 	}
 	
 	

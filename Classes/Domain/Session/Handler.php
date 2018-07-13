@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Session_Handler implements t3lib_Singleton {
+class Tx_SbPortfolio2_Domain_Session_Handler implements \TYPO3\CMS\Core\SingletonInterface {
 	/**
 	 * Returns the object stored in the user´s PHP session
 	 * 
@@ -47,7 +47,7 @@ class Tx_SbPortfolio2_Domain_Session_Handler implements t3lib_Singleton {
 	/**
 	 * Writes an object into the PHP session
 	 * 
-	 * @param	$object	any serializable object to store into the session
+	 * @param	mixed $object	any serializable object to store into the session
 	 * @return	Tx_SbPortfolio2_Domain_Session_Handler this
 	 */
 	public function setSessionData($object) {

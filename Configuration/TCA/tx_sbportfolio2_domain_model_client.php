@@ -5,18 +5,40 @@ if (!defined ('TYPO3_MODE')) {
 
 $sbp2SuggestLimit	= '5';
 $sbp2LabelPath		= 'LLL:EXT:sb_portfolio2/Resources/Private/Language/locallang_db.xml:';
-$sbp2Label			= $sbp2LabelPath . 'sbp2_category.';
+$sbp2Label			= $sbp2LabelPath . 'sbp2_client.';
 $sbp2LabelShared	= $sbp2LabelPath . 'sbp2_shared.';
 $sbp2Tab			= '--div--;' . $sbp2LabelPath . 'sbp2_tab';
 $sbp2Pal			= '--palette--;' . $sbp2LabelPath . 'sbp2_palette';
 
-$TCA['tx_sbportfolio2_domain_model_category'] = array(
-	'ctrl' => $TCA['tx_sbportfolio2_domain_model_category']['ctrl'],
+return array(
+    'ctrl' => array(
+        'title'	=> $sbp2LabelPath . 'sbp2_client',
+        'label' => 'title',
+        'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'cruser_id' => 'cruser_id',
+        'dividers2tabs' => TRUE,
+        'versioningWS' => 2,
+        'versioning_followPages' => TRUE,
+        'origUid' => 't3_origuid',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'default_sortby' => 'ORDER BY title ASC',
+        'delete' => 'deleted',
+        'enablecolumns' => array(
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+        ),
+        'iconfile' => $sbp2ExtRelPath	 . $sbp2IconPath . 'Client/sbp2_client.gif',
+        'searchFields' => 'title,titlefull,titleshort,fulldescription,summary'
+    ),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, titlefull, titleshort, summary, tags, parentcat, image, links, files, relateditems, slider_title, slider_image, slider_description',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, titlefull, titleshort, summary, fulldescription, datetime, links, linkurl, testimonial, logo, image, files, categories, tags, slider_title, slider_image, slider_description',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, ' . $sbp2Pal . '.title;titlePalette, summary, fulldescription;;;richtext::rte_transform[flag=rte_enabled|mode=ts_css], ' . $sbp2Tab . '.media, image, ' . $sbp2Tab . '.related, links, files, relateditems, ' . $sbp2Tab . '.categorisation, parentcat, tags, ' . $sbp2Tab . '.seo, ' . $sbp2Pal . '.og;ogPalette, ' . $sbp2Pal . '.facebook;facebookPalette, ' . $sbp2Tab . '.access, hidden;;1, ' . $sbp2Pal . '.publishDates;publishDatesPalette'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, ' . $sbp2Pal . '.title;titlePalette, datetime, summary, fulldescription;;;richtext::rte_transform[flag=rte_enabled|mode=ts_css], ' . $sbp2Tab . '.media, logo, image, ' . $sbp2Tab . '.related, linkurl, testimonial, links, files, ' . $sbp2Tab . '.categorisation, categories, tags, ' . $sbp2Tab . '.seo, ' . $sbp2Pal . '.og;ogPalette, ' . $sbp2Pal . '.facebook;facebookPalette, ' . $sbp2Tab . '.access, hidden;;1, ' . $sbp2Pal . '.publishDates;publishDatesPalette'),
 	),
 	'palettes' => array(
 		'titlePalette' => array(
@@ -59,8 +81,8 @@ $TCA['tx_sbportfolio2_domain_model_category'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table' => 'tx_sbportfolio2_domain_model_category',
-				'foreign_table_where' => 'AND tx_sbportfolio2_domain_model_category.pid=###CURRENT_PID### AND tx_sbportfolio2_domain_model_category.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_sbportfolio2_domain_model_client',
+				'foreign_table_where' => 'AND tx_sbportfolio2_domain_model_client.pid=###CURRENT_PID### AND tx_sbportfolio2_domain_model_client.sys_language_uid IN (-1,0)',
 			),
 		),
 		'l10n_diffsource' => array(
@@ -120,7 +142,7 @@ $TCA['tx_sbportfolio2_domain_model_category'] = array(
 			),
 		),
 		'titleshort' => array(
-			'exclude' => 1,
+			'exclude' => 0,
 			'label' => $sbp2LabelShared . 'titleshort',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
@@ -128,6 +150,19 @@ $TCA['tx_sbportfolio2_domain_model_category'] = array(
 				'size' => 20,
 				'max' => 33,
 				'eval' => 'trim'
+			),
+		),
+		'datetime' => array(
+			'exclude' => 1,
+			'label' => $sbp2LabelShared . 'datetime',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type' => 'input',
+				'size' => 12,
+				'max' => 20,
+				'eval' => 'datetime',
+				'checkbox' => 1,
+				'default' => time()
 			),
 		),
 		'summary' => array(
@@ -181,6 +216,93 @@ $TCA['tx_sbportfolio2_domain_model_category'] = array(
 				),
 			),
 		),
+		'logo' => array(
+			'exclude' => 1,
+			'label' => $sbp2LabelShared . 'logo',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_sbportfolio2_domain_model_image',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapse' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'newRecordLinkAddTitle' => 1,
+					'expandSingle' => 1,
+					'newRecordLinkAddTitle' => 1,
+					'enabledControls' => array(
+						'info' => true,
+						'new' => true,
+						'dragdrop' => false,
+						'sort' => false,
+						'hide' => true,
+						'delete' => true,
+					),
+				),
+			),
+		),
+		'linkurl' => array(
+			'exclude' => 1,
+			'label' => $sbp2LabelShared . 'linkurl',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_sbportfolio2_domain_model_link',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapse' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'newRecordLinkAddTitle' => 1,
+					'expandSingle' => 1,
+					'newRecordLinkAddTitle' => 1,
+					'enabledControls' => array(
+						'info' => true,
+						'new' => true,
+						'dragdrop' => false,
+						'sort' => false,
+						'hide' => true,
+						'delete' => true,
+					),
+				),
+			),
+		),
+		'testimonial' => array(
+			'exclude' => 1,
+			'label' => $sbp2LabelShared . 'testimonial',
+			'l10n_mode' => 'mergeIfNotBlank',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_sbportfolio2_domain_model_testimonial',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapse' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'newRecordLinkAddTitle' => 1,
+					'expandSingle' => 1,
+					'newRecordLinkAddTitle' => 1,
+					'enabledControls' => array(
+						'info' => true,
+						'new' => true,
+						'dragdrop' => false,
+						'sort' => false,
+						'hide' => true,
+						'delete' => true,
+					),
+				),
+			),
+		),
 		'links' => array(
 			'exclude' => 1,
 			'label' => $sbp2LabelShared . 'links',
@@ -190,7 +312,7 @@ $TCA['tx_sbportfolio2_domain_model_category'] = array(
 				'internal_type' => 'db',
 				'allowed' => 'tx_sbportfolio2_domain_model_link',
 				'foreign_table' => 'tx_sbportfolio2_domain_model_link',
-				'MM' => 'tx_sbportfolio2_category_link_mm',
+				'MM' => 'tx_sbportfolio2_client_link_mm',
 				'foreign_table_where' => 'ORDER BY tx_sbportfolio2_domain_model_link.title',
 				'size' => 5,
 				'autoSizeMax' => 10,
@@ -226,7 +348,7 @@ $TCA['tx_sbportfolio2_domain_model_category'] = array(
 				'allowed' => 'tx_sbportfolio2_domain_model_file',
 				'foreign_table' => 'tx_sbportfolio2_domain_model_file',
 				'foreign_table_where' => 'ORDER BY tx_sbportfolio2_domain_model_file.title',
-				'MM' => 'tx_sbportfolio2_category_file_mm',
+				'MM' => 'tx_sbportfolio2_client_file_mm',
 				'size' => 5,
 				'autoSizeMax' => 10,
 				'minitems' => 0,
@@ -251,61 +373,26 @@ $TCA['tx_sbportfolio2_domain_model_category'] = array(
 				),
 			),
 		),
-		'relateditems' => array(
+		'categories' => array(
 			'exclude' => 1,
-			'label' => $sbp2LabelShared . 'relateditems',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => array(
-				'type' => 'group',
-				'internal_type' => 'db',
-				'allowed' => 'tx_sbportfolio2_domain_model_item',
-				'foreign_table' => 'tx_sbportfolio2_domain_model_item',
-				'foreign_table_where' => 'ORDER BY tx_sbportfolio2_domain_model_item.title',
-				'MM' => 'tx_sbportfolio2_category_item_mm',
-				'size' => 5,
-				'autoSizeMax' => 10,
-				'minitems' => 0,
-				'maxitems' => 20,
-				'wizards' => array(
-					'_PADDING' => 1,
-					'_VERTICAL' => 1,
-					'edit' => array(
-						'type' => 'popup',
-						'title' => 'Edit',
-						'script' => 'wizard_edit.php',
-						'icon' => 'edit2.gif',
-						'popup_onlyOpenIfSelected' => 1,
-						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
-					'suggest' => array(
-						'type' => 'suggest',
-			            'tx_sbportfolio2_domain_model_item' => array(
-			                'maxItemsInResultList' => $sbp2SuggestLimit
-			            ),
-					),
-				),
-			),
-		),
-		'parentcat' => array(
-			'exclude' => 1,
-			'label' => $sbp2Label . 'parentcat',
+			'label' => $sbp2LabelShared . 'categories',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
 				'type' => 'select',
-				'foreign_table' => 'tx_sbportfolio2_domain_model_category',
 				'renderMode' => 'tree',
-				'subType' => 'db',
 				'treeConfig' => array(
 					'parentField' => 'parentcat',
 					'appearance' => array(
-						'expandAll' => true,
 						'showHeader' => true,
+						'allowRecursiveMode' => true,
 					),
 				),
-				'size' => 10,
+				'MM' => 'tx_sbportfolio2_client_category_mm',
+				'foreign_table' => 'tx_sbportfolio2_domain_model_category',
+				'size' => 5,
 				'autoSizeMax' => 20,
 				'minitems' => 0,
-				'maxitems' => 1
+				'maxitems' => 30,
 			)
 		),
 		'tags' => array(
@@ -322,7 +409,7 @@ $TCA['tx_sbportfolio2_domain_model_category'] = array(
 						'allowRecursiveMode' => true,
 					),
 				),
-				'MM' => 'tx_sbportfolio2_category_tag_mm',
+				'MM' => 'tx_sbportfolio2_client_tag_mm',
 				'foreign_table' => 'tx_sbportfolio2_domain_model_tag',
 				'foreign_table_where' => 'ORDER BY tx_sbportfolio2_domain_model_tag.title ASC',
 				'size' => 5,

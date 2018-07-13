@@ -30,7 +30,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_RelatedItemsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_SbPortfolio2_ViewHelpers_RelatedItemsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Returns the records related to the current $record.
@@ -53,7 +53,7 @@ class Tx_SbPortfolio2_ViewHelpers_RelatedItemsViewHelper extends Tx_Fluid_Core_V
 			$recordType	= $this->getRecordType($className);
 			
 				// Get client portfolio
-			$repository	= t3lib_div::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $recordType . 'Repository');
+			$repository	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $recordType . 'Repository');
 			
 			$options = array (
 				'record'	=> $rec,
@@ -82,7 +82,7 @@ class Tx_SbPortfolio2_ViewHelpers_RelatedItemsViewHelper extends Tx_Fluid_Core_V
 		
 		$this->relatedUids = trim($this->relatedUids, ',');
 		
-		t3lib_utility_Debug::debug($this->relatedUids);
+		\TYPO3\CMS\Core\Utility\DebugUtility::debug($this->relatedUids);
 	}
 	
 	/**

@@ -105,7 +105,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 
 				// Images
 			if (!empty($sbpItem['image'])) {
-				$sepImages = t3lib_div::trimExplode(',', $sbpItem['image'], TRUE);
+				$sepImages = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sbpItem['image'], TRUE);
 
 				foreach ($sepImages as $imageNumber => $imagePath) {
 					$image = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Image');
@@ -149,7 +149,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 
 				// Files
 			if (!empty($sbpItem['files'])) {
-				$sepFiles = t3lib_div::trimExplode(',', $sbpItem['files'], TRUE);
+				$sepFiles = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sbpItem['files'], TRUE);
 
 				foreach ($sepFiles as $fileNumber => $filePath) {
 					$file = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_File');
@@ -200,11 +200,11 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 
 				// Tags
 			if (!empty($sbpItem['tags'])) {
-				$sepTags	= t3lib_div::trimExplode(',', $sbpItem['tags'], TRUE);
+				$sepTags	= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sbpItem['tags'], TRUE);
 				$tagRepo	= $this->objectManager->get('Tx_SbPortfolio2_Domain_Repository_TagRepository');
 
 					// Change the PID so that the queries work
-				$querySettings = $this->objectManager->create('Tx_Extbase_Persistence_Typo3QuerySettings');
+				$querySettings = $this->objectManager->create('\TYPO3\CMS\Extbase\Persistence\Typo3QuerySettings');
 				$querySettings->setStoragePageIds(array($storageTags));
 				$tagRepo->setDefaultQuerySettings($querySettings);
 
@@ -233,11 +233,11 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 					$sbpCatUids = $this->getSbpUids($sbpCats);
 
 					if (!empty($sbpCatUids)) {
-						$sepCats	= t3lib_div::trimExplode(',', $sbpCatUids, TRUE);
+						$sepCats	= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sbpCatUids, TRUE);
 						$catRepo	= $this->objectManager->get('Tx_SbPortfolio2_Domain_Repository_CategoryRepository');
 
 							// Change the PID so that the queries work
-						$querySettings = $this->objectManager->create('Tx_Extbase_Persistence_Typo3QuerySettings');
+						$querySettings = $this->objectManager->create('\TYPO3\CMS\Extbase\Persistence\Typo3QuerySettings');
 						$querySettings->setStoragePageIds(array($storageCategories));
 						$catRepo->setDefaultQuerySettings($querySettings);
 
@@ -262,12 +262,12 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 					$sbpClientUids = $this->getSbpUids($sbpClient);
 
 					if (!empty($sbpClientUids)) {
-						$sepClient	= t3lib_div::trimExplode(',', $sbpClientUids, TRUE);
+						$sepClient	= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sbpClientUids, TRUE);
 						$sepClient	= $sepClient[0]; // Should only be one
 						$clientRepo	= $this->objectManager->get('Tx_SbPortfolio2_Domain_Repository_ClientRepository');
 
 							// Change the PID so that the queries work
-						$querySettings = $this->objectManager->create('Tx_Extbase_Persistence_Typo3QuerySettings');
+						$querySettings = $this->objectManager->create('\TYPO3\CMS\Extbase\Persistence\Typo3QuerySettings');
 						$querySettings->setStoragePageIds(array($storageClients));
 						$clientRepo->setDefaultQuerySettings($querySettings);
 
@@ -385,11 +385,11 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 	/**
 	 * Adjusts the query based on properties of this repo's models.
 	 *
-	 * @param Tx_Extbase_Persistence_Query $query The query object making the query.
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Query $query The query object making the query.
 	 * @param array $portSetup The TS setup for the query.
-	 * @return Tx_Extbase_Persistence_Query The query object making the query, modified.
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query The query object making the query, modified.
 	 */
-	public function adjustQueryConstraints(Tx_Extbase_Persistence_Query $query, array $portSetup) {
+	public function adjustQueryConstraints(\TYPO3\CMS\Extbase\Persistence\Generic\Query $query, array $portSetup) {
 		if ($this->isAutomatic()) {
 			$featured	= -1;
 			$inprogress	= -1;

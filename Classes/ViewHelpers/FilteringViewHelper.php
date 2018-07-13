@@ -30,7 +30,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_FilteringViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_SbPortfolio2_ViewHelpers_FilteringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Returns true if the passed uid is found,
@@ -40,7 +40,7 @@ class Tx_SbPortfolio2_ViewHelpers_FilteringViewHelper extends Tx_Fluid_Core_View
 	 * @return boolean true or false.
 	 */
 	public function render($name, $comparison) {
-		$itemVars = t3lib_div::_GET('tx_sbportfolio2_items');
+		$itemVars = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_sbportfolio2_items');
 		
 		if (isset($itemVars[$name])) {
 			$itemVars = $itemVars[$name];

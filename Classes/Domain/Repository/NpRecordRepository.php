@@ -33,7 +33,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Repository_NpRecordRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_SbPortfolio2_Domain_Repository_NpRecordRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
 	 * Finds the single view's record's next record
@@ -64,7 +64,7 @@ class Tx_SbPortfolio2_Domain_Repository_NpRecordRepository extends Tx_Extbase_Pe
 			$query->matching($query->greaterThan($field, $value));
 		}
 
-		$next = $query->setOrderings(array($field => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
+		$next = $query->setOrderings(array($field => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING))
 					->setLimit(1)->execute();
 
 		if (count($next) < 1) {
@@ -99,7 +99,7 @@ class Tx_SbPortfolio2_Domain_Repository_NpRecordRepository extends Tx_Extbase_Pe
 			$query->matching($query->lessThan($field, $value));
 		}
 
-		$previous = $query->setOrderings(array($field => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING))
+		$previous = $query->setOrderings(array($field => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))
 						->setLimit(1)->execute();
 
 		if (count($previous) < 1) {
