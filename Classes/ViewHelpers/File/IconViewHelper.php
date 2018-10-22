@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers\File;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +32,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_File_IconViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class IconViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Returns the path for an icon based on the file's file type
@@ -42,26 +44,26 @@ class Tx_SbPortfolio2_ViewHelpers_File_IconViewHelper extends \TYPO3\CMS\Fluid\C
 	public function render($filetype, $path = '') {
 		$iconFilePath	= '';
 		$testPrefix		= '';
-		
+
 		if (empty($path)) {
 			$path		= 'media/fileicons/';
 			$testPrefix	= PATH_typo3 . 'sysext/cms/tslib/';
-		
+
 		} else {
 				// Check for trailing slash
 			$lastChar = $path[strlen($path)-1];
-			
+
 			if ($lastChar != '/') {
 				$path .= '/';
 			}
 		}
-		
+
 		$iconFilePath = $path . 'default' . '.gif';
-		
+
 		if (is_file($testPrefix . $path . $filetype . '.gif')) {
 			$iconFilePath = $path . $filetype . '.gif';
 		}
-		
+
 		return $iconFilePath;
 	}
 }

@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +32,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_SortTitleViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class SortTitleViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Returns $records, sorted by title. Used to sort tags, categories etc.
@@ -45,31 +47,31 @@ class Tx_SbPortfolio2_ViewHelpers_SortTitleViewHelper extends \TYPO3\CMS\Fluid\C
 			$dir		= strtolower($dir);
 			$crop		= intval($crop);
 			$newRecords	= array();
-			
+
 			foreach ($records as $record) {
 				$title = str_replace(' ', '_', strtolower($record->getTitle()));
-				
+
 				if ($crop >= 1) {
 					$title = substr($title, 0, $crop);
 				}
-				
+
 				$newRecords[$title] = $record;
 			}
-			
+
 			if (!empty($newRecords)) {
 				if ($dir == 'desc') {
 					krsort($newRecords);
-					
+
 				} else {
 					ksort($newRecords);
 				}
-				
+
 				$records = $newRecords;
-				
+
 				unset($newRecords);
 			}
 		}
-		
+
 		return $records;
 	}
 }

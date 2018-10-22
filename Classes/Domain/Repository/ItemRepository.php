@@ -346,7 +346,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 		$statement = 'SELECT uid_foreign FROM tx_sbportfolio_' . $type . '_mm WHERE uid_local = ' . intval($uid) . ' ORDER BY sorting ASC' . $limit;
 
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setReturnRawQueryResult(true);
+		$query->getQuerySettings()->setReturnRawQueryResult(TRUE);
 
 		return $query->statement($statement)->execute();
 	}
@@ -393,36 +393,42 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 		if ($this->isAutomatic()) {
 			$featured	= -1;
 			$inprogress	= -1;
-	
+
 			if (isset($portSetup['featured'])) {
 				if ($portSetup['featured'] == 'exclude') {
 					$featured = 0;
-	
+
 				} else if ($portSetup['featured'] == 'only') {
 					$featured = 1;
 				} // Else 'include' - don't add any constraint
 			}
-	
+
 			if (isset($portSetup['inprogress'])) {
 				if ($portSetup['inprogress'] == 'exclude') {
 					$inprogress = 0;
-	
+
 				} else if ($portSetup['inprogress'] == 'only') {
 					$inprogress = 1;
 				} // Else 'include' - don't add any constraint
 			}
-	
+
 			if ($featured >= 0 || $inprogress >= 0) {
+
+				/* ??? why is this loaded ??? */
+				/* added is statement */
 				$currentConstraints			= $query->getConstraint();
-				$currentConstraintsClass	= get_Class($currentConstraints);
-	
+				if ($currentConstraints !== null) {
+					$currentConstraintsClass	= get_Class($currentConstraints);
+				}
+
+
 				if ($featured >= 0 && $inprogress >= 0) { // Featured && Inprogress
 					$this->setPortfolioConstraints($query->equals('inprogress', $inprogress));
 					$this->setPortfolioConstraints($query->equals('featured', $featured));
-	
+
 				} else if ($featured == -1 && $inprogress >= 0) { // Inprogress
 					$this->setPortfolioConstraints($query->equals('inprogress', $inprogress));
-	
+
 				} else if ($featured >= 0 && $inprogress == -1) { // Featured
 					$this->setPortfolioConstraints($query->equals('featured', $featured));
 				}

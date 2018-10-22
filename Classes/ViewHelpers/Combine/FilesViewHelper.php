@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers\Combine;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +32,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_Combine_FilesViewHelper extends Tx_SbPortfolio2_ViewHelpers_Combine_CombinableViewHelper {
+class FilesViewHelper extends CombinableViewHelper {
 
 	/**
 	 * Returns a record's files combined with the record's categories' files.
@@ -41,15 +43,15 @@ class Tx_SbPortfolio2_ViewHelpers_Combine_FilesViewHelper extends Tx_SbPortfolio
 	public function render($record) {
 		$this->combineRecType		= 'file';
 		$alreadyCombinedRecords	= $record->getCombinedRecords($this->combineRecType);
-		
+
 		if ($alreadyCombinedRecords) {
 			return $alreadyCombinedRecords;
-			
+
 		} else {
 			$this->combinableRecords	= $record->getFiles();
-			
+
 			$this->combineRecords($record);
-			
+
 			return $this->combinedRecords;
 		}
 	}

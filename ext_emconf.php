@@ -14,8 +14,8 @@ $EM_CONF[$_EXTKEY] = array (
 	'title' => 'SB Portfolio 2',
 	'description' => 'A website portfolio extension for illustrators, photographers, architects, and designers. A complete portfolio system: items, clients, categories, and testimonials. Requires ExtBase/Fluid.',
 	'category' => 'plugin',
-	'version' => '0.1.1',
-	'state' => 'beta',
+	'version' => '1.0.0',
+	'state' => 'stable',
 	'uploadfolder' => false,
 	'createDirs' => '',
 	'clearcacheonload' => true,
@@ -26,7 +26,7 @@ $EM_CONF[$_EXTKEY] = array (
 	array (
 		'depends' =>
 		array (
-		 'typo3' => '7.6.0-7.6.99',
+			'typo3' => '7.6.00-8.7.99',
 		),
 		'conflicts' =>
 		array (

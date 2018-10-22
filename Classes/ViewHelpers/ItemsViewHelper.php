@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +32,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_ItemsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class ItemsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * itemRepository
@@ -45,7 +47,7 @@ class Tx_SbPortfolio2_ViewHelpers_ItemsViewHelper extends \TYPO3\CMS\Fluid\Core\
 	 * @param Tx_SbPortfolio2_Domain_Repository_ItemRepository $itemRepository
 	 * @return void
 	 */
-	public function injectItemRepository(Tx_SbPortfolio2_Domain_Repository_ItemRepository $itemRepository) {
+	public function injectItemRepository(\Tx_SbPortfolio2_Domain_Repository_ItemRepository $itemRepository) {
 		$this->itemRepository = $itemRepository;
 	}
 
@@ -60,16 +62,16 @@ class Tx_SbPortfolio2_ViewHelpers_ItemsViewHelper extends \TYPO3\CMS\Fluid\Core\
 	public function render($record = NULL, $type, array $itemSetup) {
 		$items	= NULL;
 		$type	= ucfirst($type);
-		
+
 		if ($record !== NULL) {
 			if ($type == 'Category') {
 				$items = $this->itemRepository->findByCategory($record, $itemSetup);
-				
+
 			} else if ($type == 'Client') {
 				$items = $this->itemRepository->findByClient($record, $itemSetup);
 			}
 		}
-		
+
 		return $items;
 	}
 }

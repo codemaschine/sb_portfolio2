@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,8 +32,8 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_ValueViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
-	
+class ValueViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+
 	/**
 	 * Returns the value to be used for something, selects one of upto four values.
 	 * $val1 is used, and then the other $Val... arguments are checked to see if they contain anything.
@@ -48,17 +50,17 @@ class Tx_SbPortfolio2_ViewHelpers_ValueViewHelper extends \TYPO3\CMS\Fluid\Core\
 		$val2		= trim($val2);
 		$val3		= trim($val3);
 		$val4		= trim($val4);
-		
+
 		if (!empty($val4)) {
 			$finalValue = $val4;
-			
+
 		} else if (!empty($val3)) {
 			$finalValue = $val3;
-			
+
 		} else if (!empty($val2)) {
 			$finalValue = $val2;
 		}
-		
+
 		return $finalValue;
 	}
 }

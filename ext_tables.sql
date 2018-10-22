@@ -34,7 +34,7 @@ CREATE TABLE tx_sbportfolio2_domain_model_item (
 	seo_image text,
 	seo_description text,
 	seo_fbappid varchar(100) DEFAULT '' NOT NULL,
-	seo_fbadmins tinytext
+	seo_fbadmins tinytext,
 	linkurl int(11) unsigned DEFAULT '0' NOT NULL,
 	file text NOT NULL,
 	filepath text NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE tx_sbportfolio2_domain_model_client (
 	seo_image text,
 	seo_description text,
 	seo_fbappid varchar(100) DEFAULT '' NOT NULL,
-	seo_fbadmins tinytext
+	seo_fbadmins tinytext,
 	sbpuid int(11) DEFAULT '0' NOT NULL,
 	logo int(11) unsigned DEFAULT '0',
 
@@ -236,8 +236,8 @@ CREATE TABLE tx_sbportfolio2_domain_model_testimonial (
 CREATE TABLE tx_sbportfolio2_domain_model_file (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
-	
-	
+
+
 	title varchar(255) DEFAULT '' NOT NULL,
 	titlefull varchar(255) DEFAULT '' NOT NULL,
 	titleshort varchar(33) DEFAULT '' NOT NULL,

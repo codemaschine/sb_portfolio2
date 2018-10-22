@@ -1,4 +1,7 @@
-<f:be.container addCssFile="{f:uri.resource(path:'Backend/Css/sb2importer.css')}" addJsFile="{f:uri.resource(path:'Backend/Javascript/sb2importer.js')}">
+<f:be.container
+	includeCssFiles="{0: '{f:uri.resource(path:\'Backend/Css/sb2importer.css\')}'}"
+	includeJsFiles="{0: '{f:uri.resource(path:\'Backend/Javascript/sb2importer.js\')}'}"
+	>
 	<div class="typo3-fullDoc">
 		<div id="typo3-docheader">
 			<div id="typo3-docheader-row1">
@@ -25,7 +28,7 @@
 		</div>
 		<div id="typo3-docbody">
 			<div id="typo3-inner-docbody">
-				<f:flashMessages renderMode="div" />
+				<f:flashMessages  />
 				<f:render section="content" />
 			</div>
 		</div>

@@ -3,98 +3,18 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-
-
 $sbp2CshPath		= 'EXT:sb_portfolio2/Resources/Private/Language/';
-$sbp2IconPath		= 'Resources/Public/Icons/';
 $sbp2LabelPath		= 'LLL:EXT:sb_portfolio2/Resources/Private/Language/locallang_db.xml:';
 $sbp2ExtPath		= \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY);
 $sbp2ExtRelPath		= \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY);
-
-
-
-### Add Plugins ###
-### ----------- ###
-
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
-	'Items',
-	'Portfolio Items',
-	$sbp2ExtRelPath	 . $sbp2IconPath . 'Item/sbp2_item.gif'
-);
-
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
-	'Categories',
-	'Portfolio Categories',
-	$sbp2ExtRelPath	 . $sbp2IconPath . 'Category/sbp2_category.gif'
-);
-
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
-	'Clients',
-	'Portfolio Clients',
-	$sbp2ExtRelPath	 . $sbp2IconPath . 'Client/sbp2_client.gif'
-);
-
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
-	'Tags',
-	'Portfolio Tags',
-	$sbp2ExtRelPath	 . $sbp2IconPath . 'Tag/sbp2_tag.gif'
-);
-
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
-	'Testimonials',
-	'Portfolio Testimonials',
-	$sbp2ExtRelPath	 . $sbp2IconPath . 'Testimonial/sbp2_testimonial.gif'
-);
-
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
-	'Slider',
-	'Portfolio Sliders',
-	$sbp2ExtRelPath	 . $sbp2IconPath . 'Slider/sbp2_slider.gif'
-);
-
-
-
-### Add FlexForms ###
-### ------------- ###
-
-$pluginSignaturePrefix = str_replace('_','',$_EXTKEY);
-
-$pluginSignature = $pluginSignaturePrefix . '_items';
-$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/ff_sbp2_items.xml');
-
-$pluginSignature = $pluginSignaturePrefix . '_clients';
-$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/ff_sbp2_clients.xml');
-
-$pluginSignature = $pluginSignaturePrefix . '_categories';
-$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/ff_sbp2_categories.xml');
-
-$pluginSignature = $pluginSignaturePrefix . '_tags';
-$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/ff_sbp2_tags.xml');
-
-$pluginSignature = $pluginSignaturePrefix . '_testimonials';
-$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/ff_sbp2_testimonials.xml');
-
-$pluginSignature = $pluginSignaturePrefix . '_slider';
-$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/ff_sbp2_sliders.xml');
-
 
 
 ### Add Modules ###
 ### ----------- ###
 
 if (TYPO3_MODE === 'BE') {
+
+
 	/**
 	 * Registers the portfolio backend sub-modules
 	 */
@@ -113,24 +33,6 @@ if (TYPO3_MODE === 'BE') {
 		)
 	);
 }
-
-
-### Add TypoScript ###
-### -------------- ###
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'SB Portfolio 2');
-
-
-
-### Tables ###
-### ------ ###
-
-
-
-
-
-
-
 
 
 

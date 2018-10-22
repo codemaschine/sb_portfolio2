@@ -68,7 +68,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 			$this->automatic = $automatic;
 		}
 	}
-	
+
 	/**
 	 * Returns the boolean state of automatic.
 	 *
@@ -77,7 +77,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	public function isAutomatic() {
 		return $this->automatic;
 	}
-	
+
 	/**
 	 * Sets includes.
 	 *
@@ -89,7 +89,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 			$this->includes = $includes;
 		}
 	}
-	
+
 	/**
 	 * Returns the boolean state of includes.
 	 *
@@ -98,7 +98,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	public function hasIncludes() {
 		return $this->includes;
 	}
-	
+
 	/**
 	 * Adds a portfolio query constraint.
 	 *
@@ -208,7 +208,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 
 	/**
 	 * Finds records, either based on filtering or not.
-     * 
+     *
 	 * @param array $filters The filter objects, client, category and tag.
 	 * @param array $portSetup The TS setup for the current sb_portfolio2 plugin.
 	 * @return array An array of records and filter information.
@@ -216,9 +216,9 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	public function findRecords(array $filters, array $portSetup) {
 		$records			= array();
 		$filters['enabled']	= TRUE;
-		
+
 		$this->setSelectionType($portSetup);
-	    
+
 		if (isset($filters['client']) && $filters['client'] !== NULL) {
 			$records				= $this->findByClient($filters['client'], $portSetup);
 			$filterInfo['type']		= 'client';
@@ -234,7 +234,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 			$records				= $this->findWithConstraints($portSetup);
 			$filters['enabled']		= FALSE;
 		}
-		
+
 		return array('records' => $records, 'filterInfo' => $filters);
 	}
 
@@ -261,7 +261,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	 */
 	public function findWithConstraints(array $portSetup) {
 		$this->setSelectionType($portSetup);
-		
+
 		$query = $this->createQuery();
 
 		$query = $this->adjustQueryConstraints($query, $portSetup);
@@ -291,9 +291,9 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 		$statement = 'SELECT * FROM tx_sbportfolio_' . $type . ' WHERE ' . $pids . ' AND hidden = 0 AND deleted = 0 ORDER BY title ASC LIMIT ' . intval($requestIndex) . ', 1';
 
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setReturnRawQueryResult(true);
+		//$query->getQuerySettings()->setReturnRawQueryResult(true);
 
-		return $query->statement($statement)->execute();
+		return $query->statement($statement)->execute(TRUE);
 	}
 
 	 /**
@@ -315,8 +315,10 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 		$statement = 'SELECT COUNT(*) FROM tx_sbportfolio_' . $type . ' WHERE ' . $pids . ' AND hidden = 0 AND deleted = 0';
 
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setReturnRawQueryResult(true);
-		$result = $query->statement($statement)->execute();
+
+		//$query->getQuerySettings()->setReturnRawQueryResult(true);
+
+		$result = $query->statement($statement)->execute(TRUE);
 
 		return $result[0]['COUNT(*)'];
 	}
@@ -421,20 +423,20 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 		if ($this->isAutomatic()) {
 			if (isset($portSetup['sortBy']) && isset($portSetup['sortDir'])) {
 				$sortDir = strtoupper($portSetup['sortDir']);
-	
+
 				if ($sortDir == 'ASC') {
 					$sortDir = \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
-	
+
 				} else {
 					$sortDir = \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING;
 				}
-	
+
 				$sortBy = strtolower($portSetup['sortBy']);
-	
+
 				if (!array_key_exists($sortBy, $portSetup['sortByFields'])) {
 					$sortBy = 'crdate';
 				}
-	
+
 				$query->setOrderings(array($sortBy => $sortDir));
 			}
 		}
@@ -452,7 +454,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	public function adjustQueryLimit(\TYPO3\CMS\Extbase\Persistence\Generic\Query $query, array $portSetup) {
 		if ($this->isAutomatic()) {
 			$limit = intval($portSetup['limit']);
-	
+
 			if ($limit >= 1) {
 				$query->setLimit($limit);
 			}
@@ -492,7 +494,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 			$inValues = $this->getValuesForInClause($portSetup['exclude']);
 			$this->setPortfolioConstraints($query->logicalNot($query->in('uid', $inValues)));
 		}
-		
+
 		$query = $this->setQueryConstraints($query);
 
 		return $query;
@@ -509,14 +511,14 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 
 		if ($numOfConstraints > 0){
 			$constraints = $this->getPortfolioConstraints();
-			
+
 			if ($numOfConstraints == 1){
 				$query->matching($constraints);
 
 			} else if ($numOfConstraints > 1){
 				$query->matching($query->logicalAnd($constraints));
 			}
-			
+
 			$this->portfolioConstraints = array();
 		}
 
@@ -532,7 +534,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	public function getValuesForInClause($intList) {
 		$intListCleanded	= $GLOBALS['TYPO3_DB']->cleanIntList($intList);
 		$intListArray		= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $intListCleanded);
-		
+
 		return $intListArray;
 	}
 
@@ -545,7 +547,7 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	public function setSelectionType(array $portSetup) {
 		if ($portSetup['selection'] == 2) { // Manual record selection
 			$this->setAutomatic(FALSE);
-			
+
 			if (!empty($portSetup['include'])) { // Manual record selection
 				$this->setIncludes(TRUE);
 			}

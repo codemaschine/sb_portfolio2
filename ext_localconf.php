@@ -3,6 +3,8 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
+
+
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 	$_EXTKEY,
 	'Items',
@@ -75,6 +77,9 @@ if (!defined('TYPO3_MODE')) {
 	)
 );
 
+
+
+//$GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['sbp2'] = ['Tx_SbPortfolio2_ViewHelpers'];
 
 
 	// Hook: TCEmain processDatamapClass

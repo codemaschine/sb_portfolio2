@@ -40,9 +40,9 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 	 * @var boolean
 	 */
 	protected $tree = FALSE;
-	
-	
-	
+
+
+
 	/**
 	 * Sets tree.
 	 *
@@ -54,7 +54,7 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 			$this->tree = $tree;
 		}
 	}
-	
+
 	/**
 	 * Returns the boolean state of tree.
 	 *
@@ -63,14 +63,15 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 	public function isTree() {
 		return $this->tree;
 	}
-	
+
 	/**
-	 * Finds categories with the tag $tag
+	 * Finds records with the tag $tag.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Tag $tag The current filtering tag.
-	 * @return array The matching categories.
+	 * @param integer $tag The tag's UID.
+	 * @param array $portSetup The TS setup for the query.
+	 * @return array An array of records.
 	 */
-	public function findByTags(Tx_SbPortfolio2_Domain_Model_Tag $tag) {
+	public function findByTags($tag, array $portSetup) {
 		$query = $this->createQuery();
 		$query->matching($query->contains('tags', $tag));
 
@@ -161,13 +162,13 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 				$portSetup['beginAt'] 	= intval($category->getUid());
 				$childCats				= $this->findRecords($filterBy, $portSetup);
 				$newDepth				= $currentDepth + 1;
-				
+
 				$childCats['records'] = $this->getSubcategories($childCats['records'], $portSetup, $filterBy, $newDepth);
-				
+
 				$category->setChildren($childCats['records']);
 			}
 		}
-		
+
 		return $categories;
 	}
 
@@ -183,7 +184,7 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 		if ($portSetup['beginAt'] >= 0 && $this->isTree()) {
 			$this->setPortfolioConstraints($query->equals('parentcat', intval($portSetup['beginAt'])));
 		}
-		
+
 		$query = $this->adjustQueryConstraintsCommon($query, $portSetup);
 		$query = $this->setQueryConstraints($query);
 
@@ -199,12 +200,12 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 	public function setSelectionType(array $portSetup) {
 		if ($portSetup['selection'] == 2) { // Manual record selection
 			$this->setAutomatic(FALSE);
-			
+
 			if (!empty($portSetup['include'])) { // Manual record selection
 				$this->setIncludes(TRUE);
 			}
 		}
-		
+
 		if ($portSetup['displayAs'] == 2) { // Display as tree
 			$this->setTree(TRUE);
 		}

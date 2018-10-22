@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers\Flickr;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -32,7 +34,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_Flickr_GetDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class GetDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Flickr model
@@ -85,54 +87,54 @@ class Tx_SbPortfolio2_ViewHelpers_Flickr_GetDataViewHelper extends \TYPO3\CMS\Fl
 	 */
 	public function render($setId, array $settings) {
 		$flickrData = array();
-		
+
 		$this->setSettings($settings);
 		$this->setSetId($setId);
 		$this->setApiKey();
-		
+
 		$this->checkForBasicErrors();
-		
+
 		if ($this->basicError === FALSE) {
 			$this->flickr = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Flickr_Flickr', $this->getApiKey());
-			
+
 				// Get params
 			$methodParams	= $this->getMethodParams('getPhotos');
 			$set			= $this->flickr->getPhotos($methodParams);
-			
+
 			if ($set['error'] == '0') {
 				$set = $set['data']['photoset'];
-				
+
 					// Now get information about the set
 				$methodParams	= $this->getMethodParams('getInfo');
 				$setInfo		= $this->flickr->getInfo($methodParams);
-				
+
 				if ($setInfo['error'] == '0') {
 					$setInfo	= $setInfo['data']['photoset'];
 					$flickrData	= array_merge($set, $setInfo);
-					
+
 				} else {
 					$flickrData					= $setInfo['data'];
 					$flickrData['error']		= 1;
 					$flickrData['errorMethod']	= $methodParams['method'];
 				}
-				
+
 			} else {
 				$flickrData					= $set['data'];
 				$flickrData['error']		= 1;
 				$flickrData['errorMethod']	= $methodParams['method'];
 			}
-			
+
 			if ($flickrData['error'] == 1) {
 				if (intval($flickrData['code']) >= 100) {
 					$flickrData['errorMethod'] = 'shared';
 				}
 			}
-			
+
 		} else { // Basic error.
 			$flickrData['error']		= 1;
 			$flickrData['basicError']	= $this->basicError;
 		}
-		
+
 		return $flickrData;
 	}
 
@@ -144,14 +146,14 @@ class Tx_SbPortfolio2_ViewHelpers_Flickr_GetDataViewHelper extends \TYPO3\CMS\Fl
 	protected function setApiKey() {
 		$tsKey	= trim($this->settings['api_key']);
 		$apiKey	= '';
-		
+
 		if(!empty($tsKey)) {
 			$apiKey = $tsKey;
 		}
-		
+
 		$this->apiKey = $apiKey;
 	}
-	
+
 	/**
 	 * Returns the API key.
 	 *
@@ -198,7 +200,7 @@ class Tx_SbPortfolio2_ViewHelpers_Flickr_GetDataViewHelper extends \TYPO3\CMS\Fl
 	protected function getSettings() {
 		return $this->settings;
 	}
-	
+
 	/**
 	 * Decides if a basic error has occured, this could be something like not adding the default TypoScript, or not setting a required TS property.
 	 *
@@ -206,12 +208,12 @@ class Tx_SbPortfolio2_ViewHelpers_Flickr_GetDataViewHelper extends \TYPO3\CMS\Fl
 	 */
 	protected function checkForBasicErrors() {
 		$apiKey = $this->getApiKey();
-		
+
 		if (empty($apiKey)) {
 			$this->basicError = 'key';
 		} else {
 			$setId = $this->getSetId();
-			
+
 			if (empty($setId)) {
 				$this->basicError = 'setid';
 			}
@@ -229,7 +231,7 @@ class Tx_SbPortfolio2_ViewHelpers_Flickr_GetDataViewHelper extends \TYPO3\CMS\Fl
 	protected function getMethodParams($method) {
 		$tsParams		= $this->settings['photosets'][$method];
 		$methodParams	= array();
-		
+
 		if (!empty($tsParams)) {
 			foreach($tsParams as $key => $value) {
 				if (!empty($value) || $value == '0') {
@@ -237,12 +239,12 @@ class Tx_SbPortfolio2_ViewHelpers_Flickr_GetDataViewHelper extends \TYPO3\CMS\Fl
 				}
 			}
 		}
-		
+
 			// Add other required params.
 		$methodParams['format']			= 'php_serial';
 		$methodParams['api_key']		= $this->getApiKey();
 		$methodParams['photoset_id']	= $this->getSetId();
-		
+
 		return $methodParams;
 	}
 }

@@ -3,7 +3,7 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$sbp2ExtRelPath		= \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('sb_portfolio2');
+$sbp2ExtRelPath		= 'EXT:sb_portfolio2/';
 $sbp2IconPath		= 'Resources/Public/Icons/';
 $sbp2LabelPath		= 'LLL:EXT:sb_portfolio2/Resources/Private/Language/locallang_db.xml:';
 $sbp2Label			= $sbp2LabelPath . 'sbp2_link.';
@@ -91,21 +91,21 @@ return array(
 	'columns' => array(
 		'sys_language_uid' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
+			'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.language',
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
-					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0)
+					array('LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages', -1),
+					array('LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 0)
 				),
 			),
 		),
 		'l10n_parent' => array(
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
+			'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
@@ -121,7 +121,7 @@ return array(
 			),
 		),
 		't3ver_label' => array(
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
+			'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.versionLabel',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -188,6 +188,11 @@ return array(
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
 				'type' => 'select',
+				'fieldWizard' => array(
+					'selectIcons' => array(
+						'disabled' => false,
+					),
+				),
 				'items' => array(
 					array($sbp2Label . 'type.label.0', '--div--'),
 					array($sbp2Label . 'type.0', 0, $sbp2ExtRelPath . $sbp2IconPath . 'Link/sbp2_link.gif'),
@@ -273,23 +278,8 @@ return array(
 				'size' => 1,
 				'minitems' => 0,
 				'maxitems' =>1,
-				'wizards' => array(
-					'_PADDING' => 1,
-					'_VERTICAL' => 1,
-					'edit' => array(
-						'type' => 'popup',
-						'title' => 'Edit',
-						'script' => 'wizard_edit.php',
-						'icon' => 'edit2.gif',
-						'popup_onlyOpenIfSelected' => 1,
-						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
-					'suggest' => array(
-						'type' => 'suggest',
-			            'tx_sbportfolio2_domain_model_item' => array(
-			                'maxItemsInResultList' => 5,
-			            ),
-					),
+				'module' => array(
+					'name' => 'wizard_edit',
 				),
 			),
 			'displayCond' => 'FIELD:type:=:10'
@@ -305,23 +295,8 @@ return array(
 				'size' => 1,
 				'minitems' => 0,
 				'maxitems' =>1,
-				'wizards' => array(
-					'_PADDING' => 1,
-					'_VERTICAL' => 1,
-					'edit' => array(
-						'type' => 'popup',
-						'title' => 'Edit',
-						'script' => 'wizard_edit.php',
-						'icon' => 'edit2.gif',
-						'popup_onlyOpenIfSelected' => 1,
-						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
-					'suggest' => array(
-						'type' => 'suggest',
-			            'tx_sbportfolio2_domain_model_client' => array(
-			                'maxItemsInResultList' => 5,
-			            ),
-					),
+				'module' => array(
+					'name' => 'wizard_edit',
 				),
 			),
 			'displayCond' => 'FIELD:type:IN:11,21'
@@ -360,23 +335,8 @@ return array(
 				'size' => 1,
 				'minitems' => 0,
 				'maxitems' => 1,
-				'wizards' => array(
-					'_PADDING' => 1,
-					'_VERTICAL' => 1,
-					'edit' => array(
-						'type' => 'popup',
-						'title' => 'Edit',
-						'script' => 'wizard_edit.php',
-						'icon' => 'edit2.gif',
-						'popup_onlyOpenIfSelected' => 1,
-						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
-					'suggest' => array(
-						'type' => 'suggest',
-			            'tx_sbportfolio2_domain_model_tag' => array(
-			                'maxItemsInResultList' => 5,
-			            ),
-					),
+				'module' => array(
+					'name' => 'wizard_edit',
 				),
 			),
 			'displayCond' => 'FIELD:type:IN:22,24'
@@ -437,7 +397,7 @@ return array(
 		),
 		'hidden' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+			'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
 			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
 				'type' => 'check',

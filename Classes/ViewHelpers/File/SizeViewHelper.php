@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers\File;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +32,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_File_SizeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class SizeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Outputs the file size of a file
@@ -43,7 +45,7 @@ class Tx_SbPortfolio2_ViewHelpers_File_SizeViewHelper extends \TYPO3\CMS\Fluid\C
 		if (!empty($size)) {
 			$size = \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize($size, $labels);
 		}
-		
+
 		return $size;
 	}
 }

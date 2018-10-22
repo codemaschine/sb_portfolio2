@@ -51,8 +51,8 @@ class Tx_SbPortfolio2_Controller_ItemController extends Tx_SbPortfolio2_Controll
 	public function injectItemRepository(Tx_SbPortfolio2_Domain_Repository_ItemRepository $itemRepository) {
 		$this->itemRepository = $itemRepository;
 	}
-    
-    
+
+
 
 	/**
 	 * action list Shows a list of portfolio items.
@@ -68,7 +68,7 @@ class Tx_SbPortfolio2_Controller_ItemController extends Tx_SbPortfolio2_Controll
 			'category'	=> $category,
 			'tag'		=> $tag,
 		);
-		
+
 		$items = $this->itemRepository->findRecords($filters, $this->settings['item']['records']);
 
 		$this->view->assign('items', 		$items['records']);

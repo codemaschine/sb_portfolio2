@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers\Flickr;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,18 +32,18 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_Flickr_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
+class ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
 
 	/**
 	 * The tag to be made by this tag based VH.
-	 * 
+	 *
 	 * @var	string
 	 */
 	protected $tagName = 'img';
-	
+
 	/**
 	 * The keys needed in $image in order to be able to make the image URL.
-	 * 
+	 *
 	 * @var	array
 	 */
 	protected static $keys = array('farm', 'server', 'id', 'secret');
@@ -54,7 +56,7 @@ class Tx_SbPortfolio2_ViewHelpers_Flickr_ImageViewHelper extends \TYPO3\CMS\Flui
 	public function initializeArguments() {
 			// Required arguments
 		$this->registerTagAttribute('alt', 'string', 'The alt text for the image.');
-		
+
 			// Optional (deprectated attribute not included)
 		$this->registerTagAttribute('width', 'string', 'The width of the image.');
 		$this->registerTagAttribute('height', 'string', 'The height of the image.');
@@ -73,12 +75,12 @@ class Tx_SbPortfolio2_ViewHelpers_Flickr_ImageViewHelper extends \TYPO3\CMS\Flui
 	public function render(array $image) {
 		if ($this->imageArrayIsValid($image)) {
 			$imgSrc = 'http://farm' . $image['farm'] . '.static.flickr.com/' . $image['server'] . '/' . $image['id'] . '_' . $image['secret'] . '.jpg';
-			
+
 			$this->tag->addAttribute('src', $imgSrc);
-			
+
 			return $this->tag->render();
 		}
-		
+
 		return '<!-- Can not build image url - not all required flickr parameters were present in the image array -->';
 	}
 
@@ -90,15 +92,15 @@ class Tx_SbPortfolio2_ViewHelpers_Flickr_ImageViewHelper extends \TYPO3\CMS\Flui
 	 */
 	protected function imageArrayIsValid(array $image) {
 		$isValid = TRUE;
-		
+
 		foreach (self::$keys as $key) {
 			if (!isset($image[$key])) {
 				$isValid = FALSE;
-				
+
 				break;
 			}
 		}
-		
+
 		return $isValid;
 	}
 }

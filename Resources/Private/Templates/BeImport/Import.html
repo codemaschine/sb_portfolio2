@@ -8,23 +8,28 @@
 	<h1>{f:translate(key: '{LLL}spb2_be_import')}</h1>
 
 	<p class="sbp2Para"><strong>{f:translate(key: '{LLL}spb2_be_count_summary')}</strong></p>
+<div class="table-fit" style=" max-width: 390px; ">
+	<table class="table table-striped table-hover typo3-page-pages" cellspacing="0" cellpadding="0" border="0">
 
-	<table class="typo3-dblist sbp2RecordSummaryTable" cellspacing="0" cellpadding="0" border="0">
-		<tr class="c-table-row-spacer">
-			<td nowrap="nowrap" class="col-icon"><img width="1" height="8" alt="" src="clear.gif"></td>
-			<td nowrap="nowrap" colspan="3" class="col-title"></td>
-		</tr>
+
+			<tr class="c-table-row-spacer hide">
+				<td nowrap="nowrap" class="col-icon"><img width="1" height="8" alt="" src="clear.gif"></td>
+				<td nowrap="nowrap" colspan="3" class="col-title"></td>
+			</tr>
+
+		<thead>
 		<tr class="t3-row-header">
 			<td nowrap="nowrap" class="col-icon">&nbsp;</td>
 			<td nowrap="nowrap" class="col-title"><span class="c-table">{f:translate(key: '{LLL}spb2_be_thead_type')}</span></td>
 			<td nowrap="nowrap"><span class="c-table">{f:translate(key: '{LLL}spb2_be_thead_count')}</span></td>
 			<td nowrap="nowrap"><span class="c-table">{f:translate(key: '{LLL}spb2_be_thead_countbranch')}</span></td>
 		</tr>
+		</thead>
 		<f:render partial="BeImport/RecordCount" arguments="{rowClass: 'db_list_normal', count: counts.categories, countBranch: counts.categoriesBranch, type: 'categories', LLL: LLL}" />
 		<f:render partial="BeImport/RecordCount" arguments="{rowClass: 'db_list_alt', count: counts.clients, countBranch: counts.clientsBranch, type: 'clients', LLL: LLL}" />
 		<f:render partial="BeImport/RecordCount" arguments="{rowClass: 'db_list_normal', count: counts.items, countBranch: counts.itemsBranch, type: 'items', LLL: LLL}" />
 	</table>
-
+	</div>
 	<f:render partial="FormErrors" />
 
 	<div id="sbp2ImportSubmitContainer">
@@ -53,7 +58,8 @@
 			</tbody>
 		</table>
 
-		<f:form.submit id="sbp2ImportSubmitButton" onclick="sbp2ImportObj.init();" value="{f:translate(key: '{LLL}spb2_be_import_but_start')}" />
+
+		<f:form.submit id="sbp2ImportSubmitButton" onclick="sbp2ImportObj.init();" value="{f:translate(key: '{LLL}spb2_be_import_but_start')}" class="btn-default" />
 	</div>
 
 	<div style="display: none;" class="sbp2InfoMsg-error sbp2Para sbp2ErrorMessage" id="sbp2ErrorMessage">ERROR</div>

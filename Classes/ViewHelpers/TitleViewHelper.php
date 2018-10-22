@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,13 +27,13 @@
  ***************************************************************/
 
 /**
- *  * ViewHelper for getting title. Defaults to the record's title, or if set the full title. If titleshort is set, this is returned instead. 
+ *  * ViewHelper for getting title. Defaults to the record's title, or if set the full title. If titleshort is set, this is returned instead.
  *
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_TitleViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
-	
+class TitleViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+
 	/**
 	 * Outputs the title for an item.
 	 *
@@ -41,24 +43,24 @@ class Tx_SbPortfolio2_ViewHelpers_TitleViewHelper extends \TYPO3\CMS\Fluid\Core\
 	 */
 	public function render($record, $short = FALSE) {
 		$title = '';
-		
+
 		if (is_object($record)) {
 			$title		= $record->getTitle();
 			$titleFull	= $record->getTitlefull();
-			
+
 			if (!empty($titleFull)) {
 				$title = $titleFull;
 			}
-			
+
 			if ($short) {
 				$titleShort	= $record->getTitleshort();
-				
+
 				if (!empty($titleShort)) {
 					$title = $titleShort;
 				}
 			}
 		}
-		
+
 		return $title;
 	}
 }

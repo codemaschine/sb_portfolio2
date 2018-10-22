@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +32,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_RelatedItemsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class RelatedItemsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Returns the records related to the current $record.
@@ -47,44 +49,44 @@ class Tx_SbPortfolio2_ViewHelpers_RelatedItemsViewHelper extends \TYPO3\CMS\Flui
 	public function render($record, $tagOp = 'OR', $rec = TRUE, $cat = FALSE, $tag = TRUE) {
 		$items		= NULL;
 		$className	= get_class($record);
-		
+
 		if ($className == 'Tx_SbPortfolio2_Domain_Model_Item' || $className == 'Tx_SbPortfolio2_Domain_Model_Client') {
 			$uid		= $record->getUid();
 			$recordType	= $this->getRecordType($className);
-			
+
 				// Get client portfolio
 			$repository	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $recordType . 'Repository');
-			
+
 			$options = array (
 				'record'	=> $rec,
 				'catgeory'	=> $cat,
 				'tag'		=> $tag,
 				'tagop'		=> $tagOp,
 			);
-			
+
 			$items = $repository->findRelated($uid, $options);
-			
+
 			unset($repository);
 		}
-		
+
 		return $items;
 	}
-	
+
 	/**
 	 * Gets and stores a list of the UIDs collected so far.
 	 *
-	 * @return void 
+	 * @return void
 	 */
 	protected function getUids() {
 		foreach ($this->relatedRecs as $rec) {
 			$this->relatedUids .= $rec->getUid() . ',';
 		}
-		
+
 		$this->relatedUids = trim($this->relatedUids, ',');
-		
+
 		\TYPO3\CMS\Core\Utility\DebugUtility::debug($this->relatedUids);
 	}
-	
+
 	/**
 	 * Returns the type of model that $record is.
 	 * e.g. if $record of the class "Tx_SbPortfolio2_Domain_Model_Item"
@@ -96,7 +98,7 @@ class Tx_SbPortfolio2_ViewHelpers_RelatedItemsViewHelper extends \TYPO3\CMS\Flui
 	protected function getRecordType($className) {
 		$underscorePos	= strrpos($className, '_');
 		$recordType		= substr($className, $underscorePos + 1);
-		
+
 		return $recordType;
 	}
 }

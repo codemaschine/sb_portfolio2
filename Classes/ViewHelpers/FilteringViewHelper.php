@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +32,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_FilteringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FilteringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Returns true if the passed uid is found,
@@ -41,15 +43,15 @@ class Tx_SbPortfolio2_ViewHelpers_FilteringViewHelper extends \TYPO3\CMS\Fluid\C
 	 */
 	public function render($name, $comparison) {
 		$itemVars = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_sbportfolio2_items');
-		
+
 		if (isset($itemVars[$name])) {
 			$itemVars = $itemVars[$name];
-			
+
 			if (intval($itemVars) == intval($comparison)) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 }

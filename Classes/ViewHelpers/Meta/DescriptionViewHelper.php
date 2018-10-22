@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers\Meta;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,13 +27,13 @@
  ***************************************************************/
 
 /**
- *  ViewHelper for getting the description of a record for SEO purposes. 
+ *  ViewHelper for getting the description of a record for SEO purposes.
  *
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_Meta_DescriptionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
-	
+class DescriptionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+
 	/**
 	 * Outputs the seo description for an item.
 	 *
@@ -44,31 +46,31 @@ class Tx_SbPortfolio2_ViewHelpers_Meta_DescriptionViewHelper extends \TYPO3\CMS\
 	 */
 	public function render($record, $useFulldescription = TRUE, $crop = 300, $word = TRUE, $indicator = '...') {
 		$description = '';
-		
+
 		if (is_object($record)) {
 			$description = $record->getSummary();
-			
+
 			if ($useFulldescription) {
 				$fullDescription = $record->getFulldescription();
-				
+
 				if (!empty($fullDescription)) {
 					$fullDescription	= strip_tags($fullDescription); // Remove HTML
 					$crop				= intval($crop);
-					
+
 					if ($crop >= 1) {
 						if (!is_string($indicator)) {
 							$indicator = '...';
 						}
-						
+
 						$description = $this->cropValue($fullDescription, $crop, $word, $indicator);
 					}
 				}
 			}
 		}
-		
+
 		return $description;
 	}
-	
+
 	/**
 	 * Crops $value.
 	 *
@@ -82,23 +84,23 @@ class Tx_SbPortfolio2_ViewHelpers_Meta_DescriptionViewHelper extends \TYPO3\CMS\
 		$originalValue	= $value;
 		$hasSpaces		= strpos($value, ' ');
 		$crop			= ($crop - strlen(utf8_decode($indicator))); // - $indicator length.
-		
+
 		if ($crop >= 1) { // Maybe crop is now negative, so check first!
 			$value = substr($value, 0, $crop); // Crop
-			
+
 			if ($hasSpaces && $wordCropRequired) { // Crop to whole word
 				$lastSpacePos		= strrpos($value, ' ');
 				$firstCroppedChar	= substr($originalValue, $crop - 1, 1);
-				
+
 				// If there is a space in the cropped string, and the cropped string wasn't by chance cropped to a space
 				if ($lastSpacePos !== FALSE && (!empty($firstCroppedChar) && $firstCroppedChar != ' ')) {
 					$value = substr($value, 0, $lastSpacePos);
 				}
 			}
-			
+
 			$value .= $indicator;
 		}
-		
+
 		return $value;
 	}
 }

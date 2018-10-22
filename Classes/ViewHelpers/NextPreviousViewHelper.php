@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +32,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_NextPreviousViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class NextPreviousViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Returns the next or previous record.
@@ -39,7 +41,7 @@ class Tx_SbPortfolio2_ViewHelpers_NextPreviousViewHelper extends \TYPO3\CMS\Flui
 	 * @param string $recordType The type of record to be collected, ie: 'item'. This should be the keypart of the repo name so that the repo class string can be built (see below).
 	 * @param string $npField The field used to determine the next record: either "uid", "crdate", or "datetime" (not for cats).
 	 * @param string $uid The current record's uid.
-	 * @param string $datetime The current record's datetime/crdate.
+	 * @param mixed $datetime The current record's datetime/crdate.
 	 * @return mixed $npRecord NULL or the next/previous record.
 	 */
 	public function render($npType, $recordType, $npField, $uid, $datetime) {
@@ -47,21 +49,21 @@ class Tx_SbPortfolio2_ViewHelpers_NextPreviousViewHelper extends \TYPO3\CMS\Flui
 			'uid'		=> $uid,
 			$npField	=> $datetime,
 		);
-		
+
 		$recordType = ucfirst($recordType);
-		
+
 		$repository	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $recordType .'Repository');
 		$npRecord	= NULL;
-		
+
 		if ($npType == 'next') {
 			$npRecord = $repository->findNext($recData, $npField);
-			
+
 		} else if ($npType == 'previous') {
 			$npRecord = $repository->findPrevious($recData, $npField);
 		}
-		
+
 		unset($repository);
-		
+
 		return $npRecord;
 	}
 }

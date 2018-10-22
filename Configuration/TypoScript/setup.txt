@@ -3,18 +3,26 @@
 
 plugin.tx_sbportfolio2 {
 	view {
-		templateRootPath = {$plugin.tx_sbportfolio2.view.templateRootPath}
-		partialRootPath = {$plugin.tx_sbportfolio2.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_sbportfolio2.view.layoutRootPath}
+		templateRootPaths {
+			0 = EXT:sb_portfolio2/Resources/Private/Templates/
+			1 = {$plugin.tx_sbportfolio2.view.templateRootPath}
+		}
+		partialRootPaths {
+			0 = EXT:sb_portfolio2/Resources/Private/Partials/
+			1 = {$plugin.tx_sbportfolio2.view.partialRootPath}
+		}
+		layoutRootPaths {
+			0 = EXT:sb_portfolio2/Resources/Private/Layouts/
+			1 = {$plugin.tx_sbportfolio2.view.layoutRootPath}
+		}
 	}
-
 
 
 	persistence {
 		storagePid = {$plugin.tx_sbportfolio2.persistence.storagePid}
 	}
 
-
+	#mvc.callDefaultActionIfActionCantBeResolved = 1
 
 	settings {
 			# These settings are global settings for the page browser widgit.
@@ -184,7 +192,7 @@ plugin.tx_sbportfolio2 {
 					# -1 means render a flat list
 					# 0+ means render a tree
 				beginAt			= 0
-				
+
 					# depth - The number of levels in the tree to collect categories for, default is 1.
 					# 1 means only get the current level, 2 means get the first subcategories, etc..
 					# depth has no effect if rendering a list, only a tree.

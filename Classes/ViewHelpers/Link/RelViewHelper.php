@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers\Link;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +32,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_Link_RelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class RelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Adds the nofollow rel attribute for a link
@@ -38,13 +40,13 @@ class Tx_SbPortfolio2_ViewHelpers_Link_RelViewHelper extends \TYPO3\CMS\Fluid\Co
 	 * @param Tx_SbPortfolio2_Domain_Model_Link $link The current link record
 	 * @return string The rel attribute, if required by the link
 	 */
-	public function render(Tx_SbPortfolio2_Domain_Model_Link $link) {
+	public function render(\Tx_SbPortfolio2_Domain_Model_Link $link) {
 		$relAttr = '';
-		
+
 		if ($link->isNofollow()) {
 			$relAttr = 'nofollow';
 		}
-		
+
 		return $relAttr;
 	}
 }

@@ -1,5 +1,7 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -30,7 +32,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * The type of model that $record is.
@@ -86,6 +88,10 @@ class Tx_SbPortfolio2_ViewHelpers_ClassesViewHelper extends \TYPO3\CMS\Fluid\Cor
 			$classes[] = $this->recordType;
 			$classes[] = $this->recordType . '-' . $record->getUid();
 
+
+
+
+
 			if ($className == 'Tx_SbPortfolio2_Domain_Model_Item') {
 				$classes = $this->getClassesItem($record, $classes);
 
@@ -124,7 +130,7 @@ class Tx_SbPortfolio2_ViewHelpers_ClassesViewHelper extends \TYPO3\CMS\Fluid\Cor
 		return $classString;
 	}
 
-	protected function getClassesLink(Tx_SbPortfolio2_Domain_Model_Link $record, array $classes)
+	protected function getClassesLink(\Tx_SbPortfolio2_Domain_Model_Link $record, array $classes)
 	{
 		$linkType	= $record->getType();
 		$classes[]	= 'linkType-' . $linkType;
@@ -139,7 +145,7 @@ class Tx_SbPortfolio2_ViewHelpers_ClassesViewHelper extends \TYPO3\CMS\Fluid\Cor
 		return $classes;
 	}
 
-	protected function getClassesTestimonial(Tx_SbPortfolio2_Domain_Model_Testimonial $record, array $classes)
+	protected function getClassesTestimonial(\Tx_SbPortfolio2_Domain_Model_Testimonial $record, array $classes)
 	{
 		if ($record->getClient() > 0) {
 			$classes[] = 'testimonialClient';
@@ -151,14 +157,14 @@ class Tx_SbPortfolio2_ViewHelpers_ClassesViewHelper extends \TYPO3\CMS\Fluid\Cor
 		return $classes;
 	}
 
-	protected function getClassesTag(Tx_SbPortfolio2_Domain_Model_Tag $record, array $classes)
+	protected function getClassesTag(\Tx_SbPortfolio2_Domain_Model_Tag $record, array $classes)
 	{
 		$classes = $this->getTypeClasses($record, $classes);
 
 		return $classes;
 	}
 
-	protected function getClassesFile(Tx_SbPortfolio2_Domain_Model_File $record, array $classes)
+	protected function getClassesFile(\Tx_SbPortfolio2_Domain_Model_File $record, array $classes)
 	{
 		$classes = $this->getTypeClasses($record, $classes);
 
@@ -167,7 +173,7 @@ class Tx_SbPortfolio2_ViewHelpers_ClassesViewHelper extends \TYPO3\CMS\Fluid\Cor
 		return $classes;
 	}
 
-	protected function getClassesImage(Tx_SbPortfolio2_Domain_Model_Image $record, array $classes)
+	protected function getClassesImage(\Tx_SbPortfolio2_Domain_Model_Image $record, array $classes)
 	{
 		$classes[] = 'file-' . $record->getImagetype();
 		$classes[] = 'imageOrientation-' . $record->getImageorientation();
@@ -175,7 +181,7 @@ class Tx_SbPortfolio2_ViewHelpers_ClassesViewHelper extends \TYPO3\CMS\Fluid\Cor
 		return $classes;
 	}
 
-	protected function getClassesFilm(Tx_SbPortfolio2_Domain_Model_Film $record, array $classes)
+	protected function getClassesFilm(\Tx_SbPortfolio2_Domain_Model_Film $record, array $classes)
 	{
 		$filmType = $record->getType();
 		$classes[] = 'filmType-' . $filmType;
@@ -187,14 +193,14 @@ class Tx_SbPortfolio2_ViewHelpers_ClassesViewHelper extends \TYPO3\CMS\Fluid\Cor
 		return $classes;
 	}
 
-	protected function getClassesClient(Tx_SbPortfolio2_Domain_Model_Client $record, array $classes)
+	protected function getClassesClient(\Tx_SbPortfolio2_Domain_Model_Client $record, array $classes)
 	{
 		$classes = $this->getCatIdClasses($record->getCategories(), $classes);
 
 		return $classes;
 	}
 
-	protected function getClassesItem(Tx_SbPortfolio2_Domain_Model_Item $record, array $classes)
+	protected function getClassesItem(\Tx_SbPortfolio2_Domain_Model_Item $record, array $classes)
 	{
 		if ($record->isFeatured()) {
 			$classes[] = 'featured';
@@ -211,7 +217,7 @@ class Tx_SbPortfolio2_ViewHelpers_ClassesViewHelper extends \TYPO3\CMS\Fluid\Cor
 		return $classes;
 	}
 
-	protected function getClassesSlider(Tx_SbPortfolio2_Domain_Model_Slider $record, array $classes)
+	protected function getClassesSlider(\Tx_SbPortfolio2_Domain_Model_Slider $record, array $classes)
 	{
 		$classes[] = 'sliderType-' . $record->getType();
 

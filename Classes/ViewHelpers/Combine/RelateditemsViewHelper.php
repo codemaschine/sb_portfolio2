@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers\Combine;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +32,7 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_Combine_RelateditemsViewHelper extends Tx_SbPortfolio2_ViewHelpers_Combine_CombinableViewHelper {
+class RelateditemsViewHelper extends CombinableViewHelper {
 
 	/**
 	 * Returns a record's relateditems combined with the record's categories' relateditems.
@@ -39,15 +41,15 @@ class Tx_SbPortfolio2_ViewHelpers_Combine_RelateditemsViewHelper extends Tx_SbPo
 	 * @param boolean $catOnly Are only related items from $record's categories required?
 	 * @return array The combined items.
 	 */
-	public function render(Tx_SbPortfolio2_Domain_Model_Item $record, $catOnly = FALSE) {
+	public function render(\Tx_SbPortfolio2_Domain_Model_Item $record, $catOnly = FALSE) {
 		$this->combineRecType = 'item';
-		
+
 		if ($catOnly === false) {
 			$this->combinableRecords = $record->getRelateditems();
 		}
-		
+
 		$this->combineRecords($record);
-		
+
 		return $this->combinedRecords;
 	}
 }

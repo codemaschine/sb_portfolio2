@@ -1,10 +1,12 @@
 <?php
 
+namespace StephenBungert\SbPortfolio2\ViewHelpers\Meta;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,11 +32,11 @@
  * @package sb_portfolio2
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_SbPortfolio2_ViewHelpers_Meta_TagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
+class TagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
 
 	/**
 	 * The tag to be made by this tag based VH.
-	 * 
+	 *
 	 * @var	string
 	 */
 	protected $tagName = 'meta';
@@ -47,13 +49,13 @@ class Tx_SbPortfolio2_ViewHelpers_Meta_TagViewHelper extends \TYPO3\CMS\Fluid\Co
 	public function initializeArguments() {
 			// Required arguments
 		$this->registerTagAttribute('content', 'string', 'The content of a meta tag.', TRUE);
-		
+
 			// Optional
 		$this->registerTagAttribute('scheme', 'string', 'Specifies a scheme to be used to interpret the value of the content attribute');
 		$this->registerTagAttribute('name', 'string', 'The name property of the meta tag.');
 			// http-equiv tags don't seem to get made by tag->render().
 	}
-	
+
 	/**
 	 * Adds a metatag to the page.
 	 *
@@ -61,7 +63,12 @@ class Tx_SbPortfolio2_ViewHelpers_Meta_TagViewHelper extends \TYPO3\CMS\Fluid\Co
 	 */
 	public function render() {
 		if (!empty($this->arguments['content']) && !empty($this->arguments['name'])) {
-			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag($this->tag->render());
+
+
+			$renderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
+			$renderer->addMetaTag($this->tag->render());
+		
+			//$GLOBALS['TSFE']->getPageRenderer()->addMetaTag($this->tag->render());
 		}
 	}
 }

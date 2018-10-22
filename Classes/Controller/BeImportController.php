@@ -106,7 +106,7 @@ class Tx_SbPortfolio2_Controller_BeImportController extends \TYPO3\CMS\Extbase\M
 	 */
 	public function importAction() {
 		$pageId				= intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('id'));
-		$this->queryGen		= $this->objectManager->get('\TYPO3\CMS\Core\Database\QueryGenerator');
+		$this->queryGen		= $this->objectManager->get('TYPO3\CMS\Core\Database\QueryGenerator');
 		$this->permsClause	= $GLOBALS['BE_USER']->getPagePermsClause(1);
 
 		$extConfig	= $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
@@ -333,13 +333,12 @@ class Tx_SbPortfolio2_Controller_BeImportController extends \TYPO3\CMS\Extbase\M
 	 * Get the UIDs of a branch.
 	 *
 	 * @param integer $uid The uid of the current page.
-	 * @return \TYPO3\CMS\Core\Database\QueryGenerator $queryGen An instance of \TYPO3\CMS\Core\Database\QueryGenerator
 	 * @return string $pids The UIDs of the current page and all pages in the branch.es in the branch.
 	 */
 	public function getBranchUids($uid, $numOfLevels = 100) {
 		$uid	= intval($uid);
 		$uids	= $uid;
-		
+
 
 		if ($uid > 0) {
 			$numOfLevels = intval($numOfLevels);
