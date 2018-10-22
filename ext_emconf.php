@@ -14,7 +14,7 @@ $EM_CONF[$_EXTKEY] = array (
 	'title' => 'SB Portfolio 2',
 	'description' => 'A website portfolio extension for illustrators, photographers, architects, and designers. A complete portfolio system: items, clients, categories, and testimonials. Requires ExtBase/Fluid.',
 	'category' => 'plugin',
-	'version' => '0.1.0',
+	'version' => '0.1.1',
 	'state' => 'beta',
 	'uploadfolder' => false,
 	'createDirs' => '',
@@ -22,20 +22,17 @@ $EM_CONF[$_EXTKEY] = array (
 	'author' => 'Stephen Bungert',
 	'author_email' => 'stephenbungert@yahoo.de',
 	'author_company' => '',
-	'constraints' => 
+	'constraints' =>
 	array (
-		'depends' => 
+		'depends' =>
 		array (
-			'typo3' => '4.7.1-6.2.99',
-			'extbase' => '4.7.1-6.2.99',
-			'fluid' => '4.7.1-6.2.99',
+		 'typo3' => '7.6.0-7.6.99',
 		),
-		'conflicts' => 
+		'conflicts' =>
 		array (
 		),
-		'suggests' => 
+		'suggests' =>
 		array (
 		),
 	),
 );
-
