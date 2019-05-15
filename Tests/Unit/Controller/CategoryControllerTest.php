@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Controller;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2011 Stephen Bungert <stephenbungert@yahoo.de>
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,9 +23,9 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Model;
 /**
- * Test case for class Tx_Sb_portfolio2_Controller_CategoryController.
+ * Test case for class \StephenBungert\SbPortfolio2\Controller\CategoryController.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -36,14 +36,14 @@
  *
  * @author Stephen Bungert <stephenbungert@yahoo.de>
  */
-class Tx_Sb_portfolio2_Controller_CategoryControllerTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
+class CategoryControllerTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var Tx_SbPortfolio2_Domain_Model_Category
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Category
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new Tx_SbPortfolio2_Domain_Model_Category();
+		$this->fixture = new \StephenBungert\SbPortfolio2\Domain\Model\Category();
 	}
 
 	public function tearDown() {

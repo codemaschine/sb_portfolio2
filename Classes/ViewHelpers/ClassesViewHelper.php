@@ -25,7 +25,7 @@ namespace StephenBungert\SbPortfolio2\ViewHelpers;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Model;
 /**
  * ViewHelper for List classes
  *
@@ -36,7 +36,7 @@ class ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 
 	/**
 	 * The type of model that $record is.
-	 * e.g. if $record is of the class "Tx_SbPortfolio2_Domain_Model_Item"
+	 * e.g. if $record is of the class "\StephenBungert\SbPortfolio2\Domain_Model_Item"
 	 * $recordType will be "item"
 	 *
 	 * @var string
@@ -92,31 +92,31 @@ class ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 
 
 
-			if ($className == 'Tx_SbPortfolio2_Domain_Model_Item') {
+			if ($className == '\StephenBungert\SbPortfolio2\Domain\Model\Item') {
 				$classes = $this->getClassesItem($record, $classes);
 
-			} else if ($className == 'Tx_SbPortfolio2_Domain_Model_Image') {
+			} else if ($className == '\StephenBungert\SbPortfolio2\Domain\Model\Image') {
 				 $classes = $this->getClassesImage($record, $classes);
 
-			} else if ($className == 'Tx_SbPortfolio2_Domain_Model_File') {
+			} else if ($className == '\StephenBungert\SbPortfolio2\Domain\Model\File') {
 				 $classes = $this->getClassesFile($record, $classes);
 
-			} else if ($className == 'Tx_SbPortfolio2_Domain_Model_Link') {
+			} else if ($className == '\StephenBungert\SbPortfolio2\Domain\Model\Link') {
 				$classes = $this->getClassesLink($record, $classes);
 
-			} else if ($className == 'Tx_SbPortfolio2_Domain_Model_Tag') {
+			} else if ($className == '\StephenBungert\SbPortfolio2\Domain\Model\Tag') {
 				 $classes = $this->getClassesTag($record, $classes);
 
-			}  else if ($className == 'Tx_SbPortfolio2_Domain_Model_Film') {
+			}  else if ($className == '\StephenBungert\SbPortfolio2\Domain\Model\Film') {
 				 $classes = $this->getClassesFilm($record, $classes);
 
-			}  else if ($className == 'Tx_SbPortfolio2_Domain_Model_Testimonial') {
+			}  else if ($className == '\StephenBungert\SbPortfolio2\Domain\Model\Testimonial') {
 				 $classes = $this->getClassesTestimonial($record, $classes);
 
-			}  else if ($className == 'Tx_SbPortfolio2_Domain_Model_Client') {
+			}  else if ($className == '\StephenBungert\SbPortfolio2\Domain\Model\Client') {
 				 $classes = $this->getClassesClient($record, $classes);
 
-			}  else if ($className == 'Tx_SbPortfolio2_Domain_Model_Slider') {
+			}  else if ($className == '\StephenBungert\SbPortfolio2\Domain\Model\Slider') {
 				 $classes = $this->getClassesSlider($record, $classes);
 			}
 		}
@@ -130,7 +130,7 @@ class ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		return $classString;
 	}
 
-	protected function getClassesLink(\Tx_SbPortfolio2_Domain_Model_Link $record, array $classes)
+	protected function getClassesLink(\StephenBungert\SbPortfolio2\Domain\Model\Link $record, array $classes)
 	{
 		$linkType	= $record->getType();
 		$classes[]	= 'linkType-' . $linkType;
@@ -145,7 +145,7 @@ class ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		return $classes;
 	}
 
-	protected function getClassesTestimonial(\Tx_SbPortfolio2_Domain_Model_Testimonial $record, array $classes)
+	protected function getClassesTestimonial(\StephenBungert\SbPortfolio2\Domain\Model\Testimonial $record, array $classes)
 	{
 		if ($record->getClient() > 0) {
 			$classes[] = 'testimonialClient';
@@ -157,14 +157,14 @@ class ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		return $classes;
 	}
 
-	protected function getClassesTag(\Tx_SbPortfolio2_Domain_Model_Tag $record, array $classes)
+	protected function getClassesTag(\StephenBungert\SbPortfolio2\Domain\Model\Tag $record, array $classes)
 	{
 		$classes = $this->getTypeClasses($record, $classes);
 
 		return $classes;
 	}
 
-	protected function getClassesFile(\Tx_SbPortfolio2_Domain_Model_File $record, array $classes)
+	protected function getClassesFile(\StephenBungert\SbPortfolio2\Domain\Model\File $record, array $classes)
 	{
 		$classes = $this->getTypeClasses($record, $classes);
 
@@ -173,7 +173,7 @@ class ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		return $classes;
 	}
 
-	protected function getClassesImage(\Tx_SbPortfolio2_Domain_Model_Image $record, array $classes)
+	protected function getClassesImage(\StephenBungert\SbPortfolio2\Domain\Model\Image $record, array $classes)
 	{
 		$classes[] = 'file-' . $record->getImagetype();
 		$classes[] = 'imageOrientation-' . $record->getImageorientation();
@@ -181,7 +181,7 @@ class ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		return $classes;
 	}
 
-	protected function getClassesFilm(\Tx_SbPortfolio2_Domain_Model_Film $record, array $classes)
+	protected function getClassesFilm(\StephenBungert\SbPortfolio2\Domain\Model\Film $record, array $classes)
 	{
 		$filmType = $record->getType();
 		$classes[] = 'filmType-' . $filmType;
@@ -193,14 +193,14 @@ class ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		return $classes;
 	}
 
-	protected function getClassesClient(\Tx_SbPortfolio2_Domain_Model_Client $record, array $classes)
+	protected function getClassesClient(\StephenBungert\SbPortfolio2\Domain\Model\Client $record, array $classes)
 	{
 		$classes = $this->getCatIdClasses($record->getCategories(), $classes);
 
 		return $classes;
 	}
 
-	protected function getClassesItem(\Tx_SbPortfolio2_Domain_Model_Item $record, array $classes)
+	protected function getClassesItem(\StephenBungert\SbPortfolio2\Domain\Model\Item $record, array $classes)
 	{
 		if ($record->isFeatured()) {
 			$classes[] = 'featured';
@@ -217,7 +217,7 @@ class ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		return $classes;
 	}
 
-	protected function getClassesSlider(\Tx_SbPortfolio2_Domain_Model_Slider $record, array $classes)
+	protected function getClassesSlider(\StephenBungert\SbPortfolio2\Domain\Model\Slider $record, array $classes)
 	{
 		$classes[] = 'sliderType-' . $record->getType();
 
@@ -226,7 +226,7 @@ class ClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 
 	/**
 	 * Set the type of model that $record is.
-	 * e.g. if $record is of the class "Tx_SbPortfolio2_Domain_Model_Item"
+	 * e.g. if $record is of the class "\StephenBungert\SbPortfolio2\Domain\Model\Item"
 	 * "item" will be returned
 	 *
 	 * @param string $className $record's class name.

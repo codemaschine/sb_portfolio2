@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2011 Stephen Bungert <stephenbungert@yahoo.de>
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,7 +25,7 @@
  ***************************************************************/
 
 /**
- * Test case for class Tx_SbPortfolio2_Domain_Model_Tag.
+ * Test case for class \StephenBungert\SbPortfolio2\Domain\Model\Tag.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -36,21 +36,21 @@
  *
  * @author Stephen Bungert <stephenbungert@yahoo.de>
  */
-class Tx_SbPortfolio2_Domain_Model_TagTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
+class TagTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var Tx_SbPortfolio2_Domain_Model_Tag
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Tag
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new Tx_SbPortfolio2_Domain_Model_Tag();
+		$this->fixture = new Tag();
 	}
 
 	public function tearDown() {
 		unset($this->fixture);
 	}
-	
-	
+
+
 	/**
 	 * @test
 	 */
@@ -59,7 +59,7 @@ class Tx_SbPortfolio2_Domain_Model_TagTest extends \TYPO3\CMS\Extbase\Tests\Unit
 	/**
 	 * @test
 	 */
-	public function setTitleForStringSetsTitle() { 
+	public function setTitleForStringSetsTitle() {
 		$this->fixture->setTitle('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -67,6 +67,6 @@ class Tx_SbPortfolio2_Domain_Model_TagTest extends \TYPO3\CMS\Extbase\Tests\Unit
 			$this->fixture->getTitle()
 		);
 	}
-	
+
 }
 ?>

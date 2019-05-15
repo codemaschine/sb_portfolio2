@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Repository;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Repository_FileRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class FileRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 }
 ?>

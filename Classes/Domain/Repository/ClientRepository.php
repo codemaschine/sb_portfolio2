@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Repository;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,8 +23,8 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
-
+use \StephenBungert\SbPortfolio2\Domain\Model;
+use \StephenBungert\SbPortfolio2\Domain\Model\Import;
 /**
  *
  *
@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Repository_ClientRepository extends Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository {
+class ClientRepository extends CoreRecordRepository {
 
 	/**
 	 * Finds clients with the category $category. Used for getting category related clients.
@@ -68,8 +68,8 @@ class Tx_SbPortfolio2_Domain_Repository_ClientRepository extends Tx_SbPortfolio2
 
 		if (!empty($sbpClient))
 		{
-			$importHelper	= $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Import_Helper', $sbpClient);
-			$sbp2Client		= $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Client');
+			$importHelper	= $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Import\Helper', $sbpClient);
+			$sbp2Client		= $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Client');
 
 			$sbp2Client = $importHelper->setCoreFields($sbp2Client, TRUE);
 
@@ -84,7 +84,7 @@ class Tx_SbPortfolio2_Domain_Repository_ClientRepository extends Tx_SbPortfolio2
 
 				// Image
 			if (!empty($sbpClient['image'])) {
-				$image = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Image');
+				$image = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Image');
 
 				$image = $importHelper->setCoreFields($image);
 				$image = $importHelper->setImageFields($image, 'image', $sbpClient['image']);
@@ -94,7 +94,7 @@ class Tx_SbPortfolio2_Domain_Repository_ClientRepository extends Tx_SbPortfolio2
 
 				// Link
 			if (!empty($sbpClient['url'])) {
-				$link = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Link');
+				$link = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Link');
 
 				$link = $importHelper->setCoreFields($link);
 				$link = $importHelper->setLinkFields($link, 'main link', $sbpClient['url']);
@@ -104,7 +104,7 @@ class Tx_SbPortfolio2_Domain_Repository_ClientRepository extends Tx_SbPortfolio2
 
 				// Testimonial
 			if (!empty($sbpClient['testimonial'])) {
-				$testimonial = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Testimonial');
+				$testimonial = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Testimonial');
 
 				$testimonial = $importHelper->setCoreFields($testimonial);
 				$testimonial = $importHelper->setTestimonialFields($testimonial);
@@ -114,7 +114,7 @@ class Tx_SbPortfolio2_Domain_Repository_ClientRepository extends Tx_SbPortfolio2
 				{
 					$importHelper->setParentId($importHelper->getChildId());
 
-					$testimonialImage = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Image');
+					$testimonialImage = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Image');
 					$testimonialImage = $importHelper->setCoreFields($testimonialImage);
 					$testimonialImage = $importHelper->setImageFields($testimonialImage, 'testimonial image', $sbpClient['testimonial_image']);
 

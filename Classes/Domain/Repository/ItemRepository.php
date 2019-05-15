@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Repository;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,8 +23,8 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
-
+use \StephenBungert\SbPortfolio2\Domain\Model;
+use \StephenBungert\SbPortfolio2\Domain\Model\Import;
 /**
  *
  *
@@ -32,16 +32,16 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository {
+class ItemRepository extends CoreRecordRepository {
 
 	/**
 	 * Finds items with the client $client
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Client $client The client.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Client $client The client.
 	 * @param array $portSetup The TS setup for the query.
 	 * @return array An array of items
 	 */
-	public function findByClient(Tx_SbPortfolio2_Domain_Model_Client $client, array $portSetup) {
+	public function findByClient(\StephenBungert\SbPortfolio2\Domain\Model\Client $client, array $portSetup) {
 		$query = $this->createQuery();
 
 		$this->setPortfolioConstraints($query->equals('client', $client));
@@ -87,8 +87,8 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 
 		if (!empty($sbpItem))
 		{
-			$importHelper	= $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Import_Helper', $sbpItem);
-			$sbp2Item		= $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Item');
+			$importHelper	= $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Import\Helper', $sbpItem);
+			$sbp2Item		= $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Item');
 
 			$sbp2Item = $importHelper->setCoreFields($sbp2Item, TRUE);
 
@@ -108,7 +108,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 				$sepImages = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sbpItem['image'], TRUE);
 
 				foreach ($sepImages as $imageNumber => $imagePath) {
-					$image = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Image');
+					$image = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Image');
 
 					$image = $importHelper->setCoreFields($image);
 					$image = $importHelper->setImageFields($image, 'image', $imagePath, $imageNumber + 1);
@@ -119,7 +119,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 
 				// Image Folders
 			if (!empty($sbpItem['image_folders'])) {
-				$imageFolder = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_ImageFolder');
+				$imageFolder = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\ImageFolder');
 
 				$imageFolder = $importHelper->setCoreFields($imageFolder);
 				$imageFolder = $importHelper->setImageFolderFields($imageFolder);
@@ -129,7 +129,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 
 				// Preview
 			if (!empty($sbpItem['preview'])) {
-				$preview = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Image');
+				$preview = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Image');
 
 				$preview = $importHelper->setCoreFields($preview);
 				$preview = $importHelper->setImageFields($preview, 'preview image', $sbpItem['preview']);
@@ -139,7 +139,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 
 				// Films
 			if (!empty($sbpItem['youtube'])) {
-				$film = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Film');
+				$film = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Film');
 
 				$film = $importHelper->setCoreFields($film);
 				$film = $importHelper->setFilmFields($film);
@@ -152,7 +152,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 				$sepFiles = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sbpItem['files'], TRUE);
 
 				foreach ($sepFiles as $fileNumber => $filePath) {
-					$file = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_File');
+					$file = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\File');
 
 					$file = $importHelper->setCoreFields($file);
 					$file = $importHelper->setFileFields($file, $filePath, $fileNumber + 1);
@@ -164,7 +164,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 
 				// Link
 			if (!empty($sbpItem['linkurl'])) {
-				$link = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Link');
+				$link = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Link');
 
 				$link = $importHelper->setCoreFields($link);
 				$link = $importHelper->setLinkFields($link, 'main link', $sbpItem['linkurl']);
@@ -174,7 +174,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 
 				// Testimonial
 			if (!empty($sbpItem['testimonial'])) {
-				$testimonial = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Testimonial');
+				$testimonial = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Testimonial');
 
 				$testimonial = $importHelper->setCoreFields($testimonial);
 				$testimonial = $importHelper->setTestimonialFields($testimonial);
@@ -184,7 +184,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 				{
 					$importHelper->setParentId($importHelper->getChildId());
 
-					$testimonialImage = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Image');
+					$testimonialImage = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Image');
 					$testimonialImage = $importHelper->setCoreFields($testimonialImage);
 					$testimonialImage = $importHelper->setImageFields($testimonialImage, 'testimonial image', $sbpItem['testimonial_image']);
 
@@ -201,7 +201,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 				// Tags
 			if (!empty($sbpItem['tags'])) {
 				$sepTags	= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sbpItem['tags'], TRUE);
-				$tagRepo	= $this->objectManager->get('Tx_SbPortfolio2_Domain_Repository_TagRepository');
+				$tagRepo	= $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Repository\TagRepository');
 
 					// Change the PID so that the queries work
 				$querySettings = $this->objectManager->create('\TYPO3\CMS\Extbase\Persistence\Typo3QuerySettings');
@@ -212,7 +212,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 					$tag = $tagRepo->findOneByTitle($tagTitle);
 
 					if ($tag == NULL) { // Not found, make a new record
-						$tag = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Tag');
+						$tag = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Tag');
 
 						$tag = $importHelper->setCoreFields($tag);
 						$tag = $importHelper->setTagFields($tag, $tagTitle);
@@ -234,7 +234,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 
 					if (!empty($sbpCatUids)) {
 						$sepCats	= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sbpCatUids, TRUE);
-						$catRepo	= $this->objectManager->get('Tx_SbPortfolio2_Domain_Repository_CategoryRepository');
+						$catRepo	= $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Repository\CategoryRepository');
 
 							// Change the PID so that the queries work
 						$querySettings = $this->objectManager->create('\TYPO3\CMS\Extbase\Persistence\Typo3QuerySettings');
@@ -264,7 +264,7 @@ class Tx_SbPortfolio2_Domain_Repository_ItemRepository extends Tx_SbPortfolio2_D
 					if (!empty($sbpClientUids)) {
 						$sepClient	= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sbpClientUids, TRUE);
 						$sepClient	= $sepClient[0]; // Should only be one
-						$clientRepo	= $this->objectManager->get('Tx_SbPortfolio2_Domain_Repository_ClientRepository');
+						$clientRepo	= $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Repository\ClientRepository');
 
 							// Change the PID so that the queries work
 						$querySettings = $this->objectManager->create('\TYPO3\CMS\Extbase\Persistence\Typo3QuerySettings');

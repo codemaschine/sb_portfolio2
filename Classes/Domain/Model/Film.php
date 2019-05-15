@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Model_Film extends Tx_SbPortfolio2_Domain_Model_BaseRecord {
+class Film extends BaseRecord {
 
 	/**
 	 * This films' host's id for this film.
@@ -58,7 +58,7 @@ class Tx_SbPortfolio2_Domain_Model_Film extends Tx_SbPortfolio2_Domain_Model_Bas
 	/**
 	 * An image to be used as a preview of the film.
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Model_Image $preview
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Image $preview
 	 */
 	protected $preview;
 
@@ -197,7 +197,7 @@ class Tx_SbPortfolio2_Domain_Model_Film extends Tx_SbPortfolio2_Domain_Model_Bas
 	/**
 	 * Returns the preview
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Image $preview
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Image $preview
 	 */
 	public function getPreview() {
 		return $this->preview;
@@ -206,10 +206,10 @@ class Tx_SbPortfolio2_Domain_Model_Film extends Tx_SbPortfolio2_Domain_Model_Bas
 	/**
 	 * Sets the preview
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Image $preview
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Image $preview
 	 * @return void
 	 */
-	public function setPreview(Tx_SbPortfolio2_Domain_Model_Image $preview) {
+	public function setPreview(Image $preview) {
 		$this->preview = $preview;
 	}
 

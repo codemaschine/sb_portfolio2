@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Flickr\Authorisation;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -35,51 +35,51 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
+class OAuth {
 	/**
 	 * Signature method to be used
 	 *
 	 * @var string
 	 */
 	protected $signatureMethod = 'HMAC-SHA1';
-	
+
 	/**
 	 * The http method to be used
 	 *
 	 * @var string
 	 */
 	protected $httpMethod = 'GET';
-	
+
 	/**
 	 * The oauth version to be used
 	 *
 	 * @var string
 	 */
 	protected $version = '1.0';
-	
+
 	/**
 	 * The flickr API key
 	 *
 	 * @var string
 	 */
 	protected $apiKey;
-	
+
 	/**
 	 * The signature for signing requests
  	 *
 	 * @var string
 	 */
 	protected $signature = '';
-	
+
 	/**
 	 * The oauth parameters
 	 *
 	 * @var array
 	 */
 	protected $params;
-	
-	
-	
+
+
+
 	/**
 	 * __construct
 	 *
@@ -88,12 +88,12 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	 */
 	public function __construct($apiKey) {
 		$this->setApiKey($apiKey);
-		
+
 		$this->setCallbackUrl(\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('HTTP_HOST') . \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REQUEST_URI'));
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Sets version
 	 *
@@ -103,7 +103,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function setVersion($version) {
 		$this->version = $version;
 	}
-	
+
 	/**
 	 * Returns version
 	 *
@@ -112,7 +112,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function getVersion() {
 		return $this->version;
 	}
-	
+
 	/**
 	 * Sets signatureMethod
 	 *
@@ -122,7 +122,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function setSignatureMethod($signatureMethod) {
 		$this->signatureMethod = $signatureMethod;
 	}
-	
+
 	/**
 	 * Returns signatureMethod
 	 *
@@ -131,7 +131,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function getSignatureMethod() {
 		return $this->signatureMethod;
 	}
-	
+
 	/**
 	 * Sets httpMethod
 	 *
@@ -141,7 +141,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function setHttpMethod($httpMethod) {
 		$this->httpMethod = strtoupper($httpMethod);
 	}
-	
+
 	/**
 	 * Returns httpMethod
 	 *
@@ -150,7 +150,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function getHttpMethod() {
 		return $this->httpMethod;
 	}
-	
+
 	/**
 	 * Sets callbackUrl
 	 *
@@ -160,7 +160,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function setCallbackUrl($callbackUrl) {
 		$this->callbackUrl = $callbackUrl;
 	}
-	
+
 	/**
 	 * Returns callbackUrl
 	 *
@@ -169,7 +169,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function getCallbackUrl() {
 		return $this->callbackUrl;
 	}
-	
+
 	/**
 	 * Returns apiKey
 	 *
@@ -178,7 +178,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function getApiKey() {
 		return $this->apiKey;
 	}
-	
+
 	/**
 	 * Sets apiKey
 	 *
@@ -188,7 +188,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function setApiKey($apiKey) {
 		$this->apiKey = $apiKey;
 	}
-	
+
 	/**
 	 * Returns signature
 	 *
@@ -197,7 +197,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function getSignature() {
 		return $this->signature;
 	}
-	
+
 	/**
 	 * Sets signature
 	 *
@@ -207,7 +207,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function setSignature($signature) {
 		$this->signature = $signature;
 	}
-	
+
 	/**
 	 * Set params
 	 *
@@ -222,17 +222,17 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 			'oauth_consumer_key'		=> $this->getApiKey(),
 			'oauth_signature_method'	=> $this->getSignatureMethod(),
 		);
-		
+
 		if (!empty($methodParams)) {
 			$this->params = array_merge($defaultParams, $methodParams);
-			
+
 		} else {
 			$this->params = $defaultParams;
 		}
 	}
-	
+
 	/**
-	 * Set a new parameter in $this->params 
+	 * Set a new parameter in $this->params
 	 *
 	 * @param string $key The key for the new parameter
 	 * @param string $value The value for the new parameter
@@ -241,7 +241,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function setParam($key, $value) {
 		$this->params[$key] = $value;
 	}
-	
+
 	/**
 	 * Get params
 	 *
@@ -250,9 +250,9 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function getParams() {
 		return $this->params;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Returns a unix timestamp
 	 *
@@ -261,7 +261,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	protected function generateTimeStamp() {
 		return time();
 	}
-	
+
 	/**
 	 * Returns a unique ID (for nonce)
 	 *
@@ -270,9 +270,9 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	protected function generateNonce() {
 		return md5(uniqid(rand(), true));
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Does a few things that are required before calling go()
 	 *
@@ -284,7 +284,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 		$this->generateSignature();
 		$this->signRequest();
 	}
-	
+
 	/**
 	 * Generates the signiture for the request
 	 *
@@ -294,7 +294,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 		$baseString = $this->createBaseString();
 		$this->setSignature($this->createSignature($baseString));
 	}
-	
+
 	/**
 	 * Create a the base string used for generating the signature
 	 *
@@ -302,30 +302,30 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	 */
 	protected function createBaseString() {
 		$params = $this->getParams();
-		
+
 	    // Urlencode both keys and values
 	    $keys	= array_keys($params);
 	    $values	= array_values($params);
-		
+
 	    $keys	= array_map('urlencode', $keys);
 	    $values	= array_map('urlencode', $values);
-		
+
 	    $paramsEncoded = array_combine($keys, $values);
-		
+
 	    uksort($params, 'strcmp');
-		
+
 		$baseString	= '';
-		
+
 		foreach ($paramsEncoded as $key => $value) {
 			$baseString .= $key . '=' . $value . '&';
 		}
-		
+
 		$baseString = trim($baseString, '&');
 		$baseString = $this->getHttpMethod() . '&' . urlencode($this->getCallbackUrl()) . '&' . urlencode($baseString);
-		
+
 		return $baseString;
 	}
-	
+
 	/**
 	 * Creates the signature for signing the requests with
 	 *
@@ -344,11 +344,11 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function signRequest() {
 		$this->setParam('oauth_signature', $this->getSignatureMethod());
 	}
-	
+
 
 
 	/**
-	 * Starts the request query to a service, like scoop.it 
+	 * Starts the request query to a service, like scoop.it
 	 *
 	 * @param string $url The beginning of the URL
 	 * @return array
@@ -356,7 +356,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	public function go($url) {
 		return $this->createRequestUrl($url);
 	}
-	
+
 	/**
 	 * Requests the token
 	 *
@@ -365,20 +365,20 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	 */
 	protected function createRequestUrl($urlPrefix) {
 		$fields = $this->getParams();
-		
+
 		$fields_string = '';
-		
+
 		foreach ($fields as $key => $value) {
 			$fields_string .= $key . '=' . urlencode($value) . '&';
 		}
-		
+
 		$fields_string = rtrim($fields_string, '&');
-		
+
 		$url = '?' . $fields_string;
-		
+
 		return $this->contactService($urlPrefix . $url);
 	}
-	
+
 	/**
 	 * Makes a GET query to a service that uses oauth, like flickr, scoop.it etc.
 	 *
@@ -386,16 +386,16 @@ class Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth {
 	 */
 	protected function contactService($url) {
 		$curlHandle = curl_init();
-		
+
 		curl_setopt($curlHandle, CURLOPT_URL, $url);
 		curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curlHandle, CURLOPT_CONNECTTIMEOUT, 5);
-		
+
 		$data = curl_exec($curlHandle);
         $info = curl_getinfo($curlHandle);
-		
+
 		curl_close($curlHandle);
-		
+
 		return array (
 			'data' => $data,
 			'info' => $info,

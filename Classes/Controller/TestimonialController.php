@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,7 +23,7 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Repository;
 
 /**
  *
@@ -32,22 +32,22 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Controller_TestimonialController extends Tx_SbPortfolio2_Controller_CoreRecordController {
+class TestimonialController extends CoreRecordController {
 
 	/**
 	 * testimonialRepository
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Repository_TestimonialRepository
+	 * @var \StephenBungert\SbPortfolio2\Domain\Repository\TestimonialRepository
 	 */
 	protected $testimonialRepository;
 
 	/**
 	 * injectTestimonialRepository
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Repository_TestimonialRepository $testimonialRepository
+	 * @param \StephenBungert\SbPortfolio2\Domain\Repository\TestimonialRepository $testimonialRepository
 	 * @return void
 	 */
-	public function injectTestimonialRepository(Tx_SbPortfolio2_Domain_Repository_TestimonialRepository $testimonialRepository) {
+	public function injectTestimonialRepository(\StephenBungert\SbPortfolio2\Domain\Repository\TestimonialRepository $testimonialRepository) {
 		$this->testimonialRepository = $testimonialRepository;
 	}
 

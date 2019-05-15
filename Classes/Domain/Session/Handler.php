@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Session;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -32,29 +32,29 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Session_Handler implements \TYPO3\CMS\Core\SingletonInterface {
+class Handler implements \TYPO3\CMS\Core\SingletonInterface {
 	/**
 	 * Returns the object stored in the user´s PHP session
-	 * 
+	 *
 	 * @return Object the stored object
 	 */
 	public function getSessionData() {
 		$sessionData = $GLOBALS['BE_USER']->getSessionData('tx_sbportfolio2');
-		
+
 		return unserialize($sessionData);
 	}
- 
+
 	/**
 	 * Writes an object into the PHP session
-	 * 
+	 *
 	 * @param	mixed $object	any serializable object to store into the session
-	 * @return	Tx_SbPortfolio2_Domain_Session_Handler this
+	 * @return	\StephenBungert\SbPortfolio2\Domain\Session\Handler this
 	 */
 	public function setSessionData($object) {
 		$sessionData = serialize($object);
-		
+
 		$GLOBALS['BE_USER']->setAndSaveSessionData('tx_sbportfolio2', $sessionData);
-		
+
 		return $this;
 	}
 }

@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Model_ImageFolder extends Tx_SbPortfolio2_Domain_Model_BaseRecord {
+class ImageFolder extends BaseRecord {
 
 	/**
 	 * The actual folders associated with this image folder record. These are references to folders in fileadmin.
@@ -144,7 +144,7 @@ class Tx_SbPortfolio2_Domain_Model_ImageFolder extends Tx_SbPortfolio2_Domain_Mo
 
 		if (!empty($folders)) {
 			$images		= array();
-			$manifest	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Model_Manifest_File');
+			$manifest	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\StephenBungert\SbPortfolio2\Domain\Model\Manifest_File');
 
 			foreach ($folders as $folderIndex => $folderPath) {
 				$manifestData	= $manifest->getManifestData($folderPath);

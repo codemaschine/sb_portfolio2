@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Model_Testimonial extends Tx_SbPortfolio2_Domain_Model_BaseRecord {
+class Testimonial extends BaseRecord {
 
 	/**
 	 * The testimonial title. Mainly used in the BE in table listings, as testimonials don't really need a title.
@@ -80,7 +80,7 @@ class Tx_SbPortfolio2_Domain_Model_Testimonial extends Tx_SbPortfolio2_Domain_Mo
 	/**
 	 * An image of the person making the testimonial, or the company logo.
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Model_Image
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Image
 	 * @lazy
 	 */
 	protected $image;
@@ -221,7 +221,7 @@ class Tx_SbPortfolio2_Domain_Model_Testimonial extends Tx_SbPortfolio2_Domain_Mo
 	/**
 	 * Returns the image
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Image $image
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Image $image
 	 */
 	public function getImage() {
 		return $this->image;
@@ -230,10 +230,10 @@ class Tx_SbPortfolio2_Domain_Model_Testimonial extends Tx_SbPortfolio2_Domain_Mo
 	/**
 	 * Sets the image
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Image $image
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Image $image
 	 * @return void
 	 */
-	public function setImage(Tx_SbPortfolio2_Domain_Model_Image $image) {
+	public function setImage(Image $image) {
 		$this->image = $image;
 	}
 

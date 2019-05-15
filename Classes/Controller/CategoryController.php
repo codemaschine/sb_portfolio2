@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,8 +23,8 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
-
+use \StephenBungert\SbPortfolio2\Domain\Repository;
+use \StephenBungert\SbPortfolio2\Domain\Model;
 /**
  *
  *
@@ -32,43 +32,43 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Controller_CategoryController extends Tx_SbPortfolio2_Controller_CoreRecordController {
+class CategoryController extends CoreRecordController {
 
 	/**
 	 * categoryRepository
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Repository_CategoryRepository
+	 * @var \StephenBungert\SbPortfolio2\Domain\Repository\CategoryRepository
 	 */
 	protected $categoryRepository;
 
 	/**
 	 * injectCategoryRepository
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Repository_CategoryRepository $categoryRepository
+	 * @param \StephenBungert\SbPortfolio2\Domain\Repository\CategoryRepository $categoryRepository
 	 * @return void
 	 */
-	public function injectCategoryRepository(Tx_SbPortfolio2_Domain_Repository_CategoryRepository $categoryRepository) {
+	public function injectCategoryRepository(\StephenBungert\SbPortfolio2\Domain\Repository\CategoryRepository $categoryRepository) {
 		$this->categoryRepository = $categoryRepository;
 	}
 
 	/**
 	 * action list Shows a list of categories
 	 *
-     * @param Tx_SbPortfolio2_Domain_Model_Category $category A category record to filter the view by.
-     * @param Tx_SbPortfolio2_Domain_Model_Tag $tag A client record to filter the view by.
+     * @param \StephenBungert\SbPortfolio2\Domain\Model\Category $category A category record to filter the view by.
+     * @param \StephenBungert\SbPortfolio2\Domain\Model\Tag $tag A client record to filter the view by.
 	 * @return void
 	 */
-	public function listAction(Tx_SbPortfolio2_Domain_Model_Category $category = NULL, Tx_SbPortfolio2_Domain_Model_Tag $tag = NULL) {
+	public function listAction(\StephenBungert\SbPortfolio2\Domain\Model\Category $category = NULL, \StephenBungert\SbPortfolio2\Domain\Model\Tag $tag = NULL) {
 		$this->mergeFlexFormSettings('category');
 		$filters = array(
 			'category'	=> $category,
 			'tag'		=> $tag,
 		);
-		
+
 		$portSetup = $this->getPortSetup();
-		
+
 		$categories = $this->categoryRepository->findRecords($filters, $portSetup);
-		
+
 			// Get sub-categories, if required
 		if($portSetup['displayAs'] == 2 && $portSetup['beginAt'] >= 0 && $portSetup['depth'] > 1) {
 			$categories['records'] = $this->categoryRepository->getSubcategories($categories['records'], $portSetup, $filters);
@@ -81,10 +81,10 @@ class Tx_SbPortfolio2_Controller_CategoryController extends Tx_SbPortfolio2_Cont
 	/**
 	 * action list Shows a list of categories
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Category $category The category to show.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Category $category The category to show.
 	 * @return void
 	 */
-	public function singleAction(Tx_SbPortfolio2_Domain_Model_Category $category) {
+	public function singleAction(\StephenBungert\SbPortfolio2\Domain\Model\Category $category) {
 		$this->view->assign('category', $category);
 	}
 
@@ -95,25 +95,25 @@ class Tx_SbPortfolio2_Controller_CategoryController extends Tx_SbPortfolio2_Cont
 	 */
 	public function getPortSetup() {
 		$portSetup = $this->settings['category']['records'];
-		
+
 		if (isset($portSetup['beginAt'])) {
 			$portSetup['beginAt'] = intval($portSetup['beginAt']);
-			
+
 		} else {
 			$portSetup['beginAt'] = 0;
 		}
-		
+
 		if (isset($portSetup['depth'])) {
 			$portSetup['depth'] = intval($portSetup['depth']);
-			
+
 			if ($portSetup['depth'] < 1) {
 				$portSetup['depth'] = 1;
 			}
-			
+
 		} else {
 			$portSetup['depth'] = 1;
 		}
-		
+
 		return $portSetup;
 	}
 
@@ -130,7 +130,7 @@ class Tx_SbPortfolio2_Controller_CategoryController extends Tx_SbPortfolio2_Cont
 				$ffSettings['beginAt'] = 0;
 			}
 		}
-		
+
 		return $ffSettings;
 	}
 }

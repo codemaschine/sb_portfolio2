@@ -6,7 +6,7 @@ if (!defined('TYPO3_MODE')) {
 
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	$_EXTKEY,
+	'StephenBungert.'.$_EXTKEY,
 	'Items',
 	array(
 		'Item' => 'list,single',
@@ -18,7 +18,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	$_EXTKEY,
+	'StephenBungert.'.$_EXTKEY,
 	'Categories',
 	array(
 		'Category' => 'list,single',
@@ -30,7 +30,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	$_EXTKEY,
+	'StephenBungert.'.$_EXTKEY,
 	'Clients',
 	array(
 		'Client' => 'list,single',
@@ -42,7 +42,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	$_EXTKEY,
+	'StephenBungert.'.$_EXTKEY,
 	'Tags',
 	array(
 		'Tag' => 'list',
@@ -54,7 +54,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	$_EXTKEY,
+	'StephenBungert.'.$_EXTKEY,
 	'Testimonials',
 	array(
 		'Testimonial' => 'list',
@@ -66,7 +66,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	$_EXTKEY,
+	'StephenBungert.'.$_EXTKEY,
 	'Slider',
 	array(
 		'Slider' => 'slider',
@@ -79,14 +79,14 @@ if (!defined('TYPO3_MODE')) {
 
 
 
-//$GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['sbp2'] = ['Tx_SbPortfolio2_ViewHelpers'];
+//$GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['sbp2'] = ['StephenBungert\SbPortfolio2\ViewHelpers'];
 
 
 	// Hook: TCEmain processDatamapClass
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][$_EXTKEY] = 'EXT:' . $_EXTKEY. '/Classes/Hooks/Tcemain.php:Tx_SbPortfolio2_Hooks_Tcemain';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][$_EXTKEY] = \StephenBungert\SbPortfolio2\Hooks\Tcemain::class;
 
 	// AJAX for BE module
-$TYPO3_CONF_VARS['BE']['AJAX']['tx_sbportfolio2::import']				= \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Controller/BeImportController.php:Tx_SbPortfolio2_Controller_BeImportController->ajaxImport';
-$TYPO3_CONF_VARS['BE']['AJAX']['tx_sbportfolio2::importRelated']		= \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Controller/BeImportController.php:Tx_SbPortfolio2_Controller_BeImportController->ajaxImportRelated';
-$TYPO3_CONF_VARS['BE']['AJAX']['tx_sbportfolio2::importTranslation']	= \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Controller/BeImportController.php:Tx_SbPortfolio2_Controller_BeImportController->ajaxImportTranslation';
+$TYPO3_CONF_VARS['BE']['AJAX']['tx_sbportfolio2::import']				= \StephenBungert\SbPortfolio2\Controller\BeImportController::class . '->ajaxImport';
+$TYPO3_CONF_VARS['BE']['AJAX']['tx_sbportfolio2::importRelated']		= \StephenBungert\SbPortfolio2\Controller\BeImportController::class . '->ajaxImportRelated';
+$TYPO3_CONF_VARS['BE']['AJAX']['tx_sbportfolio2::importTranslation']	= \StephenBungert\SbPortfolio2\Controller\BeImportController::class . '->ajaxImportTranslation';
 ?>

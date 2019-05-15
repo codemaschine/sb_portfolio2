@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Repository;
 /***************************************************************
  *  Copyright notice
  *
@@ -33,7 +33,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Repository_NpRecordRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class NpRecordRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
 	 * Finds the single view's record's next record

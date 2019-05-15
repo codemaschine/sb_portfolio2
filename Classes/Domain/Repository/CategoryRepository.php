@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Repository;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,7 +23,7 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Model;
 
 /**
  *
@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository {
+class CategoryRepository extends CoreRecordRepository {
 
 	/**
 	 * If this is a tree rendeing or a flat list.
@@ -93,8 +93,8 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 
 		if (!empty($sbpCat))
 		{
-			$importHelper	= $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Import_Helper', $sbpCat);
-			$sbp2Cat		= $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Category');
+			$importHelper	= $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Import_Helper', $sbpCat);
+			$sbp2Cat		= $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Category');
 
 			$sbp2Cat = $importHelper->setCoreFields($sbp2Cat, TRUE);
 
@@ -105,7 +105,7 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 
 				// Image
 			if (!empty($sbpCat['image'])) {
-				$image = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Image');
+				$image = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Image');
 
 				$image = $importHelper->setCoreFields($image);
 				$image = $importHelper->setImageFields($image, 'image', $sbpCat['image']);
@@ -116,7 +116,7 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 				// Tags
 			if (!empty($sbpCat['tags'])) {
 				$sepTags	= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sbpCat['tags'], TRUE);
-				$tagRepo	= $this->objectManager->get('Tx_SbPortfolio2_Domain_Repository_TagRepository');
+				$tagRepo	= $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Repository\TagRepository');
 
 					// Change the PID so that the queries work
 				$querySettings = $this->objectManager->create('\TYPO3\CMS\Extbase\Persistence\Typo3QuerySettings');
@@ -127,7 +127,7 @@ class Tx_SbPortfolio2_Domain_Repository_CategoryRepository extends Tx_SbPortfoli
 					$tag = $tagRepo->findOneByTitle($tagTitle);
 
 					if ($tag == NULL) { // Not found, make a new record
-						$tag = $this->objectManager->get('Tx_SbPortfolio2_Domain_Model_Tag');
+						$tag = $this->objectManager->get('\StephenBungert\SbPortfolio2\Domain\Model\Tag');
 
 						$tag = $importHelper->setCoreFields($tag);
 						$tag = $importHelper->setTagFields($tag, $tagTitle);

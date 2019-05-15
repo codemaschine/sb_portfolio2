@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_CoreRecord {
+class Client extends CoreRecord {
 
 	/**
 	 * The date that this client became a client and you started working for them.
@@ -44,7 +44,7 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * The client's links.
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Link>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Link>
 	 * @lazy
 	 */
 	protected $links;
@@ -52,7 +52,7 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * The client's testimonial.
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Model_Testimonial
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Testimonial
 	 * @lazy
 	 */
 	protected $testimonial;
@@ -60,7 +60,7 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * An image representing the client.
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Model_Image
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Image
 	 * @lazy
 	 */
 	protected $image;
@@ -68,7 +68,7 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * The client's files.
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_File>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\File>
 	 * @lazy
 	 */
 	protected $files;
@@ -76,7 +76,7 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * The client's categories.
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Category>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Category>
 	 * @lazy
 	 */
 	protected $categories;
@@ -84,15 +84,15 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * The client's tags.
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Tag>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Tag>
 	 * @lazy
 	 */
 	protected $tags;
-	
+
 	/**
 	 * The client's main link - could be to a website, file etc.
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Model_Link
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Link
 	 * @lazy
 	 */
 	protected $linkurl;
@@ -100,11 +100,11 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * The client's logo.
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Model_Image
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Image
 	 * @lazy
 	 */
 	protected $logo;
-	
+
 
 	/**
 	 * __construct
@@ -128,11 +128,11 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 		 * You may modify the constructor of this class instead
 		 */
 		$this->links = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		
+
 		$this->files = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		
+
 		$this->tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		
+
 		$this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
@@ -158,7 +158,7 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Returns the links
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Link $links
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Link $links
 	 */
 	public function getLinks() {
 		return $this->links;
@@ -167,17 +167,17 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Sets the links
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Link $links
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Link $links
 	 * @return void
 	 */
-	public function setLinks(Tx_SbPortfolio2_Domain_Model_Link $links) {
+	public function setLinks(Link $links) {
 		$this->links = $links;
 	}
 
 	/**
 	 * Returns the testimonial
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Testimonial $testimonial
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Testimonial $testimonial
 	 */
 	public function getTestimonial() {
 		return $this->testimonial;
@@ -186,17 +186,17 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Sets the testimonial
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Testimonial $testimonial
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Testimonial $testimonial
 	 * @return void
 	 */
-	public function setTestimonial(Tx_SbPortfolio2_Domain_Model_Testimonial $testimonial) {
+	public function setTestimonial(Testimonial $testimonial) {
 		$this->testimonial = $testimonial;
 	}
-	
+
 	/**
 	 * Returns the image
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Image $image
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Image $image
 	 */
 	public function getImage() {
 		return $this->image;
@@ -205,17 +205,17 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Sets the image
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Image $image
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Image $image
 	 * @return void
 	 */
-	public function setImage(Tx_SbPortfolio2_Domain_Model_Image $image) {
+	public function setImage(Image $image) {
 		$this->image = $image;
 	}
 
 	/**
 	 * Returns the next client
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Client
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Client
 	 */
 	public function getNext() {
 		return $this->next;
@@ -224,17 +224,17 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Sets the next client
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Client $next
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Client $next
 	 * @return void
 	 */
-	public function setNext(Tx_SbPortfolio2_Domain_Model_Client $next) {
+	public function setNext(Client $next) {
 		$this->next = $next;
 	}
 
 	/**
 	 * Returns the previous client
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Client
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Client
 	 */
 	public function getPrevious() {
 		return $this->previous;
@@ -243,37 +243,37 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Sets the previous client
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Client $previous
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Client $previous
 	 * @return void
 	 */
-	public function setPrevious(Tx_SbPortfolio2_Domain_Model_Client $previous) {
+	public function setPrevious(Client $previous) {
 		$this->previous = $previous;
 	}
 
 	/**
 	 * Adds a File
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_File $file
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\File $file
 	 * @return void
 	 */
-	public function addFile(Tx_SbPortfolio2_Domain_Model_File $file) {
+	public function addFile(File $file) {
 		$this->files->attach($file);
 	}
 
 	/**
 	 * Removes a File
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_File $fileToRemove The File to be removed
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\File $fileToRemove The File to be removed
 	 * @return void
 	 */
-	public function removeFile(Tx_SbPortfolio2_Domain_Model_File $fileToRemove) {
+	public function removeFile(File $fileToRemove) {
 		$this->files->detach($fileToRemove);
 	}
 
 	/**
 	 * Returns the files
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_File> $files
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\File> $files
 	 */
 	public function getFiles() {
 		return $this->files;
@@ -282,7 +282,7 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Sets the files
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_File> $files
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\File> $files
 	 * @return void
 	 */
 	public function setFiles(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $files) {
@@ -292,27 +292,27 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Adds a Category
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Category $category
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Category $category
 	 * @return void
 	 */
-	public function addCategory(Tx_SbPortfolio2_Domain_Model_Category $category) {
+	public function addCategory(Category $category) {
 		$this->categories->attach($category);
 	}
 
 	/**
 	 * Removes a Category
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Category $categoryToRemove The Category to be removed
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Category $categoryToRemove The Category to be removed
 	 * @return void
 	 */
-	public function removeCategory(Tx_SbPortfolio2_Domain_Model_Category $categoryToRemove) {
+	public function removeCategory(Category $categoryToRemove) {
 		$this->categories->detach($categoryToRemove);
 	}
 
 	/**
 	 * Returns the categories
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Category> $categories
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Category> $categories
 	 */
 	public function getCategories() {
 		return $this->categories;
@@ -321,7 +321,7 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Sets the categories
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Category> $categories
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Category> $categories
 	 * @return void
 	 */
 	public function setCategories(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories) {
@@ -331,27 +331,27 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Adds a Tag
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Tag $tag
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Tag $tag
 	 * @return void
 	 */
-	public function addTag(Tx_SbPortfolio2_Domain_Model_Tag $tag) {
+	public function addTag(Tag $tag) {
 		$this->tags->attach($tag);
 	}
 
 	/**
 	 * Removes a Tag
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Tag $tagToRemove The Tag to be removed
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Tag $tagToRemove The Tag to be removed
 	 * @return void
 	 */
-	public function removeTag(Tx_SbPortfolio2_Domain_Model_Tag $tagToRemove) {
+	public function removeTag(Tag $tagToRemove) {
 		$this->tags->detach($tagToRemove);
 	}
 
 	/**
 	 * Returns the tags
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Tag> $tags
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Tag> $tags
 	 */
 	public function getTags() {
 		return $this->tags;
@@ -360,7 +360,7 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Sets the tags
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Tag> $tags
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Tag> $tags
 	 * @return void
 	 */
 	public function setTags(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags) {
@@ -369,7 +369,7 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Returns linkurl
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Link $link
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Link $link
 	 */
 	public function getLinkurl() {
 		return $this->linkurl;
@@ -378,16 +378,16 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Sets linkurl
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Link $link
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Link $link
 	 * @return void
 	 */
-	public function setLinkurl(Tx_SbPortfolio2_Domain_Model_Link $link) {
+	public function setLinkurl(Link $link) {
 		$this->linkurl = $link;
 	}
 	/**
 	 * Returns the logo
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Image $logo
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Image $logo
 	 */
 	public function getLogo() {
 		return $this->logo;
@@ -396,10 +396,10 @@ class Tx_SbPortfolio2_Domain_Model_Client extends Tx_SbPortfolio2_Domain_Model_C
 	/**
 	 * Sets the logo
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Image $logo
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Image $logo
 	 * @return void
 	 */
-	public function setLogo(Tx_SbPortfolio2_Domain_Model_Image $logo) {
+	public function setLogo(Image $logo) {
 		$this->logo = $logo;
 	}
 }

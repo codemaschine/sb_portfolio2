@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -31,7 +31,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Controller_CoreRecordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class CoreRecordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * Merges two TS setting arrays.
@@ -42,7 +42,7 @@ class Tx_SbPortfolio2_Controller_CoreRecordController extends \TYPO3\CMS\Extbase
 	 */
 	protected function mergeSettings(array $tsSettings1, array $tsSettings2) {
 		$tsSettings2 = $this->removeEmptyValues($tsSettings2);
-		
+
 		\TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule($tsSettings1, $tsSettings2);
 
 		return $tsSettings1;
@@ -72,7 +72,7 @@ class Tx_SbPortfolio2_Controller_CoreRecordController extends \TYPO3\CMS\Extbase
 		if ($this->settings['ff']) {
 				// Make any changes required to FF settings before merging
 			$this->settings['ff'] = $this->adjustFlexFormSettings($this->settings['ff']); // Changes for the current plugin (optional)
-				
+
 				// Merge
 			$this->settings[$pluginSettings]['records'] = $this->mergeSettings($this->settings[$pluginSettings]['records'], $this->settings['ff']);
 

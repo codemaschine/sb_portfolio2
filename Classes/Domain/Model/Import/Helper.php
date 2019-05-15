@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model\Import;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,7 +23,7 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Model;
 
 /**
  * A class that contains utility functions used during import or sb_portfolio records to sb_portfolio2
@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Model_Import_Helper {
+class Import_Helper {
 
 	/**
 	 * A record from an sb_portfolio.
@@ -288,12 +288,12 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 	/**
 	 * Sets Link record fields.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Link $link An sb_portfolio2 Link record.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Link $link An sb_portfolio2 Link record.
 	 * @param string $suffix The suffix for the title - could be "main link" for example.
 	 * @param string $linkField The field with the link
-	 * @return Tx_SbPortfolio2_Domain_Model_Link $link The Link record with certain fields set.
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Link $link The Link record with certain fields set.
 	 */
-	public function setLinkFields(Tx_SbPortfolio2_Domain_Model_Link $link, $suffix, $linkField) {
+	public function setLinkFields(\StephenBungert\SbPortfolio2\Domain\Model\Link $link, $suffix, $linkField) {
 		$title		= $this->sbpRec['title'] . ' ' . $suffix;
 		$linkType	= $this->getLinkType($linkField);
 
@@ -326,10 +326,10 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 	/**
 	 * Sets Image Folder record fields.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_ImageFolder $imageFolder An sb_portfolio2 Image Folder record.
-	 * @return Tx_SbPortfolio2_Domain_Model_ImageFolder $imageFolder The Image folder record with certain fields set.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\ImageFolder $imageFolder An sb_portfolio2 Image Folder record.
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\ImageFolder $imageFolder The Image folder record with certain fields set.
 	 */
-	public function setImageFolderFields(Tx_SbPortfolio2_Domain_Model_ImageFolder $imageFolder) {
+	public function setImageFolderFields(\StephenBungert\SbPortfolio2\Domain\Model\ImageFolder $imageFolder) {
 		$title = $this->sbpRec['title'] . ' image folder';
 
 		$imageFolder->setTitle($title);
@@ -343,13 +343,13 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 	/**
 	 * Sets Image record fields.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Image $image An sb_portfolio2 Image record.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Image $image An sb_portfolio2 Image record.
 	 * @param string $suffix The suffix for the title - could be preview for example.
 	 * @param string $imagePath The file path of the image
 	 * @param integer $imgNumber The number of the image - in cases where there are more than one, otherwise this is -1.
-	 * @return Tx_SbPortfolio2_Domain_Model_Image $image The Image record with certain fields set.
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Image $image The Image record with certain fields set.
 	 */
-	public function setImageFields(Tx_SbPortfolio2_Domain_Model_Image $image, $suffix, $imagePath, $imgNumber = -1) {
+	public function setImageFields(\StephenBungert\SbPortfolio2\Domain\Model\Image $image, $suffix, $imagePath, $imgNumber = -1) {
 		$filePath	= $this->imgUploadPath . $imagePath;
 		$title		= $this->sbpRec['title'] . ' ' . $suffix;
 
@@ -390,10 +390,10 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 	/**
 	 * Sets Film record fields.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Film $film An sb_portfolio2 Film record.
-	 * @return Tx_SbPortfolio2_Domain_Model_Film $film The Film record with certain fields set.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Film $film An sb_portfolio2 Film record.
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Film $film The Film record with certain fields set.
 	 */
-	public function setFilmFields(Tx_SbPortfolio2_Domain_Model_Film $film) {
+	public function setFilmFields(\StephenBungert\SbPortfolio2\Domain\Model\Film $film) {
 		$title = $this->sbpRec['title'] . ' film';
 
 		$film->setTitle($title);
@@ -408,10 +408,10 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 	 * Sets Image record fields.
 	 *
 	 * @todo Add image
-	 * @param Tx_SbPortfolio2_Domain_Model_Testimonial $testimonial An sb_portfolio2 Testimonial record.
-	 * @return Tx_SbPortfolio2_Domain_Model_Testimonial $testimonial The Testimonial record with certain fields set.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Testimonial $testimonial An sb_portfolio2 Testimonial record.
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Testimonial $testimonial The Testimonial record with certain fields set.
 	 */
-	public function setTestimonialFields(Tx_SbPortfolio2_Domain_Model_Testimonial $testimonial) {
+	public function setTestimonialFields(\StephenBungert\SbPortfolio2\Domain\Model\Testimonial $testimonial) {
 		$title = $this->sbpRec['title'] . ' testimonial';
 
 		$testimonial->setTitle($title);
@@ -439,12 +439,12 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 	/**
 	 * Sets File record fields.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_File $file An sb_portfolio2 File record.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\File $file An sb_portfolio2 File record.
 	 * @param string $filePath The file path of the file
 	 * @param integer $fileNumber The number of the file - in cases where there are more than one, otherwise this is -1.
-	 * @return Tx_SbPortfolio2_Domain_Model_File $file The File record with certain fields set.
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\File $file The File record with certain fields set.
 	 */
-	public function setFileFields(Tx_SbPortfolio2_Domain_Model_File $file, $filePath, $fileNumber = -1) {
+	public function setFileFields(\StephenBungert\SbPortfolio2\Domain\Model\File $file, $filePath, $fileNumber = -1) {
 		$title = $this->sbpRec['title'] . ' file';
 
 		if ($fileNumber >= 0) {
@@ -470,11 +470,11 @@ class Tx_SbPortfolio2_Domain_Model_Import_Helper {
 	/**
 	 * Sets Tag record fields.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Tag $tag An sb_portfolio2 Tag record.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Tag $tag An sb_portfolio2 Tag record.
 	 * @param string $tagTitle The tag itself.
-	 * @return Tx_SbPortfolio2_Domain_Model_Tag $tag The Tag record with certain fields set.
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Tag $tag The Tag record with certain fields set.
 	 */
-	public function setTagFields(Tx_SbPortfolio2_Domain_Model_Tag $tag, $tagTitle) {
+	public function setTagFields(\StephenBungert\SbPortfolio2\Domain\Model\Tag $tag, $tagTitle) {
 		$tag->setTitle($tagTitle);
 
 		return $tag;

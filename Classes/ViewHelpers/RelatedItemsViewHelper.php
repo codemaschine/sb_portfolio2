@@ -50,12 +50,12 @@ class RelatedItemsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
 		$items		= NULL;
 		$className	= get_class($record);
 
-		if ($className == 'Tx_SbPortfolio2_Domain_Model_Item' || $className == 'Tx_SbPortfolio2_Domain_Model_Client') {
+		if ($className == '\\StephenBungert\\SbPortfolio2\\Domain\\Model\\Item' || $className == '\\StephenBungert\\SbPortfolio2\\Domain\\Model\\Client') {
 			$uid		= $record->getUid();
 			$recordType	= $this->getRecordType($className);
 
 				// Get client portfolio
-			$repository	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $recordType . 'Repository');
+			$repository	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\StephenBungert\\SbPortfolio2\\Domain\\Repository\\' . $recordType . 'Repository');
 
 			$options = array (
 				'record'	=> $rec,
@@ -89,7 +89,7 @@ class RelatedItemsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
 
 	/**
 	 * Returns the type of model that $record is.
-	 * e.g. if $record of the class "Tx_SbPortfolio2_Domain_Model_Item"
+	 * e.g. if $record of the class "\StephenBungert\SbPortfolio2\Domain\Model\Item"
 	 * "Item" will be returned
 	 *
 	 * @param string $className $record's class name.

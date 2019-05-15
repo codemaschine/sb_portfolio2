@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Flickr;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,7 +23,7 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Flickr\Authorisation;
 
 /**
  * A class to contact flickr and get images.
@@ -34,7 +34,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Flickr_Flickr extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Flickr extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * The base url for API queries.
@@ -82,7 +82,7 @@ class Tx_SbPortfolio2_Domain_Flickr_Flickr extends \TYPO3\CMS\Extbase\DomainObje
 	 * @return void
 	 */
 	public function __construct($apiKey) {
-		$this->oAuth = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Flickr_Authorisation_OAuth', $apiKey);
+		$this->oAuth = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\StephenBungert\SbPortfolio2\Domain\Flickr\Authorisation\OAuth', $apiKey);
 	}
 
 

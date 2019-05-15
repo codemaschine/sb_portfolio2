@@ -25,7 +25,7 @@ namespace StephenBungert\SbPortfolio2\ViewHelpers;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Repository;
 /**
  *  * ViewHelper for getting the current record's next/previous records.
  *
@@ -52,7 +52,7 @@ class NextPreviousViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
 
 		$recordType = ucfirst($recordType);
 
-		$repository	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $recordType .'Repository');
+		$repository	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\StephenBungert\\SbPortfolio2\\Domain\\Repository\\' . $recordType .'Repository');
 		$npRecord	= NULL;
 
 		if ($npType == 'next') {

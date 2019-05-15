@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2011 Stephen Bungert <stephenbungert@yahoo.de>
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,7 +25,7 @@
  ***************************************************************/
 
 /**
- * Test case for class Tx_SbPortfolio2_Domain_Model_Testimonial.
+ * Test case for class \StephenBungert\SbPortfolio2\Domain\Model\Testimonial.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -36,21 +36,21 @@
  *
  * @author Stephen Bungert <stephenbungert@yahoo.de>
  */
-class Tx_SbPortfolio2_Domain_Model_TestimonialTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
+class TestimonialTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var Tx_SbPortfolio2_Domain_Model_Testimonial
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Testimonial
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new Tx_SbPortfolio2_Domain_Model_Testimonial();
+		$this->fixture = new Testimonial();
 	}
 
 	public function tearDown() {
 		unset($this->fixture);
 	}
-	
-	
+
+
 	/**
 	 * @test
 	 */
@@ -59,7 +59,7 @@ class Tx_SbPortfolio2_Domain_Model_TestimonialTest extends \TYPO3\CMS\Extbase\Te
 	/**
 	 * @test
 	 */
-	public function setBodyForStringSetsBody() { 
+	public function setBodyForStringSetsBody() {
 		$this->fixture->setBody('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -67,7 +67,7 @@ class Tx_SbPortfolio2_Domain_Model_TestimonialTest extends \TYPO3\CMS\Extbase\Te
 			$this->fixture->getBody()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -76,7 +76,7 @@ class Tx_SbPortfolio2_Domain_Model_TestimonialTest extends \TYPO3\CMS\Extbase\Te
 	/**
 	 * @test
 	 */
-	public function setNameForStringSetsName() { 
+	public function setNameForStringSetsName() {
 		$this->fixture->setName('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -84,7 +84,7 @@ class Tx_SbPortfolio2_Domain_Model_TestimonialTest extends \TYPO3\CMS\Extbase\Te
 			$this->fixture->getName()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -94,7 +94,7 @@ class Tx_SbPortfolio2_Domain_Model_TestimonialTest extends \TYPO3\CMS\Extbase\Te
 	 * @test
 	 */
 	public function setDatetimeForDateTimeSetsDatetime() { }
-	
+
 	/**
 	 * @test
 	 */
@@ -103,7 +103,7 @@ class Tx_SbPortfolio2_Domain_Model_TestimonialTest extends \TYPO3\CMS\Extbase\Te
 	/**
 	 * @test
 	 */
-	public function setCompanyForStringSetsCompany() { 
+	public function setCompanyForStringSetsCompany() {
 		$this->fixture->setCompany('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -111,7 +111,7 @@ class Tx_SbPortfolio2_Domain_Model_TestimonialTest extends \TYPO3\CMS\Extbase\Te
 			$this->fixture->getCompany()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -120,7 +120,7 @@ class Tx_SbPortfolio2_Domain_Model_TestimonialTest extends \TYPO3\CMS\Extbase\Te
 	/**
 	 * @test
 	 */
-	public function setPositionForStringSetsPosition() { 
+	public function setPositionForStringSetsPosition() {
 		$this->fixture->setPosition('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -128,7 +128,7 @@ class Tx_SbPortfolio2_Domain_Model_TestimonialTest extends \TYPO3\CMS\Extbase\Te
 			$this->fixture->getPosition()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -138,6 +138,6 @@ class Tx_SbPortfolio2_Domain_Model_TestimonialTest extends \TYPO3\CMS\Extbase\Te
 	 * @test
 	 */
 	public function setImageForTx_SbPortfolio2_Domain_Model_ImageSetsImage() { }
-	
+
 }
 ?>

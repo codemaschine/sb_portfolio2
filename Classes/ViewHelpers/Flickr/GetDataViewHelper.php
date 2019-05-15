@@ -25,7 +25,7 @@ namespace StephenBungert\SbPortfolio2\ViewHelpers\Flickr;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Flickr;
 /**
  * ViewHelper for getting flickr data.
  *
@@ -95,7 +95,7 @@ class GetDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		$this->checkForBasicErrors();
 
 		if ($this->basicError === FALSE) {
-			$this->flickr = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Flickr_Flickr', $this->getApiKey());
+			$this->flickr = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\StephenBungert\SbPortfolio2\Domain\Flickr\Flickr', $this->getApiKey());
 
 				// Get params
 			$methodParams	= $this->getMethodParams('getPhotos');

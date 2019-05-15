@@ -25,7 +25,7 @@ namespace StephenBungert\SbPortfolio2\ViewHelpers\Combine;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Model;
 /**
  * A base ViewHelper for various combining ViewHelpers.
  *
@@ -78,7 +78,7 @@ class CombinableViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
 	public function combineRecords($record) {
 		$this->recordClass			= get_class($record);
 
-		if ($this->recordClass != 'Tx_SbPortfolio2_Domain_Model_Category') {
+		if ($this->recordClass != '\StephenBungert\SbPortfolio2\Domain\Model\Category') {
 			$this->categories = $record->getCategories();
 		}
 
@@ -98,10 +98,10 @@ class CombinableViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
 
 				$this->combinedRecords[$recUid] = $rec;
 
-				if ($this->recordClass == 'Tx_SbPortfolio2_Domain_Model_Client') {
+				if ($this->recordClass == '\StephenBungert\SbPortfolio2\Domain\Model\Client') {
 					$this->combinedRecords[$recUid]->setClientRecord(true);
 
-				} else { // Assume 'Tx_SbPortfolio2_Domain_Model_Item'
+				} else { // Assume '\StephenBungert\SbPortfolio2\Domain\Model\Item'
 					$this->combinedRecords[$recUid]->setItemRecord(true);
 				}
 			}

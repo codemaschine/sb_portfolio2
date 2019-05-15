@@ -25,7 +25,7 @@ namespace StephenBungert\SbPortfolio2\ViewHelpers\Link;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Model;
 /**
  * ViewHelper for List classes
  *
@@ -37,10 +37,10 @@ class RelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper 
 	/**
 	 * Adds the nofollow rel attribute for a link
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Link $link The current link record
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Link $link The current link record
 	 * @return string The rel attribute, if required by the link
 	 */
-	public function render(\Tx_SbPortfolio2_Domain_Model_Link $link) {
+	public function render(\StephenBungert\SbPortfolio2\Domain\Model\Link $link) {
 		$relAttr = '';
 
 		if ($link->isNofollow()) {

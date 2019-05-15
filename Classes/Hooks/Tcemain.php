@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Hooks;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,7 +23,7 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Model\Manifest;
 
 /**
  * Hooks for Tcemain, to manipulate records.
@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Hooks_Tcemain {
+class Tcemain {
 
 	/**
 	 * postProcessFieldArray hook, used to set certain properties of sb_portfolio2 records, like setting file information or image sizes, etc.
@@ -80,7 +80,7 @@ class Tx_SbPortfolio2_Hooks_Tcemain {
 	 * @return void.
 	 */
 	protected function proofManifestFile($folder) {
-		$manifest = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Model_Manifest_File');
+		$manifest = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\StephenBungert\SbPortfolio2\Domain\Model\Manifest\File');
 
 		if ($manifest->manifestFileExists($folder)) {
 			$manifest->checkManifestFileForCompatability($folder);

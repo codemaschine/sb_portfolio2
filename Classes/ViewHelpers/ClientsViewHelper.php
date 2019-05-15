@@ -25,7 +25,8 @@ namespace StephenBungert\SbPortfolio2\ViewHelpers;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Repository;
+use \StephenBungert\SbPortfolio2\Domain\Model;
 /**
  *  * ViewHelper for getting clients related to a category.
  *
@@ -37,28 +38,28 @@ class ClientsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 	/**
 	 * clientRepository
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Repository_ClientRepository
+	 * @var \StephenBungert\SbPortfolio2\Domain\Repository\ClientRepository
 	 */
 	protected $clientRepository;
 
 	/**
 	 * injectCategoryRepository
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Repository_ClientRepository $clientRepository
+	 * @param \StephenBungert\SbPortfolio2\Domain\Repository\ClientRepository $clientRepository
 	 * @return void
 	 */
-	public function injectCategoryRepository(\Tx_SbPortfolio2_Domain_Repository_ClientRepository $clientRepository) {
+	public function injectCategoryRepository(\StephenBungert\SbPortfolio2\Domain\Repository\ClientRepository $clientRepository) {
 		$this->clientRepository = $clientRepository;
 	}
 
 	/**
 	 * Returns the clients related to a category.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Category $category The category.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Category $category The category.
 	 * @param array $clientSetup The TS setup for the query.
 	 * @return mixed NULL or the category's client records.
 	 */
-	public function render(\Tx_SbPortfolio2_Domain_Model_Category $category = NULL, array $clientSetup) {
+	public function render(\StephenBungert\SbPortfolio2\Domain\Model\Category $category = NULL, array $clientSetup) {
 		$clients = NULL;
 
 		if ($category !== NULL) {

@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2011 Stephen Bungert <stephenbungert@yahoo.de>
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,7 +25,7 @@
  ***************************************************************/
 
 /**
- * Test case for class Tx_SbPortfolio2_Domain_Model_Folder.
+ * Test case for class \StephenBungert\SbPortfolio2\Domain\Model\Folder.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -36,26 +36,26 @@
  *
  * @author Stephen Bungert <stephenbungert@yahoo.de>
  */
-class Tx_SbPortfolio2_Domain_Model_FolderTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
+class FolderTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var Tx_SbPortfolio2_Domain_Model_Folder
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Folder
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new Tx_SbPortfolio2_Domain_Model_Folder();
+		$this->fixture = new Folder();
 	}
 
 	public function tearDown() {
 		unset($this->fixture);
 	}
-	
+
 	/**
 	 * @test
 	 */
 	public function dummyTestToNotLeaveThisFileEmpty() {
 		$this->markTestIncomplete();
 	}
-	
+
 }
 ?>

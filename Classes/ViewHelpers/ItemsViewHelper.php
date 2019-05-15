@@ -25,7 +25,7 @@ namespace StephenBungert\SbPortfolio2\ViewHelpers;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Repository;
 /**
  *  * ViewHelper for getting items related to a client or category.
  *
@@ -37,17 +37,17 @@ class ItemsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelpe
 	/**
 	 * itemRepository
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Repository_ItemRepository
+	 * @var \StephenBungert\SbPortfolio2\Domain\Repository\ItemRepository
 	 */
 	protected $itemRepository;
 
 	/**
 	 * injectItemRepository
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Repository_ItemRepository $itemRepository
+	 * @param \StephenBungert\SbPortfolio2\Domain\Repository\ItemRepository $itemRepository
 	 * @return void
 	 */
-	public function injectItemRepository(\Tx_SbPortfolio2_Domain_Repository_ItemRepository $itemRepository) {
+	public function injectItemRepository(\StephenBungert\SbPortfolio2\Domain\Repository\ItemRepository $itemRepository) {
 		$this->itemRepository = $itemRepository;
 	}
 

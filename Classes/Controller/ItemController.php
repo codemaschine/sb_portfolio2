@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,7 +23,8 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Repository;
+use \StephenBungert\SbPortfolio2\Domain\Model;
 /**
  *
  *
@@ -31,12 +32,12 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Controller_ItemController extends Tx_SbPortfolio2_Controller_CoreRecordController {
+class ItemController extends CoreRecordController {
 
 	/**
 	 * itemRepository
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Repository_ItemRepository
+	 * @var \StephenBungert\SbPortfolio2\Domain\Repository\ItemRepository
 	 */
 	protected $itemRepository;
 
@@ -45,10 +46,10 @@ class Tx_SbPortfolio2_Controller_ItemController extends Tx_SbPortfolio2_Controll
 	/**
 	 * injectItemRepository
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Repository_ItemRepository $itemRepository
+	 * @param \StephenBungert\SbPortfolio2\Domain\Repository\ItemRepository $itemRepository
 	 * @return void
 	 */
-	public function injectItemRepository(Tx_SbPortfolio2_Domain_Repository_ItemRepository $itemRepository) {
+	public function injectItemRepository(\StephenBungert\SbPortfolio2\Domain\Repository\ItemRepository $itemRepository) {
 		$this->itemRepository = $itemRepository;
 	}
 
@@ -57,11 +58,11 @@ class Tx_SbPortfolio2_Controller_ItemController extends Tx_SbPortfolio2_Controll
 	/**
 	 * action list Shows a list of portfolio items.
 	 *
-     * @param Tx_SbPortfolio2_Domain_Model_Client $client A client record to filter the view by.
-     * @param Tx_SbPortfolio2_Domain_Model_Category $category A category record to filter the view by.
-     * @param Tx_SbPortfolio2_Domain_Model_Tag $tag A client record to filter the view by.
+   * @param \StephenBungert\SbPortfolio2\Domain\Model\Client $client A client record to filter the view by.
+   * @param \StephenBungert\SbPortfolio2\Domain\Model\Category $category A category record to filter the view by.
+   * @param \StephenBungert\SbPortfolio2\Domain\Model\Tag $tag A client record to filter the view by.
 	 * @return void	 */
-	public function listAction(Tx_SbPortfolio2_Domain_Model_Client $client = NULL, Tx_SbPortfolio2_Domain_Model_Category $category = NULL, Tx_SbPortfolio2_Domain_Model_Tag $tag = NULL) {
+	public function listAction(\StephenBungert\SbPortfolio2\Domain\Model\Client $client = NULL, \StephenBungert\SbPortfolio2\Domain\Model\Category $category = NULL, \StephenBungert\SbPortfolio2\Domain\Model\Tag $tag = NULL) {
 		$this->mergeFlexFormSettings('item');
 		$filters = array(
 			'client'	=> $client,
@@ -71,6 +72,8 @@ class Tx_SbPortfolio2_Controller_ItemController extends Tx_SbPortfolio2_Controll
 
 		$items = $this->itemRepository->findRecords($filters, $this->settings['item']['records']);
 
+		$item = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('item');
+		$this->view->assign('activeItem', $item);
 		$this->view->assign('items', 		$items['records']);
 		$this->view->assign('filtering',	$items['filterInfo']);
 	}
@@ -78,10 +81,10 @@ class Tx_SbPortfolio2_Controller_ItemController extends Tx_SbPortfolio2_Controll
 	/**
 	 * action single Shows one portfolio item.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Item $item The item to show
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Item $item The item to show
 	 * @return void
 	 */
-	public function singleAction(Tx_SbPortfolio2_Domain_Model_Item $item = NULL) {
+	public function singleAction(\StephenBungert\SbPortfolio2\Domain\Model\Item $item = NULL) {
 		$this->view->assign('item', $item);
 	}
 }

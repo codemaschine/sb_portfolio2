@@ -19,7 +19,7 @@ if (TYPO3_MODE === 'BE') {
 	 * Registers the portfolio backend sub-modules
 	 */
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-		$_EXTKEY,
+		'StephenBungert.'.$_EXTKEY,
 		'web',
 		'sbp2beimport',
 		'',

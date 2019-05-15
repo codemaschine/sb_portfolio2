@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2011 Stephen Bungert <stephenbungert@yahoo.de>
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,7 +25,7 @@
  ***************************************************************/
 
 /**
- * Test case for class Tx_SbPortfolio2_Domain_Model_Category.
+ * Test case for class \StephenBungert\SbPortfolio2\Domain\Model\Category.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -36,21 +36,21 @@
  *
  * @author Stephen Bungert <stephenbungert@yahoo.de>
  */
-class Tx_SbPortfolio2_Domain_Model_CategoryTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
+class CategoryTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var Tx_SbPortfolio2_Domain_Model_Category
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Category
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new Tx_SbPortfolio2_Domain_Model_Category();
+		$this->fixture = new Category();
 	}
 
 	public function tearDown() {
 		unset($this->fixture);
 	}
-	
-	
+
+
 	/**
 	 * @test
 	 */
@@ -59,7 +59,7 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends \TYPO3\CMS\Extbase\Tests
 	/**
 	 * @test
 	 */
-	public function setTitleForStringSetsTitle() { 
+	public function setTitleForStringSetsTitle() {
 		$this->fixture->setTitle('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -67,7 +67,7 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends \TYPO3\CMS\Extbase\Tests
 			$this->fixture->getTitle()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -76,7 +76,7 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends \TYPO3\CMS\Extbase\Tests
 	/**
 	 * @test
 	 */
-	public function setDescriptionForStringSetsDescription() { 
+	public function setDescriptionForStringSetsDescription() {
 		$this->fixture->setDescription('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -84,11 +84,11 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends \TYPO3\CMS\Extbase\Tests
 			$this->fixture->getDescription()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
-	public function getTagsReturnsInitialValueForObjectStorageContainingTx_SbPortfolio2_Domain_Model_Tag() { 
+	public function getTagsReturnsInitialValueForObjectStorageContainingTx_SbPortfolio2_Domain_Model_Tag() {
 		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
@@ -100,7 +100,7 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends \TYPO3\CMS\Extbase\Tests
 	 * @test
 	 */
 	public function setTagsForObjectStorageContainingTx_SbPortfolio2_Domain_Model_TagSetsTags() { 
-		$tag = new Tx_SbPortfolio2_Domain_Model_Tag();
+		$tag = new Tag();
 		$objectStorageHoldingExactlyOneTags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneTags->attach($tag);
 		$this->fixture->setTags($objectStorageHoldingExactlyOneTags);
@@ -110,12 +110,12 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends \TYPO3\CMS\Extbase\Tests
 			$this->fixture->getTags()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
 	public function addTagToObjectStorageHoldingTags() {
-		$tag = new Tx_SbPortfolio2_Domain_Model_Tag();
+		$tag = new Tag();
 		$objectStorageHoldingExactlyOneTag = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneTag->attach($tag);
 		$this->fixture->addTag($tag);
@@ -130,7 +130,7 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends \TYPO3\CMS\Extbase\Tests
 	 * @test
 	 */
 	public function removeTagFromObjectStorageHoldingTags() {
-		$tag = new Tx_SbPortfolio2_Domain_Model_Tag();
+		$tag = new Tag();
 		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$localObjectStorage->attach($tag);
 		$localObjectStorage->detach($tag);
@@ -142,7 +142,7 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends \TYPO3\CMS\Extbase\Tests
 			$this->fixture->getTags()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -152,6 +152,6 @@ class Tx_SbPortfolio2_Domain_Model_CategoryTest extends \TYPO3\CMS\Extbase\Tests
 	 * @test
 	 */
 	public function setImageForTx_SbPortfolio2_Domain_Model_ImageSetsImage() { }
-	
+
 }
 ?>

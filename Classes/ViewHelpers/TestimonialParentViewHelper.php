@@ -25,7 +25,7 @@ namespace StephenBungert\SbPortfolio2\ViewHelpers;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Model;
 /**
  *  * ViewHelper for getting a testimonial's parent item/client record.
  *
@@ -44,10 +44,10 @@ class TestimonialParentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstr
 	/**
 	 * Returns the testimonial parent record.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Testimonial $testimonial The current testimonial record
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Testimonial $testimonial The current testimonial record
 	 * @return mixed $parentRecord The testimonial parent record or NULL.
 	 */
-	public function render(\Tx_SbPortfolio2_Domain_Model_Testimonial $testimonial) {
+	public function render(\StephenBungert\SbPortfolio2\Domain\Model\Testimonial $testimonial) {
 		$parentRecord = NULL;
 
 			// See if this testimonial is for an item
@@ -66,7 +66,7 @@ class TestimonialParentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstr
 		}
 
 		if ($parentId >= 1) {
-			$repository		= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $this->testimonialType .'Repository');
+			$repository		= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\StephenBungert\\SbPortfolio2\\Domain\\Repository\\' . $this->testimonialType .'Repository');
 			$parentRecord	= $repository->findByUid($parentId);
 		}
 

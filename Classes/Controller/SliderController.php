@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,7 +23,7 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Repository;
 
 /**
  *
@@ -32,22 +32,22 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Controller_SliderController extends Tx_SbPortfolio2_Controller_CoreRecordController {
+class SliderController extends CoreRecordController {
 
 	/**
 	 * sliderRepository
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Repository_SliderRepository
+	 * @var \StephenBungert\SbPortfolio2\Domain\Repository\SliderRepository
 	 */
 	protected $sliderRepository;
 
 	/**
 	 * injectSliderRepository
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Repository_SliderRepository $sliderRepository
+	 * @param \StephenBungert\SbPortfolio2\Domain\Repository\SliderRepository $sliderRepository
 	 * @return void
 	 */
-	public function injectSliderRepository(Tx_SbPortfolio2_Domain_Repository_SliderRepository $sliderRepository) {
+	public function injectSliderRepository(\StephenBungert\SbPortfolio2\Domain\Repository\SliderRepository $sliderRepository) {
 		$this->sliderRepository = $sliderRepository;
 	}
 

@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2011 Stephen Bungert <stephenbungert@yahoo.de>
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,7 +25,7 @@
  ***************************************************************/
 
 /**
- * Test case for class Tx_SbPortfolio2_Domain_Model_Client.
+ * Test case for class \StephenBungert\SbPortfolio2\Domain\Model\Client.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -36,21 +36,21 @@
  *
  * @author Stephen Bungert <stephenbungert@yahoo.de>
  */
-class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
+class ClientTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var Tx_SbPortfolio2_Domain_Model_Client
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Client
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new Tx_SbPortfolio2_Domain_Model_Client();
+		$this->fixture = new Client();
 	}
 
 	public function tearDown() {
 		unset($this->fixture);
 	}
-	
-	
+
+
 	/**
 	 * @test
 	 */
@@ -59,7 +59,7 @@ class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\U
 	/**
 	 * @test
 	 */
-	public function setTitleForStringSetsTitle() { 
+	public function setTitleForStringSetsTitle() {
 		$this->fixture->setTitle('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -67,7 +67,7 @@ class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\U
 			$this->fixture->getTitle()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -76,7 +76,7 @@ class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\U
 	/**
 	 * @test
 	 */
-	public function setTitleshortForStringSetsTitleshort() { 
+	public function setTitleshortForStringSetsTitleshort() {
 		$this->fixture->setTitleshort('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -84,7 +84,7 @@ class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\U
 			$this->fixture->getTitleshort()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -93,7 +93,7 @@ class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\U
 	/**
 	 * @test
 	 */
-	public function setSummaryForStringSetsSummary() { 
+	public function setSummaryForStringSetsSummary() {
 		$this->fixture->setSummary('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -101,7 +101,7 @@ class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\U
 			$this->fixture->getSummary()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -110,7 +110,7 @@ class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\U
 	/**
 	 * @test
 	 */
-	public function setFulldescriptionForStringSetsFulldescription() { 
+	public function setFulldescriptionForStringSetsFulldescription() {
 		$this->fixture->setFulldescription('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -118,7 +118,7 @@ class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\U
 			$this->fixture->getFulldescription()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -128,7 +128,7 @@ class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\U
 	 * @test
 	 */
 	public function setDatetimeForDateTimeSetsDatetime() { }
-	
+
 	/**
 	 * @test
 	 */
@@ -138,7 +138,7 @@ class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\U
 	 * @test
 	 */
 	public function setLinksForTx_SbPortfolio2_Domain_Model_LinkSetsLinks() { }
-	
+
 	/**
 	 * @test
 	 */
@@ -148,7 +148,7 @@ class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\U
 	 * @test
 	 */
 	public function setTestimonialForTx_SbPortfolio2_Domain_Model_TestimonialSetsTestimonial() { }
-	
+
 	/**
 	 * @test
 	 */
@@ -158,6 +158,6 @@ class Tx_SbPortfolio2_Domain_Model_ClientTest extends \TYPO3\CMS\Extbase\Tests\U
 	 * @test
 	 */
 	public function setImageForTx_SbPortfolio2_Domain_Model_ImageSetsImage() { }
-	
+
 }
 ?>

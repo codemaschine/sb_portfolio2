@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Controller;
 /***************************************************************
  *	Copyright notice
  *
@@ -23,7 +23,7 @@
  *
  *	This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Repository;
 /**
  * The Backend module's controller.
  *
@@ -31,26 +31,26 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Controller_BeImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class BeImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * beImportItemRepository
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Repository_ItemRepository
+	 * @var \StephenBungert\SbPortfolio2\Domain\Repository\ItemRepository
 	 */
 	protected $beImportItemRepository;
 
 	/**
 	 * beImportClientRepository
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Repository_ClientRepository
+	 * @var \StephenBungert\SbPortfolio2\Domain\Repository\ClientRepository
 	 */
 	protected $beImportClientRepository;
 
 	/**
 	 * beImportCategoryRepository
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Repository_CategoryRepository
+	 * @var \StephenBungert\SbPortfolio2\Domain\Repository\CategoryRepository
 	 */
 	protected $beImportCategoryRepository;
 
@@ -72,30 +72,30 @@ class Tx_SbPortfolio2_Controller_BeImportController extends \TYPO3\CMS\Extbase\M
 	/**
 	 * injectBeImportItemRepository
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Repository_ItemRepository $beImportItemRepository
+	 * @param \StephenBungert\SbPortfolio2\Domain\Repository\ItemRepository $beImportItemRepository
 	 * @return void
 	 */
-	public function injectBeImportItemRepository(Tx_SbPortfolio2_Domain_Repository_ItemRepository $beImportItemRepository) {
+	public function injectBeImportItemRepository(\StephenBungert\SbPortfolio2\Domain\Repository\ItemRepository $beImportItemRepository) {
 		$this->beImportItemRepository = $beImportItemRepository;
 	}
 
 	/**
 	 * injectBeImportClientRepository
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Repository_ClientRepository $beImportClientRepository
+	 * @param \StephenBungert\SbPortfolio2\Domain\Repository\ClientRepository $beImportClientRepository
 	 * @return void
 	 */
-	public function injectBeImportClientRepository(Tx_SbPortfolio2_Domain_Repository_ClientRepository $beImportClientRepository) {
+	public function injectBeImportClientRepository(\StephenBungert\SbPortfolio2\Domain\Repository\ClientRepository $beImportClientRepository) {
 		$this->beImportClientRepository = $beImportClientRepository;
 	}
 
 	/**
 	 * injectBeImportCategoryRepository
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Repository_CategoryRepository $beImportCategoryRepository
+	 * @param \StephenBungert\SbPortfolio2\Domain\Repository\CategoryRepository $beImportCategoryRepository
 	 * @return void
 	 */
-	public function injectBeImportCategoryRepository(Tx_SbPortfolio2_Domain_Repository_CategoryRepository $beImportCategoryRepository) {
+	public function injectBeImportCategoryRepository(\StephenBungert\SbPortfolio2\Domain\Repository\CategoryRepository $beImportCategoryRepository) {
 		$this->beImportCategoryRepository = $beImportCategoryRepository;
 	}
 
@@ -160,7 +160,7 @@ class Tx_SbPortfolio2_Controller_BeImportController extends \TYPO3\CMS\Extbase\M
 				$findPids = $branchIds;
 			}
 
-			$recRepo	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $repo . 'Repository');
+			$recRepo	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\StephenBungert\\SbPortfolio2\\Domain\\Repository\\' . $repo . 'Repository');
 			$records	= $recRepo->findImportRecords($findPids, $requestIndex, $type);
 
 			if ($records == null) {
@@ -214,8 +214,8 @@ class Tx_SbPortfolio2_Controller_BeImportController extends \TYPO3\CMS\Extbase\M
 				$findPidsArray	= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $branchIds);
 			}
 
-			$itemRepo	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_ItemRepository');
-			$recRepo	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $repo . 'Repository');
+			$itemRepo	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\StephenBungert\\SbPortfolio2\\Domain\\Repository\\ItemRepository');
+			$recRepo	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\StephenBungert\\SbPortfolio2\\Domain\\Repository\\' . $repo . 'Repository');
 
 			$querySettings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Persistence\Typo3QuerySettings');
 			$querySettings->setStoragePageIds($findPidsArray);
@@ -271,7 +271,7 @@ class Tx_SbPortfolio2_Controller_BeImportController extends \TYPO3\CMS\Extbase\M
 				$findPidsArray	= \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $branchIds);
 			}
 
-			$recRepo = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_' . $repo . 'Repository');
+			$recRepo = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\StephenBungert\\SbPortfolio2\\Domain\\Repository\\' . $repo . 'Repository');
 
 			$querySettings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Persistence\Typo3QuerySettings');
 			$querySettings->setStoragePageIds($findPidsArray);

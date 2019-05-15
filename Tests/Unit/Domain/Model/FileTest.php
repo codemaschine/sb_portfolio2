@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2011 Stephen Bungert <stephenbungert@yahoo.de>
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,7 +25,7 @@
  ***************************************************************/
 
 /**
- * Test case for class Tx_SbPortfolio2_Domain_Model_File.
+ * Test case for class \StephenBungert\SbPortfolio2\Domain\Model\File.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -36,21 +36,21 @@
  *
  * @author Stephen Bungert <stephenbungert@yahoo.de>
  */
-class Tx_SbPortfolio2_Domain_Model_FileTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
+class FileTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var Tx_SbPortfolio2_Domain_Model_File
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\File
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new Tx_SbPortfolio2_Domain_Model_File();
+		$this->fixture = new File();
 	}
 
 	public function tearDown() {
 		unset($this->fixture);
 	}
-	
-	
+
+
 	/**
 	 * @test
 	 */
@@ -59,7 +59,7 @@ class Tx_SbPortfolio2_Domain_Model_FileTest extends \TYPO3\CMS\Extbase\Tests\Uni
 	/**
 	 * @test
 	 */
-	public function setTitleForStringSetsTitle() { 
+	public function setTitleForStringSetsTitle() {
 		$this->fixture->setTitle('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -67,7 +67,7 @@ class Tx_SbPortfolio2_Domain_Model_FileTest extends \TYPO3\CMS\Extbase\Tests\Uni
 			$this->fixture->getTitle()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -76,7 +76,7 @@ class Tx_SbPortfolio2_Domain_Model_FileTest extends \TYPO3\CMS\Extbase\Tests\Uni
 	/**
 	 * @test
 	 */
-	public function setDescriptionForStringSetsDescription() { 
+	public function setDescriptionForStringSetsDescription() {
 		$this->fixture->setDescription('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -84,7 +84,7 @@ class Tx_SbPortfolio2_Domain_Model_FileTest extends \TYPO3\CMS\Extbase\Tests\Uni
 			$this->fixture->getDescription()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -93,7 +93,7 @@ class Tx_SbPortfolio2_Domain_Model_FileTest extends \TYPO3\CMS\Extbase\Tests\Uni
 	/**
 	 * @test
 	 */
-	public function setFileForStringSetsFile() { 
+	public function setFileForStringSetsFile() {
 		$this->fixture->setFile('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -101,6 +101,6 @@ class Tx_SbPortfolio2_Domain_Model_FileTest extends \TYPO3\CMS\Extbase\Tests\Uni
 			$this->fixture->getFile()
 		);
 	}
-	
+
 }
 ?>

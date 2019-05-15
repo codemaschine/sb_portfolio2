@@ -25,7 +25,7 @@ namespace StephenBungert\SbPortfolio2\ViewHelpers\Combine;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Model;
 /**
  * ViewHelper for combining an item record's relateditems with catgeory relateditems.
  *
@@ -37,11 +37,11 @@ class RelateditemsViewHelper extends CombinableViewHelper {
 	/**
 	 * Returns a record's relateditems combined with the record's categories' relateditems.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Item $record The current item.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Item $record The current item.
 	 * @param boolean $catOnly Are only related items from $record's categories required?
 	 * @return array The combined items.
 	 */
-	public function render(\Tx_SbPortfolio2_Domain_Model_Item $record, $catOnly = FALSE) {
+	public function render(\StephenBungert\SbPortfolio2\Domain\Model\Item $record, $catOnly = FALSE) {
 		$this->combineRecType = 'item';
 
 		if ($catOnly === false) {

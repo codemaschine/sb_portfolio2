@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -33,7 +33,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Model_CombinableCoreRecord extends Tx_SbPortfolio2_Domain_Model_CoreRecord {
+class CombinableCoreRecord extends CoreRecord {
 	/**
 	 * Is this record a category record. Used to set classes for combinable records with the
 	 * Classes VH and the combine VH's.
@@ -41,7 +41,7 @@ class Tx_SbPortfolio2_Domain_Model_CombinableCoreRecord extends Tx_SbPortfolio2_
 	 * @var boolean
 	 */
 	protected $catRecord;
-	
+
 	/**
 	 * Is this record an item record. Used to set classes for combinable records with the
 	 * Classes VH and the combine VH's.
@@ -49,7 +49,7 @@ class Tx_SbPortfolio2_Domain_Model_CombinableCoreRecord extends Tx_SbPortfolio2_
 	 * @var boolean
 	 */
 	protected $itemRecord;
-	
+
 	/**
 	 * Is this record a client record. Used to set classes for combinable records with the
 	 * Classes VH and the combine VH's.

@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,7 +23,8 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Repository;
+use \StephenBungert\SbPortfolio2\Domain\Model;
 /**
  *
  *
@@ -31,22 +32,22 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Controller_TagController extends Tx_SbPortfolio2_Controller_CoreRecordController {
+class TagController extends CoreRecordController {
 
 	/**
 	 * tagRepository
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Repository_TagRepository
+	 * @var \StephenBungert\SbPortfolio2\Domain\Repository\TagRepository
 	 */
 	protected $tagRepository;
 
 	/**
 	 * injectTagRepository
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Repository_TagRepository $tagRepository
+	 * @param \StephenBungert\SbPortfolio2\Domain\Repository\TagRepository $tagRepository
 	 * @return void
 	 */
-	public function injectTagRepository(Tx_SbPortfolio2_Domain_Repository_TagRepository $tagRepository) {
+	public function injectTagRepository(\StephenBungert\SbPortfolio2\Domain\Repository\TagRepository $tagRepository) {
 		$this->tagRepository = $tagRepository;
 	}
 
@@ -69,7 +70,7 @@ class Tx_SbPortfolio2_Controller_TagController extends Tx_SbPortfolio2_Controlle
 	 * @param $tag
 	 * @return void
 	 */
-	public function singleAction(Tx_SbPortfolio2_Domain_Model_Tag $tag) {
+	public function singleAction(\StephenBungert\SbPortfolio2\Domain\Model\Tag $tag) {
 		$this->view->assign('tag', $tag);
 	}
 }

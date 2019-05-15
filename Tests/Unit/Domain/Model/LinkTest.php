@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2011 Stephen Bungert <stephenbungert@yahoo.de>
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,7 +25,7 @@
  ***************************************************************/
 
 /**
- * Test case for class Tx_SbPortfolio2_Domain_Model_Link.
+ * Test case for class \StephenBungert\SbPortfolio2\Domain\Model\Link.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -36,21 +36,21 @@
  *
  * @author Stephen Bungert <stephenbungert@yahoo.de>
  */
-class Tx_SbPortfolio2_Domain_Model_LinkTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
+class LinkTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var Tx_SbPortfolio2_Domain_Model_Link
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Link
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new Tx_SbPortfolio2_Domain_Model_Link();
+		$this->fixture = new Link();
 	}
 
 	public function tearDown() {
 		unset($this->fixture);
 	}
-	
-	
+
+
 	/**
 	 * @test
 	 */
@@ -59,7 +59,7 @@ class Tx_SbPortfolio2_Domain_Model_LinkTest extends \TYPO3\CMS\Extbase\Tests\Uni
 	/**
 	 * @test
 	 */
-	public function setTitleForStringSetsTitle() { 
+	public function setTitleForStringSetsTitle() {
 		$this->fixture->setTitle('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -67,11 +67,11 @@ class Tx_SbPortfolio2_Domain_Model_LinkTest extends \TYPO3\CMS\Extbase\Tests\Uni
 			$this->fixture->getTitle()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
-	public function getTypeReturnsInitialValueForInteger() { 
+	public function getTypeReturnsInitialValueForInteger() {
 		$this->assertSame(
 			0,
 			$this->fixture->getType()
@@ -81,7 +81,7 @@ class Tx_SbPortfolio2_Domain_Model_LinkTest extends \TYPO3\CMS\Extbase\Tests\Uni
 	/**
 	 * @test
 	 */
-	public function setTypeForIntegerSetsType() { 
+	public function setTypeForIntegerSetsType() {
 		$this->fixture->setType(12);
 
 		$this->assertSame(
@@ -89,7 +89,7 @@ class Tx_SbPortfolio2_Domain_Model_LinkTest extends \TYPO3\CMS\Extbase\Tests\Uni
 			$this->fixture->getType()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -98,7 +98,7 @@ class Tx_SbPortfolio2_Domain_Model_LinkTest extends \TYPO3\CMS\Extbase\Tests\Uni
 	/**
 	 * @test
 	 */
-	public function setUrlForStringSetsUrl() { 
+	public function setUrlForStringSetsUrl() {
 		$this->fixture->setUrl('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -106,7 +106,7 @@ class Tx_SbPortfolio2_Domain_Model_LinkTest extends \TYPO3\CMS\Extbase\Tests\Uni
 			$this->fixture->getUrl()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -115,7 +115,7 @@ class Tx_SbPortfolio2_Domain_Model_LinkTest extends \TYPO3\CMS\Extbase\Tests\Uni
 	/**
 	 * @test
 	 */
-	public function setPageForStringSetsPage() { 
+	public function setPageForStringSetsPage() {
 		$this->fixture->setPage('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -123,6 +123,6 @@ class Tx_SbPortfolio2_Domain_Model_LinkTest extends \TYPO3\CMS\Extbase\Tests\Uni
 			$this->fixture->getPage()
 		);
 	}
-	
+
 }
 ?>

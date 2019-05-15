@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Model_CoreRecord extends Tx_SbPortfolio2_Domain_Model_BaseRecord {
+class CoreRecord extends BaseRecord {
 
 	/**
 	 * A short summary of the record.
@@ -103,9 +103,9 @@ class Tx_SbPortfolio2_Domain_Model_CoreRecord extends Tx_SbPortfolio2_Domain_Mod
 	 * @var integer
 	 */
 	protected $sbpuid;
-	
-	
-	
+
+
+
 	/**
 	 * __construct
 	 *
@@ -127,7 +127,7 @@ class Tx_SbPortfolio2_Domain_Model_CoreRecord extends Tx_SbPortfolio2_Domain_Mod
 		if (is_string($combinedRecordType) && isset($this->combinedRecords[$combinedRecordType])) {
 			return $this->combinedRecords[$combinedRecordType];
 		}
-		
+
 		return NULL;
 	}
 
@@ -143,7 +143,7 @@ class Tx_SbPortfolio2_Domain_Model_CoreRecord extends Tx_SbPortfolio2_Domain_Mod
 			$this->combinedRecords[$combinedRecordType] = $combinedRecords;
 		}
 	}
-	
+
 	/**
 	 * Returns the summary
 	 *
@@ -181,7 +181,7 @@ class Tx_SbPortfolio2_Domain_Model_CoreRecord extends Tx_SbPortfolio2_Domain_Mod
 	public function setFulldescription($fulldescription) {
 		$this->fulldescription = $fulldescription;
 	}
-	
+
 	/**
 	 * Returns seoTitle
 	 *
@@ -238,7 +238,7 @@ class Tx_SbPortfolio2_Domain_Model_CoreRecord extends Tx_SbPortfolio2_Domain_Mod
 	public function setSeoImage($seoImage) {
 		$this->seoImage = $seoImage;
 	}
-	
+
 	/**
 	 * Returns seoType
 	 *
@@ -257,7 +257,7 @@ class Tx_SbPortfolio2_Domain_Model_CoreRecord extends Tx_SbPortfolio2_Domain_Mod
 	public function setSeoType($seoType) {
 		$this->seoType = $seoType;
 	}
-	
+
 	/**
 	 * Returns seoFbappid
 	 *
@@ -276,7 +276,7 @@ class Tx_SbPortfolio2_Domain_Model_CoreRecord extends Tx_SbPortfolio2_Domain_Mod
 	public function setSeoFbappid($seoFbappid) {
 		$this->seoFbappid = $seoFbappid;
 	}
-	
+
 	/**
 	 * Returns seoFbadmins
 	 *

@@ -1,4 +1,5 @@
 <?php
+namespace StephenBungert\SbPortfolio2\Domain\Repository;
 
 /***************************************************************
  *  Copyright notice
@@ -32,6 +33,6 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Repository_TagRepository extends Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository {
+class TagRepository extends CoreRecordRepository {
 }
 ?>

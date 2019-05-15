@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Repository;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,7 +23,7 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use \StephenBungert\SbPortfolio2\Domain\Model;
 
 /**
  * A base repository class containing functions common to several repositories in sb_portfolio2
@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfolio2_Domain_Repository_NpRecordRepository {
+class CoreRecordRepository extends NpRecordRepository {
 
 	/**
 	 * Are records being selected automatically? If FALSE, they are being selected manually.
@@ -163,11 +163,11 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	/**
 	 * Finds records with the category $category.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Category $category The category.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Category $category The category.
 	 * @param array $portSetup The TS setup for the query.
 	 * @return array An array of records.
 	 */
-	public function findByCategories(Tx_SbPortfolio2_Domain_Model_Category $category, array $portSetup) {
+	public function findByCategories(\StephenBungert\SbPortfolio2\Domain\Model\Category $category, array $portSetup) {
 		$query = $this->createQuery();
 
 		$this->setPortfolioConstraints($query->contains('categories', $category));
@@ -183,11 +183,11 @@ class Tx_SbPortfolio2_Domain_Repository_CoreRecordRepository extends Tx_SbPortfo
 	 * Finds categories with a mm relation to $tag. Used when filtering records by a tag,
 	 * as records inherit tags from catgeories.
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Tag $tag The current filtering tag.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Tag $tag The current filtering tag.
 	 * @return string A string of category UIDs.
 	 */
-	protected function findCategoriesByTag(Tx_SbPortfolio2_Domain_Model_Tag $tag) {
-		$categoryRepository	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_SbPortfolio2_Domain_Repository_CategoryRepository');
+	protected function findCategoriesByTag(\StephenBungert\SbPortfolio2\Domain\Model\Tag $tag) {
+		$categoryRepository	= \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\StephenBungert\SbPortfolio2\Domain\Repository\CategoryRepository');
 		$categories			= $categoryRepository->findByTags($tag); // This is the findByTags() method in the category repository!
 		$categoryUids		= '';
 

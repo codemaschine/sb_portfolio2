@@ -1,5 +1,5 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,8 +23,8 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
-
+ use \StephenBungert\SbPortfolio2\Domain\Repository;
+ use \StephenBungert\SbPortfolio2\Domain\Model;
 /**
  *
  *
@@ -32,33 +32,33 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Controller_ClientController extends Tx_SbPortfolio2_Controller_CoreRecordController {
+class ClientController extends CoreRecordController {
 
 	/**
 	 * clientRepository
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Repository_ClientRepository
+	 * @var \StephenBungert\SbPortfolio2\Domain\Repository\ClientRepository
 	 */
 	protected $clientRepository;
 
 	/**
 	 * injectClientRepository
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Repository_ClientRepository $clientRepository
+	 * @param \StephenBungert\SbPortfolio2\Domain\Repository\ClientRepository $clientRepository
 	 * @return void
 	 */
-	public function injectClientRepository(Tx_SbPortfolio2_Domain_Repository_ClientRepository $clientRepository) {
+	public function injectClientRepository(\StephenBungert\SbPortfolio2\Domain\Repository\ClientRepository $clientRepository) {
 		$this->clientRepository = $clientRepository;
 	}
 
 	/**
 	 * action list
 	 *
-     * @param Tx_SbPortfolio2_Domain_Model_Category $category A category record to filter the view by.
-     * @param Tx_SbPortfolio2_Domain_Model_Tag $tag A client record to filter the view by.
+     * @param \StephenBungert\SbPortfolio2\Domain\Model\Category $category A category record to filter the view by.
+     * @param \StephenBungert\SbPortfolio2\Domain\Model\Tag $tag A client record to filter the view by.
 	 * @return void
 	 */
-	public function listAction(Tx_SbPortfolio2_Domain_Model_Category $category = NULL, Tx_SbPortfolio2_Domain_Model_Tag $tag = NULL) {
+	public function listAction(\StephenBungert\SbPortfolio2\Domain\Model\Category $category = NULL, \StephenBungert\SbPortfolio2\Domain\Model\Tag $tag = NULL) {
 		$this->mergeFlexFormSettings('client');
 		$filters = array(
 			'category'	=> $category,
@@ -74,10 +74,10 @@ class Tx_SbPortfolio2_Controller_ClientController extends Tx_SbPortfolio2_Contro
 	/**
 	 * action single
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Client $client The client to show.
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Client $client The client to show.
 	 * @return void
 	 */
-	public function singleAction(Tx_SbPortfolio2_Domain_Model_Client $client = NULL) {
+	public function singleAction(\StephenBungert\SbPortfolio2\Domain\Model\Client $client = NULL) {
 		$this->view->assign('client', $client);
 	}
 

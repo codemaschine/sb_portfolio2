@@ -1,10 +1,10 @@
 <?php
-
+namespace StephenBungert\SbPortfolio2\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Stephen Bungert <stephenbungert@yahoo.de>
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -32,8 +32,8 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_CombinableCoreRecord {
-	
+class Item extends CombinableCoreRecord {
+
 	/**
 	 * The date this item was "published" / "went live" or was completed.
 	 *
@@ -58,7 +58,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * The item's testimonial.
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Model_Testimonial
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Testimonial
 	 * @lazy
 	 */
 	protected $testimonial;
@@ -66,7 +66,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * The item's tags.
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Tag>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Tag>
 	 * @lazy
 	 */
 	protected $tags;
@@ -74,7 +74,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * The item's image folders (folders in fileadmin that contain images that are to be displayed with this item).
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_ImageFolder>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\ImageFolder>
 	 * @lazy
 	 */
 	protected $imagefolders;
@@ -82,7 +82,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * The item's links.
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Link>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Link>
 	 * @lazy
 	 */
 	protected $links;
@@ -90,7 +90,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * The item's files.
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_File>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\File>
 	 * @lazy
 	 */
 	protected $files;
@@ -98,7 +98,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * The item's films.
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Film>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Film>
 	 * @lazy
 	 */
 	protected $films;
@@ -106,7 +106,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * The item's categories.
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Category>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Category>
 	 * @lazy
 	 */
 	protected $categories;
@@ -114,7 +114,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * The item's client - the individual or company this item was made for.
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Model_Client
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Client
 	 * @lazy
 	 */
 	protected $client;
@@ -122,7 +122,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * The item's images.
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Image>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Image>
 	 * @lazy
 	 */
 	protected $images;
@@ -151,7 +151,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 
 	/**
 	 * A flickr Photo Set ID
-	 * 
+	 *
 	 * @var string
 	 */
 	protected $setid;
@@ -159,7 +159,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * An image to be used as a preview of the item.
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Model_Image
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Image
 	 * @lazy
 	 */
 	protected $preview;
@@ -167,7 +167,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * The item's related items.
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Item>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Item>
 	 * @lazy
 	 */
 	protected $relateditems;
@@ -175,7 +175,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * The item's main link - could be to a website, file etc.
 	 *
-	 * @var Tx_SbPortfolio2_Domain_Model_Link
+	 * @var \StephenBungert\SbPortfolio2\Domain\Model\Link
 	 * @lazy
 	 */
 	protected $linkurl;
@@ -214,9 +214,9 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	 * @var string
 	 */
 	protected $filetype;
-	
-	
-	
+
+
+
 	/**
 	 * __construct
 	 *
@@ -258,26 +258,26 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 		 * You may modify the constructor of this class instead
 		 */
 		$this->tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		
+
 		$this->imagefolders = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		
+
 		$this->links = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		
+
 		$this->files = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		
+
 		$this->films = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		
+
 		$this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		
+
 		$this->images = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		
+
 		$this->relateditems = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
 	 * Returns the testimonial
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Testimonial $testimonial
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Testimonial $testimonial
 	 */
 	public function getTestimonial() {
 		return $this->testimonial;
@@ -286,37 +286,37 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Sets the testimonial
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Testimonial $testimonial
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Testimonial $testimonial
 	 * @return void
 	 */
-	public function setTestimonial(Tx_SbPortfolio2_Domain_Model_Testimonial $testimonial) {
+	public function setTestimonial(Testimonial $testimonial) {
 		$this->testimonial = $testimonial;
 	}
 
 	/**
 	 * Adds a Tag
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Tag $tag
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Tag $tag
 	 * @return void
 	 */
-	public function addTag(Tx_SbPortfolio2_Domain_Model_Tag $tag) {
+	public function addTag(Tag $tag) {
 		$this->tags->attach($tag);
 	}
 
 	/**
 	 * Removes a Tag
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Tag $tagToRemove The Tag to be removed
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Tag $tagToRemove The Tag to be removed
 	 * @return void
 	 */
-	public function removeTag(Tx_SbPortfolio2_Domain_Model_Tag $tagToRemove) {
+	public function removeTag(Tag $tagToRemove) {
 		$this->tags->detach($tagToRemove);
 	}
 
 	/**
 	 * Returns the tags
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Tag> $tags
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Tag> $tags
 	 */
 	public function getTags() {
 		return $this->tags;
@@ -325,7 +325,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Sets the tags
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Tag> $tags
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Tag> $tags
 	 * @return void
 	 */
 	public function setTags(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags) {
@@ -336,27 +336,27 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Adds a ImageFolder
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_ImageFolder $imagefolder
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\ImageFolder $imagefolder
 	 * @return void
 	 */
-	public function addImagefolder(Tx_SbPortfolio2_Domain_Model_ImageFolder $imagefolder) {
+	public function addImagefolder(ImageFolder $imagefolder) {
 		$this->imagefolders->attach($imagefolder);
 	}
 
 	/**
 	 * Removes a ImageFolder
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_ImageFolder $imagefolderToRemove The ImageFolder to be removed
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\ImageFolder $imagefolderToRemove The ImageFolder to be removed
 	 * @return void
 	 */
-	public function removeImagefolder(Tx_SbPortfolio2_Domain_Model_ImageFolder $imagefolderToRemove) {
+	public function removeImagefolder(ImageFolder $imagefolderToRemove) {
 		$this->imagefolders->detach($imagefolderToRemove);
 	}
 
 	/**
 	 * Returns the imagefolders
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_ImageFolder> $imagefolders
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\ImageFolder> $imagefolders
 	 */
 	public function getImagefolders() {
 		return $this->imagefolders;
@@ -365,7 +365,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Sets the imagefolders
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_ImageFolder> $imagefolders
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\ImageFolder> $imagefolders
 	 * @return void
 	 */
 	public function setImagefolders(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $imagefolders) {
@@ -375,27 +375,27 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Adds a Link
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Link $link
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Link $link
 	 * @return void
 	 */
-	public function addLink(Tx_SbPortfolio2_Domain_Model_Link $link) {
+	public function addLink(Link $link) {
 		$this->links->attach($link);
 	}
 
 	/**
 	 * Removes a Link
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Link $linkToRemove The Link to be removed
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Link $linkToRemove The Link to be removed
 	 * @return void
 	 */
-	public function removeLink(Tx_SbPortfolio2_Domain_Model_Link $linkToRemove) {
+	public function removeLink(Link $linkToRemove) {
 		$this->links->detach($linkToRemove);
 	}
 
 	/**
 	 * Returns the links
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Link> $links
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Link> $links
 	 */
 	public function getLinks() {
 		return $this->links;
@@ -404,7 +404,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Sets the links
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Link> $links
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Link> $links
 	 * @return void
 	 */
 	public function setLinks(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $links) {
@@ -414,27 +414,27 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Adds a File
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_File $file
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\File $file
 	 * @return void
 	 */
-	public function addFile(Tx_SbPortfolio2_Domain_Model_File $file) {
+	public function addFile(File $file) {
 		$this->files->attach($file);
 	}
 
 	/**
 	 * Removes a File
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_File $fileToRemove The File to be removed
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\File $fileToRemove The File to be removed
 	 * @return void
 	 */
-	public function removeFile(Tx_SbPortfolio2_Domain_Model_File $fileToRemove) {
+	public function removeFile(File $fileToRemove) {
 		$this->files->detach($fileToRemove);
 	}
 
 	/**
 	 * Returns the files
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_File> $files
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\File> $files
 	 */
 	public function getFiles() {
 		return $this->files;
@@ -443,7 +443,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Sets the files
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_File> $files
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\File> $files
 	 * @return void
 	 */
 	public function setFiles(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $files) {
@@ -453,27 +453,27 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Adds a Film
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Film $film
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Film $film
 	 * @return void
 	 */
-	public function addFilm(Tx_SbPortfolio2_Domain_Model_Film $film) {
+	public function addFilm(Film $film) {
 		$this->films->attach($film);
 	}
 
 	/**
 	 * Removes a Film
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Film $filmToRemove The Film to be removed
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Film $filmToRemove The Film to be removed
 	 * @return void
 	 */
-	public function removeFilm(Tx_SbPortfolio2_Domain_Model_Film $filmToRemove) {
+	public function removeFilm(Film $filmToRemove) {
 		$this->films->detach($filmToRemove);
 	}
 
 	/**
 	 * Returns the films
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Film> $films
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Film> $films
 	 */
 	public function getFilms() {
 		return $this->films;
@@ -482,7 +482,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Sets the films
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Film> $films
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Film> $films
 	 * @return void
 	 */
 	public function setFilms(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $films) {
@@ -492,27 +492,27 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Adds a Category
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Category $category
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Category $category
 	 * @return void
 	 */
-	public function addCategory(Tx_SbPortfolio2_Domain_Model_Category $category) {
+	public function addCategory(Category $category) {
 		$this->categories->attach($category);
 	}
 
 	/**
 	 * Removes a Category
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Category $categoryToRemove The Category to be removed
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Category $categoryToRemove The Category to be removed
 	 * @return void
 	 */
-	public function removeCategory(Tx_SbPortfolio2_Domain_Model_Category $categoryToRemove) {
+	public function removeCategory(Category $categoryToRemove) {
 		$this->categories->detach($categoryToRemove);
 	}
 
 	/**
 	 * Returns the categories
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Category> $categories
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Category> $categories
 	 */
 	public function getCategories() {
 		return $this->categories;
@@ -521,7 +521,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Sets the categories
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Category> $categories
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Category> $categories
 	 * @return void
 	 */
 	public function setCategories(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories) {
@@ -531,27 +531,27 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Adds a Image
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Image $image
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Image $image
 	 * @return void
 	 */
-	public function addImage(Tx_SbPortfolio2_Domain_Model_Image $image) {
+	public function addImage(Image $image) {
 		$this->images->attach($image);
 	}
 
 	/**
 	 * Removes a Image
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Image $imageToRemove The Image to be removed
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Image $imageToRemove The Image to be removed
 	 * @return void
 	 */
-	public function removeImage(Tx_SbPortfolio2_Domain_Model_Image $imageToRemove) {
+	public function removeImage(Image $imageToRemove) {
 		$this->images->detach($imageToRemove);
 	}
 
 	/**
 	 * Returns the images
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Image> $images
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Image> $images
 	 */
 	public function getImages() {
 		return $this->images;
@@ -560,7 +560,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Sets the images
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Image> $images
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Image> $images
 	 * @return void
 	 */
 	public function setImages(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $images) {
@@ -625,7 +625,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Returns the client
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Client $client
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Client $client
 	 */
 	public function getClient() {
 		return $this->client;
@@ -634,10 +634,10 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Sets the client
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Client $client
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Client $client
 	 * @return	void
 	 */
-	public function setClient(Tx_SbPortfolio2_Domain_Model_Client $client) {
+	public function setClient(Client $client) {
 		$this->client = $client;
 	}
 
@@ -720,7 +720,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Returns the preview
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Image $preview
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Image $preview
 	 */
 	public function getPreview() {
 		return $this->preview;
@@ -729,37 +729,37 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Sets the preview
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Image $preview
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Image $preview
 	 * @return void
 	 */
-	public function setPreview(Tx_SbPortfolio2_Domain_Model_Image $preview) {
+	public function setPreview(Image $preview) {
 		$this->preview = $preview;
 	}
 
 	/**
 	 * Adds a relateditem
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Item $item
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Item $item
 	 * @return void
 	 */
-	public function addRelateditem(Tx_SbPortfolio2_Domain_Model_Item $item) {
+	public function addRelateditem(Item $item) {
 		$this->relateditems->attach($item);
 	}
 
 	/**
 	 * Removes a relateditem
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Item $itemToRemove The Link to be removed
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Item $itemToRemove The Link to be removed
 	 * @return void
 	 */
-	public function removeRelateditem(Tx_SbPortfolio2_Domain_Model_Item $itemToRemove) {
+	public function removeRelateditem(Item $itemToRemove) {
 		$this->relateditems->detach($itemToRemove);
 	}
 
 	/**
 	 * Returns relateditems
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Item> $links
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Item> $links
 	 */
 	public function getRelateditems() {
 		return $this->relateditems;
@@ -768,7 +768,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Sets relateditems
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_SbPortfolio2_Domain_Model_Item> $relateditems
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\StephenBungert\SbPortfolio2\Domain\Model\Item> $relateditems
 	 * @return void
 	 */
 	public function setRelateditems(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $relateditems) {
@@ -778,7 +778,7 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Returns linkurl
 	 *
-	 * @return Tx_SbPortfolio2_Domain_Model_Link $link
+	 * @return \StephenBungert\SbPortfolio2\Domain\Model\Link $link
 	 */
 	public function getLinkurl() {
 		return $this->linkurl;
@@ -787,13 +787,13 @@ class Tx_SbPortfolio2_Domain_Model_Item extends Tx_SbPortfolio2_Domain_Model_Com
 	/**
 	 * Sets linkurl
 	 *
-	 * @param Tx_SbPortfolio2_Domain_Model_Link $link
+	 * @param \StephenBungert\SbPortfolio2\Domain\Model\Link $link
 	 * @return void
 	 */
-	public function setLinkurl(Tx_SbPortfolio2_Domain_Model_Link $link) {
+	public function setLinkurl(Link $link) {
 		$this->linkurl = $link;
 	}
-	
+
 	/**
 	 * Returns the file
 	 *
